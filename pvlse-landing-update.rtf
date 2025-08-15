@@ -1,0 +1,348 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 .SFNS-Regular;\f1\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;\f2\fswiss\fcharset0 Helvetica;
+\f3\fnil\fcharset0 .SFNS-Semibold;\f4\fmodern\fcharset0 Courier;\f5\fnil\fcharset0 HelveticaNeue-Bold;
+\f6\fmodern\fcharset0 Courier-Oblique;}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;\red197\green136\blue83;\red155\green162\blue177;
+\red136\green185\blue102;\red184\green93\blue213;\red214\green85\blue98;\red74\green80\blue93;}
+{\*\expandedcolortbl;;\cssrgb\c6700\c6700\c6700;\cssrgb\c81961\c60392\c40000;\cssrgb\c67059\c69804\c74902;
+\cssrgb\c59608\c76471\c47451;\cssrgb\c77647\c47059\c86667;\cssrgb\c87843\c42353\c45882;\cssrgb\c36078\c38824\c43922;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 Awesome\'97let\'92s wire these 5 \'93holy-sh*t\'94 moments into the site properly.\
+\
+Below is (A) a JSON patch for 
+\f1 pvlse.json
+\f0 , and (B) a new React section 
+\f1 Moments.tsx
+\f0  that reads from that JSON and renders a premium, micro-animated grid. Lastly, (C) which files to update.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b\fs48 \cf2 A) pvlse.json \'97 add a new section + update layout
+\f0\b0\fs32 \
+\
+Add this block under 
+\f1 "content"
+\f0  (sibling to 
+\f1 hero
+\f0 , 
+\f1 why
+\f0 , etc.):
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf3 "moments"\cf4 : \{\
+  \cf3 "id"\cf4 : \cf5 "moments"\cf4 ,\
+  \cf3 "title"\cf4 : \cf5 "It feels like this"\cf4 ,\
+  \cf3 "kicker"\cf4 : \cf5 "The PVLSE Effect"\cf4 ,\
+  \cf3 "items"\cf4 : [\
+    \{\
+      \cf3 "title"\cf4 : \cf5 "Follow-ups already done"\cf4 ,\
+      \cf3 "body"\cf4 : \cf5 "End the call. The notes are written, the tasks assigned, responsibilities crystal clear."\cf4 ,\
+      \cf3 "motion"\cf4 : \{ \cf3 "type"\cf4 : \cf5 "fade-up"\cf4 , \cf3 "delayMs"\cf4 : \cf3 60\cf4  \},\
+      \cf3 "visual"\cf4 : \{ \cf3 "kind"\cf4 : \cf5 "clip"\cf4 , \cf3 "asset"\cf4 : \cf5 "/assets/moments/followups.mp4"\cf4 , \cf3 "alt"\cf4 : \cf5 "Meeting ends, tasks appear"\cf4  \}\
+    \},\
+    \{\
+      \cf3 "title"\cf4 : \cf5 "Answers without hunting"\cf4 ,\
+      \cf3 "body"\cf4 : \cf5 "Just ask \'97 PVLSE knows. No files. No tabs. No digging."\cf4 ,\
+      \cf3 "motion"\cf4 : \{ \cf3 "type"\cf4 : \cf5 "fade-up"\cf4 , \cf3 "delayMs"\cf4 : \cf3 120\cf4  \},\
+      \cf3 "visual"\cf4 : \{ \cf3 "kind"\cf4 : \cf5 "clip"\cf4 , \cf3 "asset"\cf4 : \cf5 "/assets/moments/answers.mp4"\cf4 , \cf3 "alt"\cf4 : \cf5 "Ask a question, instant answer"\cf4  \}\
+    \},\
+    \{\
+      \cf3 "title"\cf4 : \cf5 "Money clarity on tap"\cf4 ,\
+      \cf3 "body"\cf4 : \cf5 "See the truth in the numbers before anyone else does."\cf4 ,\
+      \cf3 "motion"\cf4 : \{ \cf3 "type"\cf4 : \cf5 "fade-up"\cf4 , \cf3 "delayMs"\cf4 : \cf3 180\cf4  \},\
+      \cf3 "visual"\cf4 : \{ \cf3 "kind"\cf4 : \cf5 "clip"\cf4 , \cf3 "asset"\cf4 : \cf5 "/assets/moments/money.mp4"\cf4 , \cf3 "alt"\cf4 : \cf5 "Financial snapshot appears"\cf4  \}\
+    \},\
+    \{\
+      \cf3 "title"\cf4 : \cf5 "Inbox peace"\cf4 ,\
+      \cf3 "body"\cf4 : \cf5 "Emails turn into clear, simple actions \'97 without you touching a spreadsheet."\cf4 ,\
+      \cf3 "motion"\cf4 : \{ \cf3 "type"\cf4 : \cf5 "fade-up"\cf4 , \cf3 "delayMs"\cf4 : \cf3 240\cf4  \},\
+      \cf3 "visual"\cf4 : \{ \cf3 "kind"\cf4 : \cf5 "clip"\cf4 , \cf3 "asset"\cf4 : \cf5 "/assets/moments/inbox.mp4"\cf4 , \cf3 "alt"\cf4 : \cf5 "Email thread becomes tasks"\cf4  \}\
+    \},\
+    \{\
+      \cf3 "title"\cf4 : \cf5 "C-suite on speed dial"\cf4 ,\
+      \cf3 "body"\cf4 : \cf5 "Your C-suite \'97 without the scheduling, without the bottlenecks."\cf4 ,\
+      \cf3 "motion"\cf4 : \{ \cf3 "type"\cf4 : \cf5 "fade-up"\cf4 , \cf3 "delayMs"\cf4 : \cf3 300\cf4  \},\
+      \cf3 "visual"\cf4 : \{ \cf3 "kind"\cf4 : \cf5 "clip"\cf4 , \cf3 "asset"\cf4 : \cf5 "/assets/moments/csuite.mp4"\cf4 , \cf3 "alt"\cf4 : \cf5 "Instant executive guidance"\cf4  \}\
+    \}\
+  ],\
+  \cf3 "note"\cf4 : \cf5 "Short scenes. Big sigh of relief. That\'92s the point."\cf4 \
+\}
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 Then, in 
+\f1 "layout". "order"
+\f0  insert 
+\f5\b \'93Moments\'94
+\f0\b0  right after 
+\f1 "Hero"
+\f0  (and before 
+\f1 "Why"
+\f0 ):
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf3 "order"\cf4 : [\
+  \cf5 "Navbar"\cf4 ,\
+  \cf5 "Hero"\cf4 ,\
+  \cf5 "Moments"\cf4 ,\
+  \cf5 "LogoStrip"\cf4 ,\
+  \cf5 "Why"\cf4 ,\
+  \cf5 "WellbeingProductivity"\cf4 ,\
+  \cf5 "HowItWorks"\cf4 ,\
+  \cf5 "Stories"\cf4 ,\
+  \cf5 "Benefits"\cf4 ,\
+  \cf5 "Features"\cf4 ,\
+  \cf5 "ROI"\cf4 ,\
+  \cf5 "Pricing"\cf4 ,\
+  \cf5 "FAQ"\cf4 ,\
+  \cf5 "CtaFinal"\cf4 ,\
+  \cf5 "Footer"\cf4 \
+]
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 (If your JSON doesn\'92t use case-sensitive mapping for sections, just ensure the label you add in code matches 
+\f1 "Moments"
+\f0 .)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b\fs48 \cf2 B) New component: src/components/Moments.tsx
+\f2\b0\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf5 'use client'\cf4 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf6 import\cf4  data \cf6 from\cf4  \cf5 '@/data/pvlse.json'\cf4 \
+\cf6 import\cf4  \{ useReveal \} \cf6 from\cf4  \cf5 './Motion'\cf4 \
+\cf6 import\cf4  \{ cx \} \cf6 from\cf4  \cf5 './Utils'\cf4 \
+\
+\cf6 export\cf4  \cf6 default\cf4  \cf6 function\cf4  Moments() \{\
+  \cf6 const\cf4  section = (data \cf6 as\cf4  any).content.moments\
+  \cf6 const\cf4  \cf3 items\cf4 : \{ \cf3 title\cf4 : string; \cf3 body\cf4 : string; \cf3 motion\cf4 ?: any; \cf3 visual\cf4 ?: \{ \cf3 kind\cf4 : \cf5 'clip'\cf4  | \cf5 'image'\cf4 ; \cf3 asset\cf4 : string; \cf3 alt\cf4 ?: string \} \}[] =\
+    section.items\
+\
+  \cf6 const\cf4  ref = useReveal(\cf3 60\cf4 , \cf3 0.15\cf4 )\
+\
+  \cf6 return\cf4  (\
+    <\cf7 section\cf4  \cf3 id\cf4 =\cf5 \{section.id\}\cf4  \cf3 className\cf4 =\cf5 "py-24 md:py-28"\cf4 >\
+      <\cf7 div\cf4  \cf3 ref\cf4 =\cf5 \{ref\cf4  \cf3 as\cf4  \cf3 any\cf4 \} \cf3 className\cf4 =\cf5 "container"\cf4 >\
+        \{section.kicker && (\
+          <\cf7 div\cf4  \cf3 className\cf4 =\cf5 "reveal text-sm text-textSecondary/80 tracking-wide mb-2"\cf4 >\
+            \{section.kicker\}\
+          </\cf7 div\cf4 >\
+        )\}\
+        \{section.title && (\
+          <\cf7 h2\cf4  \cf3 className\cf4 =\cf5 "reveal text-3xl md:text-4xl font-semibold mb-8 text-textPrimary"\cf4 >\
+            \{section.title\}\
+          </\cf7 h2\cf4 >\
+        )\}\
+\
+        <\cf7 div\cf4  \cf3 className\cf4 =\cf5 "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"\cf4 >\
+          \{items.map((item) => (\
+            <\cf7 article\cf4 \
+              \cf3 key\cf4 =\cf5 \{item.title\}\cf4 \
+              \cf3 className\cf4 =\cf5 \{cx(\cf4 \
+                '\cf3 card\cf4  \cf3 overflow-hidden\cf4  \cf3 group\cf4  \cf3 transition\cf4  \cf3 will-change-transform\cf4 ',\
+                '\cf3 hover:-translate-y-1\cf4  \cf3 hover:shadow-hard\cf4 '\
+              )\}\
+            >\
+              \{/* Visual */\}\
+              \{item.visual?.kind === 'clip' ? (\
+                <\cf7 div\cf4  \cf3 className\cf4 =\cf5 "aspect-video bg-black/30"\cf4 >\
+                  <\cf7 video\cf4 \
+                    \cf3 className\cf4 =\cf5 "w-full h-full object-cover opacity-90 group-hover:opacity-100 transition"\cf4 \
+                    \cf3 src\cf4 =\cf5 \{item.visual.asset\}\cf4 \
+                    \cf3 autoPlay\cf4 \
+                    \cf3 muted\cf4 \
+                    \cf3 loop\cf4 \
+                    \cf3 playsInline\cf4 \
+                    \cf3 aria-label\cf4 =\cf5 \{item.visual.alt\cf4  || \cf3 item.title\cf4 \}\
+                  />\
+                </\cf7 div\cf4 >\
+              ) : item.visual?.kind === 'image' ? (\
+                <\cf7 div\cf4  \cf3 className\cf4 =\cf5 "aspect-video bg-black/30"\cf4 >\
+                  <\cf7 img\cf4 \
+                    \cf3 src\cf4 =\cf5 \{item.visual.asset\}\cf4 \
+                    \cf3 alt\cf4 =\cf5 \{item.visual.alt\cf4  || \cf3 item.title\cf4 \}\
+                    \cf3 className\cf4 =\cf5 "w-full h-full object-cover"\cf4 \
+                  />\
+                </\cf7 div\cf4 >\
+              ) : null\}\
+\
+              \{/* Copy */\}\
+              <\cf7 div\cf4  \cf3 className\cf4 =\cf5 "p-6"\cf4 >\
+                <\cf7 h3\cf4  \cf3 className\cf4 =\cf5 "text-xl font-semibold text-textPrimary"\cf4 >\
+                  \{item.title\}\
+                </\cf7 h3\cf4 >\
+                <\cf7 p\cf4  \cf3 className\cf4 =\cf5 "mt-2 text-textSecondary leading-relaxed"\cf4 >\
+                  \{item.body\}\
+                </\cf7 p\cf4 >\
+              </\cf7 div\cf4 >\
+            </\cf7 article\cf4 >\
+          ))\}\
+        </\cf7 div\cf4 >\
+\
+        \{section.note && (\
+          <\cf7 p\cf4  \cf3 className\cf4 =\cf5 "reveal text-muted mt-6 max-w-[68ch]"\cf4 >\{section.note\}</\cf7 p\cf4 >\
+        )\}\
+      </\cf7 div\cf4 >\
+    </\cf7 section\cf4 >\
+  )\
+\}
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 Notes:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Uses your shared 
+\f1 card
+\f0  styling.\
+	\'95	Plays short 
+\f5\b looping, muted clips
+\f0\b0  (drop your 
+\f1 .mp4
+\f0  files into 
+\f1 public/assets/moments/
+\f0  with the names in the JSON).\
+	\'95	Honors reduced-motion via your existing 
+\f1 useReveal
+\f0  setup (no crazy animations; just subtle reveal + hover lift).\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b\fs48 \cf2 C) Files to update
+\f0\b0\fs32 \
+\pard\tqr\tx280\tx440\li440\fi-440\sl324\slmult1\sb240\partightenfactor0
+\cf2 	1.	
+\f5\b src/data/pvlse.json
+\f0\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Add the 
+\f1 "moments"
+\f0  block under 
+\f1 "content"
+\f0 .\
+	\'95	Insert 
+\f1 "Moments"
+\f0  in 
+\f1 "layout.order"
+\f0  right after 
+\f1 "Hero"
+\f0 .\
+\pard\tqr\tx280\tx440\li440\fi-440\sl324\slmult1\sb240\partightenfactor0
+\cf2 	2.	
+\f5\b src/components/Moments.tsx
+\f0\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Create the new file with the code above.\
+\pard\tqr\tx280\tx440\li440\fi-440\sl324\slmult1\sb240\partightenfactor0
+\cf2 	3.	
+\f5\b src/pages/index.tsx
+\f0\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Import and render the new section according to the layout.\
+	\'95	Example diff:
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf6 import\cf4  Moments \cf6 from\cf4  \cf5 '@/components/Moments'\cf4 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f6\i \cf8 // ...
+\f4\i0 \cf4 \
+<Theme>\
+  <\cf7 Navbar\cf4  />\
+  <main>\
+    <\cf7 Hero\cf4  />\
+    <\cf7 Moments\cf4  />   \{
+\f6\i \cf8 /* NEW: emotional showcase */
+\f4\i0 \cf4 \}\
+    <LogoStrip items=\{data.content.logos.items\} />\
+    \{
+\f6\i \cf8 /* ...rest unchanged */
+\f4\i0 \cf4 \}
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 \
+\pard\tqr\tx280\tx440\li440\fi-440\sl324\slmult1\sb240\partightenfactor0
+\cf2 	4.	
+\f5\b Assets
+\f0\b0 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Add short (3\'966s) looping clips to:
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs28 \cf6 public\cf4 /assets/moments/followups.mp4\
+\cf6 public\cf4 /assets/moments/answers.mp4\
+\cf6 public\cf4 /assets/moments/money.mp4\
+\cf6 public\cf4 /assets/moments/inbox.mp4\
+\cf6 public\cf4 /assets/moments/csuite.mp4
+\f2\fs24 \cf0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 \
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	If you don\'92t have video yet, temporarily swap each 
+\f1 visual.kind
+\f0  to 
+\f1 "image"
+\f0  and point to a PNG/JPG mock.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf0 \
+\uc0\u11835 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b\fs38 \cf2 Optional (but nice)
+\f0\b0\fs32 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	If any ESLint complains about JSON imports, ensure 
+\f1 resolveJsonModule
+\f0  is on (it already is in your 
+\f1 tsconfig.json
+\f0 ).\
+	\'95	If you want slower reveals, tweak 
+\f1 useReveal(80, 0.2)
+\f0  in 
+\f1 Moments.tsx
+\f0 .\
+}

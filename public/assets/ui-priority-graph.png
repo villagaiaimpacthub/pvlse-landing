@@ -1,0 +1,49 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" rx="18" fill="#17181B"/>
+  <rect x="1" y="1" width="398" height="298" rx="17" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="24" y="24" width="150" height="12" rx="6" fill="#F6F7FA"/>
+  <rect x="24" y="44" width="100" height="8" rx="4" fill="#9AA3AF"/>
+  
+  <!-- Graph area -->
+  <rect x="24" y="80" width="352" height="180" rx="10" fill="#1D1F23"/>
+  
+  <!-- Y-axis labels -->
+  <rect x="36" y="92" width="30" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="36" y="130" width="25" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="36" y="168" width="28" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="36" y="206" width="22" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="36" y="244" width="20" height="6" rx="3" fill="#9AA3AF"/>
+  
+  <!-- Grid lines -->
+  <line x1="80" y1="92" x2="360" y2="92" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <line x1="80" y1="130" x2="360" y2="130" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <line x1="80" y1="168" x2="360" y2="168" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <line x1="80" y1="206" x2="360" y2="206" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <line x1="80" y1="244" x2="360" y2="244" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  
+  <!-- Priority curve -->
+  <path d="M80 220 Q140 180 200 160 Q260 140 320 120 Q340 110 360 100" stroke="#7C5CFF" stroke-width="3" fill="none"/>
+  
+  <!-- Data points -->
+  <circle cx="80" cy="220" r="4" fill="#7C5CFF"/>
+  <circle cx="140" cy="180" r="4" fill="#7C5CFF"/>
+  <circle cx="200" cy="160" r="4" fill="#7C5CFF"/>
+  <circle cx="260" cy="140" r="4" fill="#7C5CFF"/>
+  <circle cx="320" cy="120" r="4" fill="#7C5CFF"/>
+  <circle cx="360" cy="100" r="4" fill="#7C5CFF"/>
+  
+  <!-- Urgency bars -->
+  <rect x="100" y="240" width="8" height="20" rx="4" fill="#EF4444" opacity="0.8"/>
+  <rect x="160" y="235" width="8" height="25" rx="4" fill="#F59E0B" opacity="0.8"/>
+  <rect x="220" y="230" width="8" height="30" rx="4" fill="#22C55E" opacity="0.8"/>
+  <rect x="280" y="225" width="8" height="35" rx="4" fill="#7C5CFF" opacity="0.8"/>
+  
+  <!-- X-axis labels -->
+  <rect x="90" y="275" width="20" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="150" y="275" width="25" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="210" y="275" width="30" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="270" y="275" width="28" height="6" rx="3" fill="#9AA3AF"/>
+</svg>

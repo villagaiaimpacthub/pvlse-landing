@@ -1,0 +1,32 @@
+<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#111214"/>
+  
+  <!-- Background card -->
+  <rect x="40" y="40" width="320" height="145" rx="12" fill="#17181B" stroke="rgba(255,255,255,0.1)"/>
+  
+  <!-- Header -->
+  <text x="60" y="70" fill="#F6F7FA" font-family="system-ui" font-size="14" font-weight="600">Financial Snapshot</text>
+  <text x="280" y="70" fill="#22C55E" font-family="system-ui" font-size="11">Live</text>
+  
+  <!-- Revenue metric -->
+  <text x="60" y="100" fill="#C9CED6" font-family="system-ui" font-size="11">Monthly Recurring Revenue</text>
+  <text x="60" y="120" fill="#F6F7FA" font-family="system-ui" font-size="24" font-weight="700">$847,320</text>
+  <text x="190" y="120" fill="#22C55E" font-family="system-ui" font-size="12">+12.4%</text>
+  
+  <!-- Growth indicator -->
+  <path d="M60 135 L120 125 L180 115 L240 108 L300 105" stroke="#22C55E" stroke-width="2" fill="none"/>
+  <circle cx="300" cy="105" r="3" fill="#22C55E"/>
+  
+  <!-- Key metrics -->
+  <rect x="60" y="150" width="80" height="25" rx="4" fill="rgba(34,197,94,0.1)"/>
+  <text x="65" y="160" fill="#22C55E" font-family="system-ui" font-size="9">CASH FLOW</text>
+  <text x="65" y="170" fill="#F6F7FA" font-family="system-ui" font-size="11" font-weight="600">+$127K</text>
+  
+  <rect x="150" y="150" width="80" height="25" rx="4" fill="rgba(34,197,94,0.1)"/>
+  <text x="155" y="160" fill="#22C55E" font-family="system-ui" font-size="9">RUNWAY</text>
+  <text x="155" y="170" fill="#F6F7FA" font-family="system-ui" font-size="11" font-weight="600">18 months</text>
+  
+  <rect x="240" y="150" width="80" height="25" rx="4" fill="rgba(124,92,255,0.1)"/>
+  <text x="245" y="160" fill="#7C5CFF" font-family="system-ui" font-size="9">FORECAST</text>
+  <text x="245" y="170" fill="#F6F7FA" font-family="system-ui" font-size="11" font-weight="600">$1.2M ARR</text>
+</svg>

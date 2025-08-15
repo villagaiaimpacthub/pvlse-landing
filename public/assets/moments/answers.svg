@@ -1,0 +1,27 @@
+<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#111214"/>
+  
+  <!-- Background card -->
+  <rect x="40" y="40" width="320" height="145" rx="12" fill="#17181B" stroke="rgba(255,255,255,0.1)"/>
+  
+  <!-- Search bar -->
+  <rect x="60" y="60" width="280" height="36" rx="18" fill="#0B0B0C" stroke="rgba(255,255,255,0.1)"/>
+  <circle cx="80" cy="78" r="8" fill="none" stroke="#C9CED6" stroke-width="2"/>
+  <path d="m85 83 3 3" stroke="#C9CED6" stroke-width="2"/>
+  <text x="100" y="82" fill="#C9CED6" font-family="system-ui" font-size="14">What's our Q3 revenue target?</text>
+  
+  <!-- Answer box -->
+  <rect x="60" y="110" width="280" height="60" rx="8" fill="rgba(124,92,255,0.1)" stroke="#7C5CFF"/>
+  
+  <!-- AI icon -->
+  <rect x="70" y="120" width="20" height="20" rx="4" fill="#7C5CFF"/>
+  <text x="75" y="133" fill="#F6F7FA" font-family="system-ui" font-size="10" font-weight="600">AI</text>
+  
+  <!-- Answer text -->
+  <text x="100" y="135" fill="#F6F7FA" font-family="system-ui" font-size="12" font-weight="600">$2.4M target</text>
+  <text x="100" y="150" fill="#C9CED6" font-family="system-ui" font-size="11">Based on finance projections from July board deck</text>
+  <text x="100" y="163" fill="#9AA3AF" font-family="system-ui" font-size="10">Source: Board-Deck-Q3-2024.pdf</text>
+  
+  <!-- Instant indicator -->
+  <text x="280" y="135" fill="#22C55E" font-family="system-ui" font-size="10">0.3s</text>
+</svg>

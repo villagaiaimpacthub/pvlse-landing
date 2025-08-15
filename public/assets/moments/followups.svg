@@ -1,0 +1,27 @@
+<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#111214"/>
+  
+  <!-- Background card -->
+  <rect x="40" y="40" width="320" height="145" rx="12" fill="#17181B" stroke="rgba(255,255,255,0.1)"/>
+  
+  <!-- Header -->
+  <text x="60" y="70" fill="#F6F7FA" font-family="system-ui" font-size="14" font-weight="600">Meeting ended</text>
+  <line x1="60" y1="80" x2="340" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  
+  <!-- Completed task -->
+  <rect x="60" y="100" width="280" height="20" rx="4" fill="rgba(124,92,255,0.2)"/>
+  <circle cx="75" cy="110" r="6" fill="#7C5CFF"/>
+  <path d="m72 110 2 2 4-4" stroke="#F6F7FA" stroke-width="1.5" fill="none"/>
+  <text x="90" y="114" fill="#F6F7FA" font-family="system-ui" font-size="12">Action items automatically assigned</text>
+  
+  <!-- Another task -->
+  <rect x="60" y="130" width="240" height="20" rx="4" fill="rgba(124,92,255,0.2)"/>
+  <circle cx="75" cy="140" r="6" fill="#7C5CFF"/>
+  <path d="m72 140 2 2 4-4" stroke="#F6F7FA" stroke-width="1.5" fill="none"/>
+  <text x="90" y="144" fill="#F6F7FA" font-family="system-ui" font-size="12">Follow-up emails drafted</text>
+  
+  <!-- Pulse animation indicator -->
+  <circle cx="320" cy="60" r="4" fill="#7C5CFF" opacity="0.8">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>

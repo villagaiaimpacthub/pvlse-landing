@@ -1,0 +1,508 @@
+{
+  "meta": {
+    "siteName": "PVLSE",
+    "language": "en",
+    "themeDefault": "dark",
+    "colorScheme": "auto",
+    "favicon": "/assets/favicon.svg"
+  },
+  "seo": {
+    "title": "PVLSE — AI Insurance for Futures Worth Living",
+    "description": "PVLSE removes busywork, protects workloads, and invests in growth. A wellbeing-first AI that makes teams happier and more productive.",
+    "og": {
+      "title": "PVLSE — AI Insurance",
+      "description": "Protect your people. Power your future.",
+      "image": "/assets/og.jpg"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "creator": "@pvlse"
+    }
+  },
+  "brand": {
+    "name": "PVLSE",
+    "voice": {
+      "tone": "calm, human, confident",
+      "rules": [
+        "Short sentences.",
+        "No jargon.",
+        "Speak to people, not personas."
+      ]
+    }
+  },
+  "breakpoints": { "sm": 640, "md": 768, "lg": 1024, "xl": 1280, "2xl": 1536 },
+  "tokens": {
+    "colors": {
+      "background": "#0B0B0C",
+      "surface": "#111214",
+      "panel": "#17181B",
+      "elevated": "#1D1F23",
+      "textPrimary": "#F6F7FA",
+      "textSecondary": "#C9CED6",
+      "muted": "#9AA3AF",
+      "accent": "#7C5CFF",
+      "accentHover": "#6A4BFF",
+      "accentSoft": "rgba(124,92,255,0.18)",
+      "success": "#22C55E",
+      "warning": "#F59E0B",
+      "danger": "#EF4444",
+      "border": "rgba(255,255,255,0.10)",
+      "hairline": "rgba(255,255,255,0.06)"
+    },
+    "typography": {
+      "fontPrimary": "Inter, -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "fontMono": "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+      "scale": {
+        "hero": 64,
+        "h1": 48,
+        "h2": 36,
+        "h3": 28,
+        "h4": 22,
+        "body": 16,
+        "small": 14,
+        "micro": 12
+      },
+      "leading": { "tight": 1.1, "snug": 1.2, "normal": 1.45, "relaxed": 1.6 },
+      "weight": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 }
+    },
+    "spacing": {
+      "xxs": 4, "xs": 8, "sm": 12, "md": 16, "lg": 24, "xl": 32, "xxl": 48, "section": 96
+    },
+    "radii": { "xs": 6, "sm": 10, "md": 14, "lg": 18, "xl": 24, "pill": 999 },
+    "shadows": {
+      "soft": "0 8px 24px rgba(0,0,0,0.25)",
+      "hard": "0 12px 48px rgba(0,0,0,0.35)",
+      "glow": "0 0 0 8px rgba(124,92,255,0.18)"
+    },
+    "zIndex": { "base": 1, "nav": 50, "modal": 100, "overlay": 90 }
+  },
+  "motion": {
+    "durations": { "fast": 120, "base": 200, "slow": 320, "slower": 480 },
+    "easing": {
+      "standard": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+      "enter": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "exit": "cubic-bezier(0.7, 0, 0.84, 0)"
+    },
+    "spring": { "stiffness": 220, "damping": 26, "mass": 1 }
+  },
+  "grid": {
+    "containerMax": 1200,
+    "gutter": 24,
+    "columns": 12
+  },
+  "assets": {
+    "images": {
+      "logoLight": "/assets/pvlse-logo-light.svg",
+      "logoDark": "/assets/pvlse-logo-dark.svg",
+      "uiDailyBriefing": "/assets/ui-daily-briefing.png",
+      "uiPriorityGraph": "/assets/ui-priority-graph.png",
+      "uiFinanceLens": "/assets/ui-finance-lens.png"
+    },
+    "lottie": {
+      "heroOrbs": "/assets/lottie/hero-orbs.json",
+      "confettiSoft": "/assets/lottie/confetti.json"
+    }
+  },
+  "components": {
+    "Navbar": {
+      "sticky": true,
+      "background": "rgba(11,11,12,0.6)",
+      "backdropBlur": 10,
+      "links": ["Product", "Why PVLSE", "How It Works", "Pricing", "FAQ"],
+      "cta": { "label": "Enterprise Consultation", "variant": "primary" },
+      "hoverUnderline": true
+    },
+    "Button": {
+      "base": {
+        "radius": "pill",
+        "paddingY": 14,
+        "paddingX": 22,
+        "fontWeight": "semibold",
+        "shadow": "hard"
+      },
+      "variants": {
+        "primary": { "bg": "accent", "bgHover": "accentHover", "text": "textPrimary" },
+        "secondary": { "bg": "transparent", "border": "border", "text": "textPrimary" },
+        "ghost": { "bg": "transparent", "text": "textSecondary" }
+      },
+      "microinteraction": {
+        "scaleOnHover": 1.02,
+        "translateYOnPress": 1,
+        "ripple": false
+      }
+    },
+    "Card": {
+      "bg": "panel",
+      "border": "hairline",
+      "radius": "xl",
+      "padding": 24,
+      "shadow": "soft",
+      "hover": { "shadow": "hard", "translateY": -4 }
+    },
+    "Hero": {
+      "background": {
+        "type": "radial-gradient",
+        "value": "radial-gradient(80% 100% at 50% 0%, rgba(124,92,255,0.22) 0%, rgba(124,92,255,0) 60%), #0B0B0C"
+      },
+      "orbs": {
+        "lottie": "heroOrbs",
+        "parallax": { "strength": 8, "tilt": 2 }
+      },
+      "headline": { "size": "hero", "weight": "bold", "color": "textPrimary" },
+      "subhead": { "size": "h4", "weight": "regular", "color": "textSecondary", "maxWidth": 720 },
+      "ctas": [
+        { "label": "Get a Demo", "variant": "primary" },
+        { "label": "See How It Works", "variant": "secondary" }
+      ],
+      "microanimations": {
+        "reveal": { "type": "fade-up", "delayMs": 80 },
+        "accentPulse": { "type": "soft-pulse", "target": "accentSoft", "intervalMs": 2600 }
+      }
+    },
+    "LogoStrip": {
+      "opacity": 0.75,
+      "gap": 32,
+      "autoscroll": { "speed": 12, "pauseOnHover": true }
+    },
+    "Section": { "padY": "section", "titleSize": "h2", "maxWidth": 760 },
+    "FeatureList": {
+      "layout": "3up",
+      "iconStyle": "duotone",
+      "itemHover": { "raise": 3, "glow": true }
+    },
+    "Steps": {
+      "style": "numbered",
+      "connector": "soft-line",
+      "reveal": "stagger-fade-up"
+    },
+    "Quote": {
+      "style": "large",
+      "avatarShape": "circle",
+      "bg": "elevated"
+    },
+    "Stats": { "numberSize": 40, "kpiAccent": "accent" },
+    "Pricing": {
+      "cards": ["Professional", "Enterprise", "Global Enterprise"],
+      "badge": { "bg": "accentSoft", "text": "accent" }
+    },
+    "FAQ": { "accordion": true, "icon": "chevron" },
+    "Footer": {
+      "columns": 4,
+      "bg": "#0A0A0B",
+      "borderTop": "hairline",
+      "legal": "© 2025 PVLSE. All rights reserved."
+    }
+  },
+  "content": {
+    "nav": [
+      { "label": "Product", "href": "#product" },
+      { "label": "Why PVLSE", "href": "#why" },
+      { "label": "The PVLSE Effect", "href": "#moments" },
+      { "label": "Pricing", "href": "#pricing" },
+      { "label": "FAQ", "href": "#faq" }
+    ],
+    "hero": {
+      "kicker": "PVLSE",
+      "headlineLines": ["Enterprise AI Insurance.", "Protecting your most valuable assets — your people."],
+      "subhead": "Mission-critical workforce protection for Fortune 500 companies. PVLSE's advanced AI prevents burnout, predicts turnover, and optimizes human capital — delivering millions in measurable value through predictive wellness analytics and enterprise-grade workforce intelligence.",
+      "primaryCta": { "label": "Schedule Enterprise Consultation", "href": "#demo" },
+      "secondaryCta": { "label": "See Enterprise Features", "href": "#how" }
+    },
+    "logos": { 
+      "items": [
+        { "name": "Metaluck", "src": "/logos/Logo - Metaluck 2024.e69a41a201bb5d89d0a8.png", "alt": "Metaluck" },
+        { "name": "Fvtura", "src": "/logos/fvtura-logo-2021-white-3.png", "alt": "Fvtura" },
+        { "name": "GaiaNet", "src": "/logos/gaianet-logo.png.webp", "alt": "GaiaNet" },
+        { "name": "TechBricks", "src": "/logos/logo-techbricks-bianco.svg", "alt": "TechBricks" },
+        { "name": "Ithaka Holding", "src": "/logos/Screenshot 2025-08-14 at 7.44.59 PM.png", "alt": "Ithaka Holding" },
+        { "name": "Innovation Partner", "src": "/logos/fd0ddca2-dc64-4279-8019-f2ee07874496.png", "alt": "Innovation Partner" }
+      ] 
+    },
+    "moments": {
+      "id": "moments",
+      "title": "It feels like this",
+      "kicker": "The PVLSE Effect",
+      "items": [
+        {
+          "title": "Follow-ups already done",
+          "body": "End the call. The notes are written, the tasks assigned, responsibilities crystal clear.",
+          "motion": { "type": "fade-up", "delayMs": 60 },
+          "visual": { "kind": "image", "asset": "/assets/moments/followups.png", "alt": "Meeting ends, tasks appear" }
+        },
+        {
+          "title": "Answers without hunting",
+          "body": "Just ask — PVLSE knows. No files. No tabs. No digging.",
+          "motion": { "type": "fade-up", "delayMs": 120 },
+          "visual": { "kind": "image", "asset": "/assets/moments/answers.png", "alt": "Ask a question, instant answer" }
+        },
+        {
+          "title": "Money clarity on tap",
+          "body": "See the truth in the numbers before anyone else does.",
+          "motion": { "type": "fade-up", "delayMs": 180 },
+          "visual": { "kind": "image", "asset": "/assets/moments/money.png", "alt": "Financial snapshot appears" }
+        },
+        {
+          "title": "Inbox peace",
+          "body": "Emails turn into clear, simple actions — without you touching a spreadsheet.",
+          "motion": { "type": "fade-up", "delayMs": 240 },
+          "visual": { "kind": "image", "asset": "/assets/moments/inbox.png", "alt": "Email thread becomes tasks" }
+        },
+        {
+          "title": "C-suite on speed dial",
+          "body": "Your C-suite — without the scheduling, without the bottlenecks.",
+          "motion": { "type": "fade-up", "delayMs": 300 },
+          "visual": { "kind": "image", "asset": "/assets/moments/csuite.png", "alt": "Instant executive guidance" }
+        }
+      ]
+    },
+    "why": {
+      "id": "why",
+      "title": "When AI arrives, you have two choices.",
+      "body": "You can use it to squeeze more out of people — faster, longer, until they burn out. Or you can use it to give back their focus, energy, and creativity. We built Pvlse for the second path. Because when people thrive, so does the company."
+    },
+    "wellbeingProductivity": {
+      "title": "Wellbeing isn't a perk. It's a performance multiplier.",
+      "bullets": [
+        "Clear the work no human was meant to do.",
+        "Balance workloads in real time.",
+        "Nudge rest before burnout hits.",
+        "Suggest skill-building that fits real interests."
+      ],
+      "note": "Balance productivity with human wellbeing for sustainable growth."
+    },
+    "howItWorks": {
+      "id": "how",
+      "title": "How PVLSE Works",
+      "steps": [
+        {
+          "title": "Connect",
+          "body": "Plug in your calendar, communication tools, task managers, HR and finance systems.",
+          "media": "uiDailyBriefing"
+        },
+        {
+          "title": "Understand",
+          "body": "PVLSE learns what matters — goals, workloads, strengths, and priorities.",
+          "media": "uiPriorityGraph"
+        },
+        {
+          "title": "Act",
+          "body": "Daily briefings, rest-day nudges, course suggestions, and burnout prevention.",
+          "media": "uiFinanceLens"
+        }
+      ]
+    },
+    "stories": {
+      "title": "Real stories",
+      "quote": {
+        "text": "Pvlse told one of our top engineers to take Friday off. He came back Monday with the solution we'd been chasing for weeks.",
+        "author": "Head of Product, SaaS"
+      }
+    },
+    "benefits": {
+      "title": "Benefits for both sides",
+      "columns": [
+        {
+          "heading": "For leaders",
+          "items": [
+            "Higher retention and morale",
+            "Healthier, more productive teams",
+            "Proof you're investing in people"
+          ]
+        },
+        {
+          "heading": "For teams",
+          "items": [
+            "Less busywork",
+            "Time for deep focus",
+            "Growth that actually excites you"
+          ]
+        }
+      ]
+    },
+    "features": {
+      "title": "Features that matter",
+      "items": [
+        { "title": "Workload health tracking", "desc": "Know when your team's running hot." },
+        { "title": "Mindless task removal", "desc": "Automate the soul-crushing admin." },
+        { "title": "Rest & recharge nudges", "desc": "Paid time off before burnout sets in." },
+        { "title": "Skill growth suggestions", "desc": "Tailored to personal interests." },
+        { "title": "Priority clarity", "desc": "What matters today, and why." },
+        { "title": "Company wellbeing dashboard", "desc": "See the big picture at a glance." }
+      ]
+    },
+    "roi": {
+      "title": "Enterprise-grade ROI that justifies the investment",
+      "body": "PVLSE delivers measurable returns that far exceed the investment. One prevented executive departure saves $500,000+ in replacement costs. Reduced turnover, improved productivity, and predictive wellness analytics create millions in value for enterprise clients.",
+      "stats": [
+        { "number": "3-5×", "label": "ROI within 12 months" },
+        { "number": "$2M+", "label": "average annual savings" },
+        { "number": "85%", "label": "reduction in burnout incidents" }
+      ]
+    },
+    "pricing": {
+      "id": "pricing",
+      "title": "Enterprise AI insurance pricing",
+      "plans": [
+        {
+          "name": "Professional",
+          "price": "$5,000",
+          "period": "per month",
+          "features": [
+            "Up to 100 users",
+            "Advanced workload analysis",
+            "AI-powered burnout prevention",
+            "Executive dashboards",
+            "Priority support & onboarding",
+            "Basic compliance reporting",
+            "Standard integrations"
+          ],
+          "cta": "Schedule Consultation"
+        },
+        {
+          "name": "Enterprise",
+          "price": "$10,000",
+          "period": "per month",
+          "features": [
+            "Unlimited users",
+            "Predictive wellness analytics",
+            "Custom AI model training",
+            "Advanced compliance suite",
+            "Dedicated success manager",
+            "24/7 premium support",
+            "Custom integrations",
+            "Multi-region deployment"
+          ],
+          "cta": "Schedule Consultation",
+          "badge": "Most comprehensive"
+        },
+        {
+          "name": "Global Enterprise",
+          "price": "Custom",
+          "period": "pricing",
+          "features": [
+            "Enterprise-wide deployment",
+            "Proprietary AI model development",
+            "Global compliance management",
+            "C-suite executive briefings",
+            "Dedicated implementation team",
+            "White-glove migration service",
+            "Custom SLAs & guarantees",
+            "Strategic partnership benefits"
+          ],
+          "cta": "Contact Sales"
+        }
+      ]
+    },
+    "faq": {
+      "id": "faq",
+      "title": "FAQs",
+      "items": [
+        { "q": "Why does enterprise AI insurance cost $5,000-$10,000+ per month?", "a": "PVLSE provides mission-critical workforce protection with custom AI models, predictive analytics, and dedicated support teams. The investment protects against multimillion-dollar costs of burnout, turnover, and productivity loss." },
+        { "q": "What makes this different from basic wellness tools?", "a": "Traditional wellness tools are reactive. PVLSE uses advanced AI to predict and prevent workforce issues before they impact your business, with enterprise-grade security and compliance." },
+        { "q": "Is our data safe at this enterprise level?", "a": "Absolutely. Military-grade encryption, SOC 2 Type II compliance, ISO 27001 certification, and option for private cloud or on-premises deployment." },
+        { "q": "What's the ROI on this investment?", "a": "Enterprise clients typically see 3-5x ROI within 12 months through reduced turnover costs, increased productivity, and prevention of burnout-related losses. One prevented C-level departure pays for years of service." },
+        { "q": "Can we get a custom pricing structure?", "a": "Yes. Our Global Enterprise tier includes fully customized pricing, SLAs, and strategic partnership benefits tailored to your organization's specific needs." }
+      ]
+    },
+    "ctaFinal": {
+      "title": "Protect your enterprise. Secure your competitive advantage.",
+      "body": "PVLSE is enterprise-grade AI Insurance — delivering measurable ROI through predictive workforce intelligence and mission-critical human capital protection.",
+      "primaryCta": { "label": "Schedule Enterprise Consultation", "href": "#demo" },
+      "secondaryCta": { "label": "Download ROI Calculator", "href": "#how" }
+    },
+    "footer": {
+      "links": [
+        { "label": "Security", "href": "/security" },
+        { "label": "Privacy", "href": "/privacy" },
+        { "label": "Terms", "href": "/terms" }
+      ],
+      "social": [
+        { "label": "X", "href": "https://x.com/pvlse" },
+        { "label": "LinkedIn", "href": "https://linkedin.com/company/pvlse" }
+      ]
+    }
+  },
+  "layout": {
+    "order": [
+      "Navbar",
+      "Hero",
+      "Moments",
+      "Why",
+      "WellbeingProductivity",
+      "Benefits",
+      "Features",
+      "ROI",
+      "Pricing",
+      "LogoStrip",
+      "FAQ",
+      "CtaFinal",
+      "Footer"
+    ]
+  },
+  "interactions": {
+    "scrollReveal": {
+      "enabled": true,
+      "once": true,
+      "threshold": 0.15,
+      "staggerMs": 60,
+      "animation": "fade-up"
+    },
+    "parallax": {
+      "enabled": true,
+      "elements": ["Hero.orbs"],
+      "strength": 8
+    },
+    "hoverEffects": {
+      "buttons": { "scale": 1.02, "shadow": "hard" },
+      "cards": { "translateY": -4, "shadow": "hard", "glow": true }
+    },
+    "cursor": { "followSoft": true, "intensity": 0.06 },
+    "prefersReducedMotion": {
+      "respect": true,
+      "disableParallax": true,
+      "disableAutoReveal": true
+    },
+    "focus": { "ring": true, "ringColor": "#7C5CFF", "ringWidth": 2 }
+  },
+  "forms": {
+    "demo": {
+      "fields": [
+        { "name": "name", "label": "Executive name", "type": "text", "required": true },
+        { "name": "title", "label": "Title/Role", "type": "text", "required": true },
+        { "name": "email", "label": "Corporate email", "type": "email", "required": true },
+        { "name": "company", "label": "Organization", "type": "text", "required": true },
+        { "name": "teamSize", "label": "Organization size", "type": "select", "options": ["100-500", "500-1,000", "1,000-5,000", "5,000-10,000", "10,000+"] },
+        { "name": "budget", "label": "Annual budget range", "type": "select", "options": ["$60K-$120K", "$120K-$300K", "$300K-$500K", "$500K+"] },
+        { "name": "message", "label": "Current workforce challenges", "type": "textarea" }
+      ],
+      "submit": { "label": "Schedule enterprise consultation" },
+      "success": { "title": "Thank you!", "body": "Our enterprise team will contact you within 24 hours to schedule your consultation." }
+    }
+  },
+  "accessibility": {
+    "contrastMin": 4.5,
+    "skipToContent": true,
+    "ariaLabels": {
+      "primaryNavigation": "Main navigation",
+      "hero": "Intro section",
+      "ctaPrimary": "Request a demo"
+    },
+    "keyboardFocusRing": true
+  },
+  "analytics": {
+    "provider": "plausible",
+    "events": [
+      { "name": "cta_clicked", "on": ["Hero.primaryCta", "ctaFinal.primaryCta"] },
+      { "name": "scroll_depth_50", "on": "viewport" },
+      { "name": "demo_submitted", "on": "forms.demo.submit" }
+    ]
+  },
+  "performance": {
+    "lazyLoadMedia": true,
+    "imageWidths": [400, 800, 1200, 1600, 2000],
+    "fontLoading": "swap",
+    "preloadFonts": ["Inter-Variable.woff2"],
+    "minify": true,
+    "deferNonCriticalScripts": true
+  }
+}

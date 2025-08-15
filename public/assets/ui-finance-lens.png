@@ -1,0 +1,50 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" rx="18" fill="#17181B"/>
+  <rect x="1" y="1" width="398" height="298" rx="17" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="24" y="24" width="120" height="12" rx="6" fill="#F6F7FA"/>
+  <rect x="24" y="44" width="80" height="8" rx="4" fill="#9AA3AF"/>
+  
+  <!-- Main metric cards -->
+  <rect x="24" y="70" width="100" height="80" rx="14" fill="#1D1F23"/>
+  <rect x="36" y="82" width="60" height="16" rx="4" fill="#22C55E"/>
+  <rect x="36" y="106" width="76" height="8" rx="4" fill="#C9CED6"/>
+  <rect x="36" y="120" width="50" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="36" y="132" width="40" height="10" rx="5" fill="#22C55E" opacity="0.3"/>
+  
+  <rect x="150" y="70" width="100" height="80" rx="14" fill="#1D1F23"/>
+  <rect x="162" y="82" width="55" height="16" rx="4" fill="#7C5CFF"/>
+  <rect x="162" y="106" width="76" height="8" rx="4" fill="#C9CED6"/>
+  <rect x="162" y="120" width="55" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="162" y="132" width="45" height="10" rx="5" fill="#7C5CFF" opacity="0.3"/>
+  
+  <rect x="276" y="70" width="100" height="80" rx="14" fill="#1D1F23"/>
+  <rect x="288" y="82" width="50" height="16" rx="4" fill="#F59E0B"/>
+  <rect x="288" y="106" width="76" height="8" rx="4" fill="#C9CED6"/>
+  <rect x="288" y="120" width="60" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="288" y="132" width="35" height="10" rx="5" fill="#F59E0B" opacity="0.3"/>
+  
+  <!-- Chart area -->
+  <rect x="24" y="170" width="352" height="100" rx="14" fill="#1D1F23"/>
+  
+  <!-- Mini bar chart -->
+  <rect x="40" y="220" width="12" height="30" rx="2" fill="#22C55E"/>
+  <rect x="60" y="210" width="12" height="40" rx="2" fill="#7C5CFF"/>
+  <rect x="80" y="225" width="12" height="25" rx="2" fill="#F59E0B"/>
+  <rect x="100" y="215" width="12" height="35" rx="2" fill="#22C55E"/>
+  <rect x="120" y="205" width="12" height="45" rx="2" fill="#7C5CFF"/>
+  
+  <!-- Trend line -->
+  <path d="M160 230 Q200 220 240 215 Q280 210 320 205 Q340 202 360 200" stroke="#7C5CFF" stroke-width="2" fill="none" opacity="0.8"/>
+  <circle cx="200" cy="220" r="3" fill="#7C5CFF"/>
+  <circle cx="240" cy="215" r="3" fill="#7C5CFF"/>
+  <circle cx="280" cy="210" r="3" fill="#7C5CFF"/>
+  <circle cx="320" cy="205" r="3" fill="#7C5CFF"/>
+  
+  <!-- Labels -->
+  <rect x="40" y="185" width="30" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="160" y="185" width="40" height="6" rx="3" fill="#9AA3AF"/>
+  <rect x="280" y="185" width="35" height="6" rx="3" fill="#9AA3AF"/>
+</svg>

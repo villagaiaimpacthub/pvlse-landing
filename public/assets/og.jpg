@@ -1,0 +1,41 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0B0B0C"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <radialGradient id="heroGradient" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="rgba(124,92,255,0.22)"/>
+      <stop offset="60%" stop-color="rgba(124,92,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#heroGradient)"/>
+  
+  <!-- PVLSE Logo -->
+  <g transform="translate(100, 180)">
+    <!-- P -->
+    <path d="M0 0h24c13.2 0 24 10.8 24 24s-10.8 24-24 24h-12v24h-12V0z" fill="#F6F7FA"/>
+    <path d="M12 12v24h12c6.6 0 12-5.4 12-12s-5.4-12-12-12h-12z" fill="#0B0B0C"/>
+    
+    <!-- V -->
+    <path d="M72 0h12l12 48 12-48h12L102 72h-12L72 0z" fill="#F6F7FA"/>
+    
+    <!-- L -->
+    <path d="M132 0h12v60h36v12h-48V0z" fill="#F6F7FA"/>
+    
+    <!-- S -->
+    <path d="M192 12c0-6.6 5.4-12 12-12h24c6.6 0 12 5.4 12 12v12h-12v-6h-24v12h24c6.6 0 12 5.4 12 12v18c0 6.6-5.4 12-12 12h-24c-6.6 0-12-5.4-12-12v-12h12v6h24v-12h-24c-6.6 0-12-5.4-12-12v-18z" fill="#F6F7FA"/>
+    
+    <!-- E -->
+    <path d="M252 0h48v12h-36v18h24v12h-24v18h36v12h-48V0z" fill="#F6F7FA"/>
+  </g>
+  
+  <!-- Tagline -->
+  <text x="100" y="320" font-family="Inter, sans-serif" font-size="32" font-weight="600" fill="#F6F7FA">AI Insurance for Futures Worth Living</text>
+  <text x="100" y="370" font-family="Inter, sans-serif" font-size="18" fill="#C9CED6">Protect your people. Power your future.</text>
+  
+  <!-- Accent orbs -->
+  <circle cx="900" cy="150" r="60" fill="rgba(124,92,255,0.3)" opacity="0.8"/>
+  <circle cx="1000" cy="250" r="40" fill="rgba(124,92,255,0.2)" opacity="0.6"/>
+  <circle cx="950" cy="350" r="80" fill="rgba(124,92,255,0.15)" opacity="0.4"/>
+</svg>

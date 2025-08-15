@@ -1,0 +1,44 @@
+<svg width="400" height="225" viewBox="0 0 400 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="225" fill="#111214"/>
+  
+  <!-- Background card -->
+  <rect x="40" y="40" width="320" height="145" rx="12" fill="#17181B" stroke="rgba(255,255,255,0.1)"/>
+  
+  <!-- Email thread -->
+  <rect x="60" y="60" width="130" height="100" rx="8" fill="#0B0B0C" stroke="rgba(255,255,255,0.1)"/>
+  <text x="70" y="80" fill="#F6F7FA" font-family="system-ui" font-size="12" font-weight="600">Email Thread</text>
+  <line x1="70" y1="85" x2="180" y2="85" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  
+  <!-- Email items -->
+  <rect x="70" y="95" width="110" height="18" rx="3" fill="rgba(255,255,255,0.05)"/>
+  <text x="75" y="107" fill="#C9CED6" font-family="system-ui" font-size="10">Budget approval needed</text>
+  
+  <rect x="70" y="118" width="110" height="18" rx="3" fill="rgba(255,255,255,0.05)"/>
+  <text x="75" y="130" fill="#C9CED6" font-family="system-ui" font-size="10">Schedule team meeting</text>
+  
+  <rect x="70" y="141" width="110" height="18" rx="3" fill="rgba(255,255,255,0.05)"/>
+  <text x="75" y="153" fill="#C9CED6" font-family="system-ui" font-size="10">Review proposal</text>
+  
+  <!-- Arrow -->
+  <path d="M200 112 L220 112" stroke="#7C5CFF" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7C5CFF"/>
+    </marker>
+  </defs>
+  
+  <!-- Task list -->
+  <rect x="230" y="60" width="110" height="100" rx="8" fill="rgba(124,92,255,0.1)" stroke="#7C5CFF"/>
+  <text x="240" y="80" fill="#F6F7FA" font-family="system-ui" font-size="12" font-weight="600">Task List</text>
+  <line x1="240" y1="85" x2="330" y2="85" stroke="#7C5CFF" stroke-width="1"/>
+  
+  <!-- Task items -->
+  <circle cx="245" cy="100" r="4" fill="#7C5CFF"/>
+  <text x="255" y="104" fill="#F6F7FA" font-family="system-ui" font-size="10">Finance: Budget review</text>
+  
+  <circle cx="245" cy="120" r="4" fill="#7C5CFF"/>
+  <text x="255" y="124" fill="#F6F7FA" font-family="system-ui" font-size="10">Calendar: Team sync</text>
+  
+  <circle cx="245" cy="140" r="4" fill="#7C5CFF"/>
+  <text x="255" y="144" fill="#F6F7FA" font-family="system-ui" font-size="10">Review: Q3 proposal</text>
+</svg>
