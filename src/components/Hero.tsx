@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Lottie from 'lottie-react'
 import { cx, prefersReducedMotion } from './Utils'
+import ThreeAnimation from './ThreeAnimation'
 
 interface HeroProps {
   className?: string
@@ -92,53 +93,13 @@ export default function Hero({
       role="banner"
       aria-label="Hero section"
     >
-      {/* Background Orbs (subtle, slow) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute -top-24 -left-24 w-72 h-72 lg:w-[26rem] lg:h-[26rem]"
-          variants={orbVariants}
-          animate={
-            reducedMotion ? {} : {
-              x: mousePosition.x * 10,
-              y: mousePosition.y * 6,
-              transition: { type: 'spring', stiffness: 40, damping: 20 }
-            }
-          }
-        >
-          <Lottie animationData={lottieAnimations.orb1} loop autoplay={!reducedMotion} className="w-full h-full opacity-40" />
-        </motion.div>
-
-        <motion.div
-          className="absolute -top-40 -right-40 w-[28rem] h-[28rem]"
-          variants={orbVariants}
-          animate={
-            reducedMotion ? {} : {
-              x: mousePosition.x * -8,
-              y: mousePosition.y * 8,
-              transition: { type: 'spring', stiffness: 35, damping: 22 }
-            }
-          }
-        >
-          <Lottie animationData={lottieAnimations.orb2} loop autoplay={!reducedMotion} className="w-full h-full opacity-30" />
-        </motion.div>
-
-        <motion.div
-          className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem]"
-          variants={orbVariants}
-          animate={
-            reducedMotion ? {} : {
-              x: mousePosition.x * 12,
-              y: mousePosition.y * -6,
-              transition: { type: 'spring', stiffness: 32, damping: 24 }
-            }
-          }
-        >
-          <Lottie animationData={lottieAnimations.orb3} loop autoplay={!reducedMotion} className="w-full h-full opacity-20" />
-        </motion.div>
+      {/* Three.js Particle Animation Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <ThreeAnimation className="w-full h-full opacity-60" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-50 w-full">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="max-w-3xl" variants={itemVariants}>
             {/* Kicker */}
@@ -156,7 +117,7 @@ export default function Hero({
             </p>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 pointer-events-auto">
               <motion.button
                 onClick={() => handleCTAClick(primaryCTA.href)}
                 className={cx(
