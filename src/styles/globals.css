@@ -45,3 +45,24 @@ html, body, #__next {
 .revealed { opacity: 1; transform: translateY(0); transition: opacity .32s var(--ease), transform .32s var(--ease); }
 
 .focus-ring:focus-visible { outline: 2px solid #7C5CFF; outline-offset: 2px; }
+
+/* Parallax Moments Animation */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Smooth text shadow for better readability over images */
+.text-shadow {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}

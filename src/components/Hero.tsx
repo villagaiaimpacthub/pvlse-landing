@@ -101,49 +101,16 @@ export default function Hero({
       {/* Content */}
       <div className="relative z-50 w-full">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="max-w-3xl" variants={itemVariants}>
-            {/* Kicker */}
-            <div className="text-sm text-textSecondary/80 tracking-wide mb-3">PVLSE</div>
+          <div className="relative">
+            <motion.div className="max-w-3xl relative z-10" variants={itemVariants}>
+              {/* Headline */}
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight text-textPrimary">
+                {title}<br />
+                <span className="text-textSecondary">{subtitle}</span>
+              </h1>
 
-            {/* Headline */}
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-textPrimary">
-              {title}<br />
-              <span className="text-textSecondary">{subtitle}</span>
-            </h1>
-
-            {/* Subhead */}
-            <p className="mt-6 text-lg text-textSecondary max-w-2xl">
-              {description}
-            </p>
-
-            {/* CTAs */}
-            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 pointer-events-auto">
-              <motion.button
-                onClick={() => handleCTAClick(primaryCTA.href)}
-                className={cx(
-                  'inline-flex items-center px-6 py-3 rounded-pill font-semibold',
-                  'bg-accent text-textPrimary shadow-[0_12px_48px_rgba(0,0,0,0.35)]',
-                  'focus:outline-none focus:ring-2 focus:ring-accent'
-                )}
-                whileHover={reducedMotion ? {} : { scale: 1.02, translateY: -1 }}
-                whileTap={reducedMotion ? {} : { scale: 0.98 }}
-              >
-                {primaryCTA.label}
-              </motion.button>
-
-              <motion.button
-                onClick={() => handleCTAClick(secondaryCTA.href)}
-                className={cx(
-                  'inline-flex items-center px-6 py-3 rounded-pill font-semibold',
-                  'border border-[rgba(255,255,255,0.10)] text-textPrimary'
-                )}
-                whileHover={reducedMotion ? {} : { translateY: -1 }}
-                whileTap={reducedMotion ? {} : { scale: 0.98 }}
-              >
-                {secondaryCTA.label}
-              </motion.button>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
