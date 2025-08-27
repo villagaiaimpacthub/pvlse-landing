@@ -87,7 +87,7 @@ export default function PVLSECards() {
       <div className="relative z-10 container mx-auto px-4 h-full flex flex-col">
         {/* Title Section */}
         <div className="text-center mb-8" ref={titleRef}>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6">
+          <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6">
             THE{' '}
             <motion.span
               className="bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent font-black"
@@ -101,7 +101,7 @@ export default function PVLSECards() {
             EFFECT
           </h1>
           <motion.p 
-            className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -111,7 +111,7 @@ export default function PVLSECards() {
         </div>
 
         {/* Carousel Section - moved up higher */}
-        <div className="flex-1 flex items-center justify-center py-4" style={{ marginTop: '-180px' }}>
+        <div className="flex-1 flex items-center justify-center py-4 -mt-20 md:-mt-[180px]">
           <div className="w-full">
             <Carousel
               setApi={setApi}
@@ -124,7 +124,7 @@ export default function PVLSECards() {
               className="w-full relative overflow-visible"
             >
               {/* Container showing all 5 cards with blur effect */}
-              <div className="h-[800px] flex items-center py-8 overflow-visible">
+              <div className="h-[600px] md:h-[800px] flex items-center py-4 md:py-8 overflow-visible">
                 <CarouselContent className="-ml-4 overflow-visible [&>div]:overflow-visible [&_*]:overflow-visible">
                   {pvlseEffects.map((effect, index) => {
                     // Calculate distance from current center slide
@@ -137,28 +137,28 @@ export default function PVLSECards() {
                     const isCenterCard = distance === 0
                     
                     return (
-                      <CarouselItem key={effect.id} className="flex-none w-[380px] overflow-visible">
-                      <div className={`p-8 transition-all duration-500 overflow-visible origin-center ${
+                      <CarouselItem key={effect.id} className="flex-none w-[280px] md:w-[380px] overflow-visible">
+                      <div className={`p-4 md:p-8 transition-all duration-500 overflow-visible origin-center ${
                         isSharp ? 'blur-0 opacity-100' : 'blur-sm opacity-40'
                       } ${isCenterCard ? 'scale-105' : ''}`}>
-                        <Card className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-6 md:p-8 overflow-visible min-h-[420px] ${
+                        <Card className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-4 md:p-8 overflow-visible min-h-[360px] md:min-h-[420px] ${
                           isCenterCard 
                             ? 'border-accent/30 shadow-xl shadow-accent/10' 
                             : 'border border-white/10 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10'
                         }`}>
                           {/* Card content */}
-                          <CardHeader className="p-0 pb-6">
-                            <h3 className="text-xl font-semibold text-white mb-4">
+                          <CardHeader className="p-0 pb-4 md:pb-6">
+                            <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4">
                               {effect.title}
                             </h3>
-                            <p className="text-gray-400 text-sm leading-relaxed">
+                            <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
                               {effect.description}
                             </p>
                           </CardHeader>
 
                           <CardContent className="p-0 flex-1 flex flex-col">
                             {/* Visual element area - simplified mockups */}
-                            <div className="flex-1 flex items-center justify-center mb-6 opacity-75 group-hover:opacity-100 transition-opacity duration-300 min-h-[120px]">
+                            <div className="flex-1 flex items-center justify-center mb-4 md:mb-6 opacity-75 group-hover:opacity-100 transition-opacity duration-300 min-h-[80px] md:min-h-[120px]">
                               {/* Simple visual elements based on card type */}
                               {effect.id === 1 && (
                                 <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
@@ -227,8 +227,8 @@ export default function PVLSECards() {
                 </CarouselContent>
               </div>
               
-              <CarouselPrevious className="absolute left-[calc(50%-600px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
-              <CarouselNext className="absolute right-[calc(50%-600px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
+              <CarouselPrevious className="absolute left-[10px] md:left-[calc(50%-600px)] top-1/2 -translate-y-1/2 h-8 w-8 md:h-12 md:w-12 z-30" />
+              <CarouselNext className="absolute right-[10px] md:right-[calc(50%-600px)] top-1/2 -translate-y-1/2 h-8 w-8 md:h-12 md:w-12 z-30" />
             </Carousel>
           </div>
         </div>
