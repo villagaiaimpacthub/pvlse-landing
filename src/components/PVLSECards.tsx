@@ -227,8 +227,8 @@ export default function PVLSECards() {
                 </CarouselContent>
               </div>
               
-              <CarouselPrevious className="absolute left-[calc(50%-520px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
-              <CarouselNext className="absolute right-[calc(50%-520px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
+              <CarouselPrevious className="absolute left-[calc(50%-600px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
+              <CarouselNext className="absolute right-[calc(50%-600px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
             </Carousel>
           </div>
         </div>
