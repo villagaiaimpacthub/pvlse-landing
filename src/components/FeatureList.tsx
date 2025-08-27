@@ -14,7 +14,7 @@ export default function FeatureList() {
       aria-labelledby="features-heading"
       className="py-24 md:py-28"
     >
-      <div className="container">
+      <div className="container text-center">
         <h2
           id="features-heading"
           className="text-3xl md:text-4xl font-semibold mb-6 text-textPrimary"
@@ -22,7 +22,7 @@ export default function FeatureList() {
           {section.title}
         </h2>
 
-        <p className="text-textSecondary max-w-[68ch] mb-10">
+        <p className="text-textSecondary mb-10 mx-auto max-w-2xl">
           It's not about doing more. It's about doing the right things — and doing them well.
         </p>
 
@@ -31,8 +31,7 @@ export default function FeatureList() {
             <article
               key={f.title}
               className={cx(
-                'card p-6 transition will-change-transform',
-                'hover:-translate-y-1 hover:shadow-hard'
+                'card p-6 transition-all duration-300 bg-panel/80 backdrop-blur-sm border-hairline hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10'
               )}
             >
               <h3 className="text-xl font-semibold text-textPrimary mb-2">

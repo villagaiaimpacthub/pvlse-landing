@@ -6,7 +6,7 @@ export default function Pricing({ plans }: { plans: { name: string; price: strin
   return (
     <div className="grid md:grid-cols-3 gap-6">
       {plans.map((p) => (
-        <Card key={p.name} className="group flex flex-col bg-panel border-hairline shadow-soft transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-accent/20 hover:bg-gradient-to-br hover:from-accent/10 hover:via-accent/5 hover:to-transparent hover:border-accent/50 hover:ring-2 hover:ring-accent/20">
+        <Card key={p.name} className="group flex flex-col bg-panel/80 backdrop-blur-sm border-hairline hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 transition-all duration-300">
           <CardHeader className="pb-4 transition-all duration-300 ease-out group-hover:translate-y-[-2px]">
             <div className="flex items-center justify-between">
               <h3 className="text-2xl font-semibold text-textPrimary transition-all duration-300 ease-out group-hover:text-accent group-hover:drop-shadow-lg">{p.name}</h3>

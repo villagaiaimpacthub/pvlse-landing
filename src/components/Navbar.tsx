@@ -21,7 +21,8 @@ export default function Navbar() {
     }
   }, [activeIndex]);
 
-  const handleNavClick = (index: number) => {
+  const handleNavClick = (index: number, href: string) => {
+    // Update the active nav animation
     if (index !== activeIndex && !isAnimating) {
       setIsAnimating(true);
       const currentItem = itemRefs.current[activeIndex];
@@ -34,7 +35,6 @@ export default function Navbar() {
         const newWidth = newItem.offsetWidth;
 
         if (newPos >= currentPos) {
-          // Moving right
           setLineStyle({ left: currentPos, width: (newPos - currentPos) + newWidth });
           setTimeout(() => {
             setLineStyle({ left: newPos, width: newWidth });
@@ -42,7 +42,6 @@ export default function Navbar() {
             setTimeout(() => setIsAnimating(false), 150);
           }, 300);
         } else {
-          // Moving left
           setLineStyle({ left: newPos, width: (currentPos - newPos) + currentWidth });
           setTimeout(() => {
             setLineStyle({ left: newPos, width: newWidth });
@@ -50,6 +49,34 @@ export default function Navbar() {
             setTimeout(() => setIsAnimating(false), 150);
           }, 300);
         }
+      }
+    }
+  };
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    
+    if (href === '#product') {
+      // Special handling for product section - scroll to show only features
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = window.pageYOffset + rect.top;
+        const offset = 150; // Adjust this value to hide the next section
+        
+        window.scrollTo({
+          top: absoluteTop - offset,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      // Standard smooth scroll for other sections
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
       }
     }
   };
@@ -79,12 +106,12 @@ export default function Navbar() {
                 className={`transition-opacity duration-400 ease-out cursor-pointer ${
                   index === activeIndex ? 'opacity-100' : 'opacity-40 hover:opacity-70'
                 }`}
-                onClick={() => handleNavClick(index)}
+                onClick={() => handleNavClick(index, item.href)}
               >
                 <a 
                   href={item.href} 
                   className="text-white no-underline uppercase font-semibold text-sm tracking-widest block"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={(e) => handleLinkClick(e, item.href)}
                 >
                   {item.label}
                 </a>

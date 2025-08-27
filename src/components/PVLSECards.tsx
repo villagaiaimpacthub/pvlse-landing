@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel"
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
 const pvlseEffects = [
@@ -11,30 +12,35 @@ const pvlseEffects = [
     id: 1,
     title: "Follow-ups already done",
     description: "End the call. Tasks assigned, responsibilities crystal clear.",
+    detailText: "End the call. The notes are written, the tasks assigned, responsibilities crystal clear.",
     action: "USE NOW"
   },
   {
     id: 2,
     title: "Answers without hunting", 
     description: "Just ask — PVLSE knows. No files. No tabs. No digging.",
+    detailText: "Just ask — PVLSE knows everything. No files to hunt through. No tabs to open. No digging required.",
     action: "BUILD NOW"
   },
   {
     id: 3,
     title: "Money clarity on tap",
     description: "See the truth in the numbers before anyone else does.",
+    detailText: "See the truth in the numbers before anyone else does. Financial clarity, instantly.",
     action: "LEARN MORE"
   },
   {
     id: 4,
     title: "Inbox peace",
     description: "Clear actions — without touching a spreadsheet.",
+    detailText: "Clear actions — without touching a spreadsheet. Your inbox becomes a peaceful, organized space.",
     action: "USE NOW"
   },
   {
     id: 5,
     title: "C-suite on speed dial",
     description: "Your C-suite — without scheduling bottlenecks.",
+    detailText: "Your C-suite — without scheduling bottlenecks. Executive access, whenever you need it.",
     action: "BUILD NOW"
   }
 ]
@@ -43,6 +49,13 @@ export default function PVLSECards() {
   const [showLearnMore, setShowLearnMore] = useState(false)
   const [api, setApi] = useState<CarouselApi>()
   const [currentSlide, setCurrentSlide] = useState(0)
+  const titleRef = useRef(null)
+  const isInView = useInView(titleRef, { once: false, margin: "-100px" })
+  
+  // Scroll-based gradient animation
+  const { scrollY } = useScroll()
+  const scrollProgress = useTransform(scrollY, [0, 2000], [0, 1])
+  const gradientPosition = useTransform(scrollY, [0, 2000], ['-100% 0%', '100% 0%'])
 
   useEffect(() => {
     if (!api) return
@@ -56,7 +69,7 @@ export default function PVLSECards() {
   }, [api])
 
   return (
-    <section className="relative w-full min-h-screen py-16">
+    <section id="moments" className="relative w-full min-h-screen py-16">
       {/* Background with image22.png */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -71,22 +84,32 @@ export default function PVLSECards() {
       {/* Content container */}
       <div className="relative z-10 container mx-auto px-4 h-full flex flex-col">
         {/* Title Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4">
-            THE PVLSE EFFECT
+        <div className="text-center mb-8" ref={titleRef}>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6">
+            THE{' '}
+            <motion.span
+              className="bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent font-black"
+              style={{
+                backgroundSize: '300% 100%',
+                backgroundPosition: gradientPosition,
+              }}
+            >
+              PVLSE
+            </motion.span>{' '}
+            EFFECT
           </h1>
-          <p className="text-lg text-gray-300 mb-6">
-            It feels like this
-          </p>
-          {showLearnMore && (
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              End the call. The notes are written, the tasks assigned, responsibilities crystal clear.
-            </p>
-          )}
+          <motion.p 
+            className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            {pvlseEffects[currentSlide]?.detailText || "End the call. The notes are written, the tasks assigned, responsibilities crystal clear."}
+          </motion.p>
         </div>
 
-        {/* Carousel Section - increased height for hover animations */}
-        <div className="flex-1 flex items-center justify-center py-8">
+        {/* Carousel Section - moved up higher */}
+        <div className="flex-1 flex items-center justify-center py-4" style={{ marginTop: '-60px' }}>
           <div className="w-full">
             <Carousel
               setApi={setApi}
@@ -94,25 +117,28 @@ export default function PVLSECards() {
                 align: "center",
                 loop: true,
                 slidesToScroll: 1,
+                skipSnaps: false,
               }}
-              className="w-full relative overflow-visible"
-              style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)' }}
+              className="w-full relative"
             >
-              {/* Container showing all 5 cards with blur effect - expanded to use full space */}
-              <div className="h-[650px] flex items-center py-8 px-8">
-                <CarouselContent className="flex gap-4" style={{ width: '100vw', justifyContent: 'center' }}>
+              {/* Container showing all 5 cards with blur effect */}
+              <div className="h-[650px] flex items-center py-8">
+                <CarouselContent className="-ml-4">
                   {pvlseEffects.map((effect, index) => {
-                    // For 5 cards displayed: positions 0,1,2,3,4
-                    // Middle 3 should be sharp: positions 1,2,3
-                    // Outer 2 should be blurred: positions 0,4
-                    const isInMiddleThree = index >= 1 && index <= 3
+                    // Calculate distance from current center slide
+                    let distance = Math.abs(index - currentSlide)
+                    // Handle wrapping for infinite carousel (5 cards)
+                    if (distance > 2) distance = 5 - distance
+                    
+                    // Center card (distance 0) and adjacent cards (distance 1) are sharp
+                    const isSharp = distance <= 1
                     
                     return (
                       <CarouselItem key={effect.id} className="flex-none w-[320px]">
                       <div className={`p-4 transition-all duration-500 ${
-                        !isInMiddleThree ? 'blur-sm opacity-40' : 'blur-0 opacity-100'
+                        isSharp ? 'blur-0 opacity-100' : 'blur-sm opacity-40'
                       }`}>
-                        <Card className="group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 p-6 md:p-8 overflow-visible min-h-[480px]">
+                        <Card className="group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 p-6 md:p-8 overflow-visible min-h-[440px]">
                           {/* Card content */}
                           <CardHeader className="p-0 pb-6">
                             <h3 className="text-xl font-semibold text-white mb-4">
@@ -194,33 +220,8 @@ export default function PVLSECards() {
                 </CarouselContent>
               </div>
               
-              {/* Custom navigation buttons with manual click handlers */}
-              <button 
-                onClick={() => {
-                  console.log('Previous clicked, API:', api)
-                  if (api) {
-                    api.scrollPrev()
-                  }
-                }}
-                className="absolute left-[calc(50%-800px-30px)] top-1/2 -translate-y-1/2 bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-white/40 h-12 w-12 z-20 cursor-pointer rounded-full flex items-center justify-center transition-all duration-300"
-              >
-                <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="m8.842 3.135.708.708L6.025 7.368l3.525 3.525-.708.708L4.61 7.368l4.232-4.233Z" fill="currentColor"/>
-                </svg>
-              </button>
-              <button 
-                onClick={() => {
-                  console.log('Next clicked, API:', api)
-                  if (api) {
-                    api.scrollNext()
-                  }
-                }}
-                className="absolute right-[calc(50%-800px-60px)] top-1/2 -translate-y-1/2 bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-white/40 h-12 w-12 z-20 cursor-pointer rounded-full flex items-center justify-center transition-all duration-300"
-              >
-                <svg width="16" height="16" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="m6.158 3.135 4.232 4.233-4.232 4.232-.708-.708L8.975 7.368 5.45 3.843l.708-.708Z" fill="currentColor"/>
-                </svg>
-              </button>
+              <CarouselPrevious className="absolute left-[calc(50%-520px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
+              <CarouselNext className="absolute right-[calc(50%-520px)] top-1/2 -translate-y-1/2 h-12 w-12 z-30" />
             </Carousel>
           </div>
         </div>

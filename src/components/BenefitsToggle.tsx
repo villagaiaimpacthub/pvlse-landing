@@ -40,15 +40,15 @@ const benefitsData: BenefitsData = {
 
 export default function BenefitsToggle({ className }: BenefitsToggleProps) {
   return (
-    <section className={`py-16 md:py-20 ${className || ''}`}>
+    <section id="why" className={`py-16 md:py-20 ${className || ''}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-textPrimary">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-textPrimary">
               Benefits for both sides
             </h2>
-            <p className="text-textSecondary max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-textSecondary max-w-2xl mx-auto leading-relaxed">
               PVLSE creates value for everyone in your organization, from leadership to individual contributors.
             </p>
           </div>
@@ -140,17 +140,6 @@ export default function BenefitsToggle({ className }: BenefitsToggleProps) {
             </motion.div>
           </div>
 
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            className="text-center mt-12"
-          >
-            <p className="text-muted text-sm">
-              Ready to transform how your organization works?
-            </p>
-          </motion.div>
         </div>
       </div>
     </section>
