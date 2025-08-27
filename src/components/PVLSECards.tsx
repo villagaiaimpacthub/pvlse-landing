@@ -109,7 +109,7 @@ export default function PVLSECards() {
         </div>
 
         {/* Carousel Section - moved up higher */}
-        <div className="flex-1 flex items-center justify-center py-4" style={{ marginTop: '-60px' }}>
+        <div className="flex-1 flex items-center justify-center py-4" style={{ marginTop: '-180px' }}>
           <div className="w-full">
             <Carousel
               setApi={setApi}
@@ -122,8 +122,8 @@ export default function PVLSECards() {
               className="w-full relative"
             >
               {/* Container showing all 5 cards with blur effect */}
-              <div className="h-[650px] flex items-center py-8">
-                <CarouselContent className="-ml-4">
+              <div className="h-[800px] flex items-center py-8">
+                <CarouselContent className="-ml-4 overflow-visible">
                   {pvlseEffects.map((effect, index) => {
                     // Calculate distance from current center slide
                     let distance = Math.abs(index - currentSlide)
@@ -132,13 +132,18 @@ export default function PVLSECards() {
                     
                     // Center card (distance 0) and adjacent cards (distance 1) are sharp
                     const isSharp = distance <= 1
+                    const isCenterCard = distance === 0
                     
                     return (
                       <CarouselItem key={effect.id} className="flex-none w-[320px]">
                       <div className={`p-4 transition-all duration-500 ${
                         isSharp ? 'blur-0 opacity-100' : 'blur-sm opacity-40'
-                      }`}>
-                        <Card className="group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 p-6 md:p-8 overflow-visible min-h-[440px]">
+                      } ${isCenterCard ? 'scale-105' : ''}`}>
+                        <Card className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-6 md:p-8 overflow-visible min-h-[420px] ${
+                          isCenterCard 
+                            ? 'border-accent/30 shadow-xl shadow-accent/10' 
+                            : 'border border-white/10 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10'
+                        }`}>
                           {/* Card content */}
                           <CardHeader className="p-0 pb-6">
                             <h3 className="text-xl font-semibold text-white mb-4">

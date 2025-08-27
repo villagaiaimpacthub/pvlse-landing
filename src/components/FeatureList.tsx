@@ -17,13 +17,13 @@ export default function FeatureList() {
       <div className="container text-center">
         <h2
           id="features-heading"
-          className="text-3xl md:text-4xl font-semibold mb-6 text-textPrimary"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-4"
         >
-          {section.title}
+          Features that <span className="text-accent">matter</span>
         </h2>
 
-        <p className="text-textSecondary mb-10 mx-auto max-w-2xl">
-          It's not about doing more. It's about doing the right things — and doing them well.
+        <p className="text-xl md:text-2xl text-textSecondary mb-10 mx-auto max-w-3xl leading-relaxed">
+          It's not about doing more. It's about doing the right things — well.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

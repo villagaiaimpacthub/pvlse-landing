@@ -57,15 +57,57 @@ export default function Navbar() {
     e.preventDefault();
     
     if (href === '#product') {
-      // Special handling for product section - scroll to show only features
+      // Scroll to exact position to match screenshot  
       const targetElement = document.querySelector(href);
       if (targetElement) {
         const rect = targetElement.getBoundingClientRect();
         const absoluteTop = window.pageYOffset + rect.top;
-        const offset = 150; // Adjust this value to hide the next section
+        const scrollUpOffset = 108; // Adjust to match screenshot positioning
         
         window.scrollTo({
-          top: absoluteTop - offset,
+          top: absoluteTop - scrollUpOffset,
+          behavior: 'smooth'
+        });
+      }
+    } else if (href === '#why') {
+      // Special positioning for Why PVLSE section - position "Wellbeing isn't a perk" heading in top third
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        const heading = targetElement.querySelector('h2');
+        if (heading) {
+          const rect = heading.getBoundingClientRect();
+          const absoluteTop = window.pageYOffset + rect.top;
+          const viewportPosition = window.innerHeight / 4.5; // Position heading in top area
+          
+          window.scrollTo({
+            top: absoluteTop - viewportPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    } else if (href === '#faq') {
+      // Special positioning for FAQ section - scroll down more to hide next section
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = window.pageYOffset + rect.top;
+        const scrollUpOffset = 55; // Scroll up to create blank space above FAQ
+        
+        window.scrollTo({
+          top: absoluteTop - scrollUpOffset,
+          behavior: 'smooth'
+        });
+      }
+    } else if (href === '#moments') {
+      // Special positioning for PVLSE Effect section - scroll down 30px from standard position
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = window.pageYOffset + rect.top;
+        const scrollUpOffset = 30; // Scroll up 30px from current position
+        
+        window.scrollTo({
+          top: absoluteTop - scrollUpOffset,
           behavior: 'smooth'
         });
       }
