@@ -22,7 +22,7 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
     const initThreeJs = async () => {
       try {
         const THREE = await import('three')
-        const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls')
+        const { OrbitControls } = await import('three/addons/controls/OrbitControls.js')
 
         const mount = mountRef.current
         if (!mount) return

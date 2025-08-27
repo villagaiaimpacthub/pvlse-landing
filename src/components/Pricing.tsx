@@ -1,16 +1,45 @@
+import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
 export default function Pricing({ plans }: { plans: { name: string; price: string; period: string; features: string[]; cta: string; badge?: string }[] }) {
   return (
     <div className="grid md:grid-cols-3 gap-6">
       {plans.map((p) => (
-        <div key={p.name} className="card p-6 flex flex-col">
-          <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-semibold">{p.name}</h3>
-            {p.badge && <span className="text-accent bg-[rgba(124,92,255,0.18)] px-3 py-1 rounded-pill text-sm">{p.badge}</span>}
-          </div>
-          <div className="mt-4"><span className="text-4xl font-bold">{p.price}</span> <span className="text-muted">{p.period}</span></div>
-          <ul className="mt-4 space-y-2 text-textSecondary">{p.features.map(f => <li key={f}>• {f}</li>)}</ul>
-          <a href="#demo" className="button-primary mt-6 self-start">{p.cta}</a>
-        </div>
+        <Card key={p.name} className="group flex flex-col bg-panel border-hairline shadow-soft transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-accent/20 hover:bg-gradient-to-br hover:from-accent/10 hover:via-accent/5 hover:to-transparent hover:border-accent/50 hover:ring-2 hover:ring-accent/20">
+          <CardHeader className="pb-4 transition-all duration-300 ease-out group-hover:translate-y-[-2px]">
+            <div className="flex items-center justify-between">
+              <h3 className="text-2xl font-semibold text-textPrimary transition-all duration-300 ease-out group-hover:text-accent group-hover:drop-shadow-lg">{p.name}</h3>
+              {p.badge && (
+                <Badge 
+                  variant="secondary" 
+                  className="text-accent bg-[rgba(124,92,255,0.18)] border-transparent hover:bg-[rgba(124,92,255,0.25)] text-sm px-3 py-1 rounded-pill transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-accent/30 group-hover:bg-[rgba(124,92,255,0.3)] group-hover:ring-2 group-hover:ring-accent/40"
+                >
+                  {p.badge}
+                </Badge>
+              )}
+            </div>
+          </CardHeader>
+          <CardContent className="flex-1 pt-0 transition-all duration-300 ease-out group-hover:translate-y-[-1px]">
+            <div className="mb-4">
+              <span className="text-4xl font-bold text-textPrimary transition-all duration-300 ease-out group-hover:text-accent group-hover:drop-shadow-lg">{p.price}</span>{" "}
+              <span className="text-muted transition-all duration-300 ease-out group-hover:text-textSecondary">{p.period}</span>
+            </div>
+            <ul className="space-y-2 text-textSecondary">
+              {p.features.map((f, index) => (
+                <li key={f} className="transition-all duration-300 ease-out group-hover:text-textPrimary/90 group-hover:translate-x-1" style={{ transitionDelay: `${index * 50}ms` }}>• {f}</li>
+              ))}
+            </ul>
+          </CardContent>
+          <CardFooter className="pt-0 transition-all duration-300 ease-out group-hover:translate-y-[-2px]">
+            <Button 
+              asChild 
+              className="w-full bg-accent hover:bg-accentHover text-textPrimary font-semibold px-6 py-3 rounded-pill shadow-hard transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/40 hover:bg-gradient-to-r hover:from-accent hover:to-accentHover hover:ring-2 hover:ring-accent/50"
+            >
+              <a href="#demo">{p.cta}</a>
+            </Button>
+          </CardFooter>
+        </Card>
       ))}
     </div>
   );

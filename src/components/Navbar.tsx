@@ -75,7 +75,7 @@ export default function Navbar() {
             {nav.map((item, index) => (
               <li 
                 key={item.label}
-                ref={el => itemRefs.current[index] = el}
+                ref={el => { itemRefs.current[index] = el; }}
                 className={`transition-opacity duration-400 ease-out cursor-pointer ${
                   index === activeIndex ? 'opacity-100' : 'opacity-40 hover:opacity-70'
                 }`}

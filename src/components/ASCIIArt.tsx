@@ -155,7 +155,7 @@ export default function ASCIIArt({
 
         bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays)
         textures = twgl.createTextures(gl, {
-          video: { src: video, min: gl.LINEAR, wrap: [gl.REPEAT, gl.REPEAT] }
+          video: { src: video, min: gl.LINEAR, wrap: gl.REPEAT }
         })
       } catch (error) {
         console.error('WebGL initialization failed:', error)
@@ -165,7 +165,7 @@ export default function ASCIIArt({
     const render = (time: number) => {
       if (!gl || !programInfo) return
 
-      twgl.resizeCanvasToDisplaySize(gl.canvas, 1.0)
+      twgl.resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement, 1.0)
 
       if (video.readyState >= video.HAVE_CURRENT_DATA) {
         gl.bindTexture(gl.TEXTURE_2D, textures.video)

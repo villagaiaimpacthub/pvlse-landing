@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { cx } from './Utils'
+import { motion } from 'framer-motion'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 
 interface BenefitsToggleProps {
   className?: string
@@ -39,161 +39,118 @@ const benefitsData: BenefitsData = {
 }
 
 export default function BenefitsToggle({ className }: BenefitsToggleProps) {
-  const [activeView, setActiveView] = useState<'leaders' | 'teams'>('leaders')
-
-  const handleToggle = (view: 'leaders' | 'teams') => {
-    setActiveView(view)
-  }
-
   return (
-    <section className={cx('py-16 md:py-20', className)}>
-      <style jsx>{`
-        :root {
-          --shadow-color: 0deg 0% 63%;
-          --primary: #F6F7FA;
-          --secondary: #17181B;
-          --inactive: #9AA3AF;
-          --duration: 0.22;
-          --drop-off: 0.4;
-          --ease: ease-out;
-          --border: rgba(255, 255, 255, 0.1);
-        }
-
-        .control {
-          letter-spacing: 0.5px;
-          position: relative;
-          width: 300px;
-          height: 48px;
-          background: var(--secondary);
-          border-radius: 100px;
-          border: 1px solid var(--border);
-          padding: 3px;
-          box-shadow: 
-            -0.1px 1px 1px hsl(var(--shadow-color) / 0.39),
-            -0.2px 3.2px 3.1px -0.4px hsl(var(--shadow-color) / 0.36),
-            -0.3px 5.7px 5.5px -0.8px hsl(var(--shadow-color) / 0.34),
-            -0.5px 9.3px 8.9px -1.2px hsl(var(--shadow-color) / 0.32),
-            -0.8px 14.8px 14.2px -1.6px hsl(var(--shadow-color) / 0.29);
-        }
-
-        .control__track {
-          display: grid;
-          place-items: center;
-          grid-template-columns: 1fr 1fr;
-          width: 100%;
-          height: 100%;
-          position: relative;
-        }
-
-        .indicator {
-          position: absolute;
-          width: 50%;
-          left: ${activeView === 'leaders' ? '0' : '50%'};
-          top: 0;
-          bottom: 0;
-          background: var(--primary);
-          border-radius: 100px;
-          transition: left 0.22s ease-out;
-        }
-
-        .control label {
-          display: grid;
-          place-items: center;
-          height: 100%;
-          width: 100%;
-          cursor: pointer;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: ${activeView === 'leaders' ? 'var(--secondary)' : 'var(--inactive)'};
-          z-index: 2;
-          position: relative;
-          transition: color 0.22s ease-out;
-        }
-
-        .control label:last-child {
-          color: ${activeView === 'teams' ? 'var(--secondary)' : 'var(--inactive)'};
-        }
-
-        .control input {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border-width: 0;
-        }
-      `}</style>
-
+    <section className={`py-16 md:py-20 ${className || ''}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto">
           {/* Section Title */}
-          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-textPrimary">
-            Benefits for both sides
-          </h2>
-
-          {/* Toggle Control */}
-          <div className="flex justify-center mb-12">
-            <div className="control">
-              <div className="control__track">
-                <div className="indicator"></div>
-                <label onClick={() => handleToggle('leaders')}>
-                  For Leaders
-                  <input 
-                    type="radio" 
-                    name="benefits" 
-                    checked={activeView === 'leaders'}
-                    onChange={() => handleToggle('leaders')}
-                  />
-                </label>
-                <label onClick={() => handleToggle('teams')}>
-                  For Teams
-                  <input 
-                    type="radio" 
-                    name="benefits" 
-                    checked={activeView === 'teams'}
-                    onChange={() => handleToggle('teams')}
-                  />
-                </label>
-              </div>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 text-textPrimary">
+              Benefits for both sides
+            </h2>
+            <p className="text-textSecondary max-w-2xl mx-auto">
+              PVLSE creates value for everyone in your organization, from leadership to individual contributors.
+            </p>
           </div>
 
-          {/* Dynamic Content */}
-          <AnimatePresence mode="wait">
+          {/* Two Panel Layout */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Leaders Panel */}
             <motion.div
-              key={activeView}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="max-w-2xl mx-auto"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 text-accent">
-                {benefitsData[activeView].title}
-              </h3>
-              <ul className="space-y-4 text-lg text-textSecondary">
-                {benefitsData[activeView].items.map((item, index) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ 
-                      duration: 0.3, 
-                      delay: index * 0.1,
-                      ease: "easeOut" 
-                    }}
-                    className="flex items-center justify-center"
-                  >
-                    <span className="w-2 h-2 bg-accent rounded-full mr-4 flex-shrink-0"></span>
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
+              <Card className="group h-full bg-panel/80 backdrop-blur-sm border-hairline hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 transition-all duration-300">
+                <CardHeader className="pb-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <CardTitle className="text-2xl font-semibold text-textPrimary">
+                      {benefitsData.leaders.title}
+                    </CardTitle>
+                    <Badge className="bg-accent/20 text-accent border-accent/30 hover:bg-accent/30">
+                      Leadership
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-4">
+                    {benefitsData.leaders.items.map((item, index) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          duration: 0.4, 
+                          delay: 0.2 + (index * 0.1),
+                          ease: "easeOut" 
+                        }}
+                        className="flex items-start group-hover:translate-x-1 transition-transform duration-300"
+                      >
+                        <div className="w-2 h-2 bg-accent rounded-full mr-4 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
+                        <span className="text-textSecondary group-hover:text-textPrimary transition-colors duration-300">
+                          {item}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             </motion.div>
-          </AnimatePresence>
+
+            {/* Teams Panel */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            >
+              <Card className="group h-full bg-panel/80 backdrop-blur-sm border-hairline hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 transition-all duration-300">
+                <CardHeader className="pb-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <CardTitle className="text-2xl font-semibold text-textPrimary">
+                      {benefitsData.teams.title}
+                    </CardTitle>
+                    <Badge className="bg-accent/20 text-accent border-accent/30 hover:bg-accent/30">
+                      Team Members
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-4">
+                    {benefitsData.teams.items.map((item, index) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          duration: 0.4, 
+                          delay: 0.3 + (index * 0.1),
+                          ease: "easeOut" 
+                        }}
+                        className="flex items-start group-hover:translate-x-1 transition-transform duration-300"
+                      >
+                        <div className="w-2 h-2 bg-accent rounded-full mr-4 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
+                        <span className="text-textSecondary group-hover:text-textPrimary transition-colors duration-300">
+                          {item}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            className="text-center mt-12"
+          >
+            <p className="text-muted text-sm">
+              Ready to transform how your organization works?
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
