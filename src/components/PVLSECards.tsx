@@ -65,7 +65,9 @@ export default function PVLSECards() {
     }
 
     api.on('select', onSelect)
-    return () => api.off('select', onSelect)
+    return () => {
+      api.off('select', onSelect)
+    }
   }, [api])
 
   return (
@@ -119,10 +121,10 @@ export default function PVLSECards() {
                 slidesToScroll: 1,
                 skipSnaps: false,
               }}
-              className="w-full relative"
+              className="w-full relative overflow-visible"
             >
               {/* Container showing all 5 cards with blur effect */}
-              <div className="h-[800px] flex items-center py-8">
+              <div className="h-[800px] flex items-center py-8 overflow-visible">
                 <CarouselContent className="-ml-4 overflow-visible">
                   {pvlseEffects.map((effect, index) => {
                     // Calculate distance from current center slide
@@ -135,8 +137,8 @@ export default function PVLSECards() {
                     const isCenterCard = distance === 0
                     
                     return (
-                      <CarouselItem key={effect.id} className="flex-none w-[320px]">
-                      <div className={`p-4 transition-all duration-500 ${
+                      <CarouselItem key={effect.id} className="flex-none w-[320px] overflow-visible">
+                      <div className={`p-4 transition-all duration-500 overflow-visible ${
                         isSharp ? 'blur-0 opacity-100' : 'blur-sm opacity-40'
                       } ${isCenterCard ? 'scale-105' : ''}`}>
                         <Card className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-6 md:p-8 overflow-visible min-h-[420px] ${
