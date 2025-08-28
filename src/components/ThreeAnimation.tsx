@@ -10,13 +10,16 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
   const mountRef = useRef<HTMLDivElement>(null)
   const animationIdRef = useRef<number>()
   const [isClient, setIsClient] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
+    // Detect mobile devices
+    setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
   }, [])
 
   useEffect(() => {
-    if (!isClient || !mountRef.current) return
+    if (!isClient || !mountRef.current || isMobile) return
 
     // Dynamic import of Three.js to avoid SSR issues
     const initThreeJs = async () => {
@@ -184,9 +187,14 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
     }
 
     initThreeJs()
-  }, [isClient])
+  }, [isClient, isMobile])
 
   if (!isClient) {
+    return <div className={className} style={{ width: '100%', height: '100%' }} />
+  }
+
+  // Return empty div on mobile to prevent scroll interference
+  if (isMobile) {
     return <div className={className} style={{ width: '100%', height: '100%' }} />
   }
 
