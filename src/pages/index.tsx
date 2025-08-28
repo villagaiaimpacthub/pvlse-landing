@@ -135,35 +135,67 @@ export default function Home() {
 
         <FeatureList />
 
-        <Section title={c.roi.title}>
-          <p>{c.roi.body}</p>
-          <div className="grid md:grid-cols-3 gap-6 mt-6">
-            {c.roi.stats.map((s: any) => (
-              <div key={s.label} className="card p-6 text-center">
-                <div className="text-4xl font-bold">{s.number}</div>
-                <div className="text-muted mt-1">{s.label}</div>
+        <section className="py-12 md:py-16 mb-24 md:mb-40">
+          <div className="container">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
+                <span className="text-accent">Enterprise-grade ROI</span> that justifies the investment
+              </h1>
+              <h2 className="text-xl md:text-2xl text-textSecondary leading-relaxed mb-12">
+                PVLSE delivers measurable returns that far exceed the investment. One prevented executive departure saves $500,000+ in replacement costs. Reduced turnover, improved productivity, and predictive wellness analytics create millions in value for enterprise clients.
+              </h2>
+              <div className="grid md:grid-cols-3 gap-6 mt-6">
+                {c.roi.stats.map((s: any) => (
+                  <div key={s.label} className="card p-6 text-center bg-panel/80 backdrop-blur-sm border-hairline hover:border-accent/30 hover:shadow-lg hover:shadow-accent/10 transition-all duration-300">
+                    <div className="text-4xl font-bold text-accent">{s.number}</div>
+                    <div className="text-muted mt-1">{s.label}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </Section>
+        </section>
 
-        <Section id="pricing" title={c.pricing.title}>
-          <Pricing plans={c.pricing.plans} />
-        </Section>
+        <section id="pricing" className="py-12 md:py-16 mb-24 md:mb-40">
+          <div className="container">
+            <div className="text-center max-w-4xl mx-auto mb-12">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
+                <span className="text-accent">Enterprise AI insurance</span> pricing
+              </h1>
+            </div>
+            <Pricing plans={c.pricing.plans} />
+          </div>
+        </section>
 
         <LogoStrip items={data.content.logos?.items} />
 
-        <Section id="faq" title={c.faq.title}>
-          <FAQ items={c.faq.items} />
-        </Section>
-
-        <Section title={c.ctaFinal.title}>
-          <p>{c.ctaFinal.body}</p>
-          <div className="mt-6 flex gap-4 justify-center">
-            <a href={c.ctaFinal.primaryCta.href} className="button-primary">{c.ctaFinal.primaryCta.label}</a>
-            <a href={c.ctaFinal.secondaryCta.href} className="button-secondary">{c.ctaFinal.secondaryCta.label}</a>
+        <section id="faq" className="py-12 md:py-16 mb-24 md:mb-40">
+          <div className="container">
+            <div className="text-center max-w-4xl mx-auto mb-12">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
+                <span className="text-accent">FAQs</span>
+              </h1>
+            </div>
+            <FAQ items={c.faq.items} />
           </div>
-        </Section>
+        </section>
+
+        <section className="py-12 md:py-16 mb-24 md:mb-40">
+          <div className="container">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
+                <span className="text-accent">Protect your enterprise.</span> Secure your competitive advantage.
+              </h1>
+              <h2 className="text-xl md:text-2xl text-textSecondary leading-relaxed mb-12">
+                PVLSE is enterprise-grade AI Insurance — delivering measurable ROI through predictive workforce intelligence and mission-critical human capital protection.
+              </h2>
+              <div className="mt-6 flex gap-4 justify-center">
+                <a href={c.ctaFinal.primaryCta.href} className="button-primary">{c.ctaFinal.primaryCta.label}</a>
+                <a href={c.ctaFinal.secondaryCta.href} className="button-secondary">{c.ctaFinal.secondaryCta.label}</a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </Theme>

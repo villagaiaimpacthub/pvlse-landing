@@ -12,7 +12,7 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
   const duplicatedLogos = [...logoItems, ...logoItems];
   
   return (
-    <div className="py-12">
+    <div className="py-8 md:py-12 my-12 md:my-16">
       <div className="container">
         <p className="text-center text-sm text-muted mb-8">Trusted by innovative organizations</p>
         <div className="overflow-hidden opacity-60">

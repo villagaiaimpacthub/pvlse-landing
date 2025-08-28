@@ -87,13 +87,26 @@ export default function Navbar() {
           });
         }
       }
-    } else if (href === '#faq') {
-      // Special positioning for FAQ section - scroll down more to hide next section
+    } else if (href === '#pricing') {
+      // Adjusted positioning for Pricing section after heading structure change
       const targetElement = document.querySelector(href);
       if (targetElement) {
         const rect = targetElement.getBoundingClientRect();
         const absoluteTop = window.pageYOffset + rect.top;
-        const scrollUpOffset = 55; // Scroll up to create blank space above FAQ
+        const scrollUpOffset = 5; // Less offset due to larger headings
+        
+        window.scrollTo({
+          top: absoluteTop - scrollUpOffset,
+          behavior: 'smooth'
+        });
+      }
+    } else if (href === '#faq') {
+      // Adjusted positioning for FAQ section after heading structure change
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        const rect = targetElement.getBoundingClientRect();
+        const absoluteTop = window.pageYOffset + rect.top;
+        const scrollUpOffset = 5; // Less offset due to larger headings
         
         window.scrollTo({
           top: absoluteTop - scrollUpOffset,
@@ -126,7 +139,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-black/50">
+    <header className="sticky top-0 z-[100] backdrop-blur-md bg-black/50">
       <div className="container flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-3 focus-ring">
           <PulseIcon className="h-6" />
@@ -135,14 +148,14 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          <nav className="flex items-center relative pb-3">
+          <nav className="flex items-center relative">
             <div 
               className="absolute bottom-0 h-0.5 transition-all duration-300 ease-out"
               style={{
                 left: `${lineStyle.left}px`,
                 width: `${lineStyle.width}px`,
                 backgroundColor: '#7C5CFF',
-                marginTop: '10px'
+                transform: 'translateY(8px)'
               }}
             />
             <ul ref={navRef} className="flex items-center gap-10 text-textSecondary list-none p-0 m-0">
@@ -168,20 +181,65 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Login/Preview Buttons */}
-          <div className="flex items-center gap-3">
-            <Button 
-              variant="ghost" 
-              size="sm"
-              className="text-white hover:text-accent hover:bg-white/10 font-semibold text-sm uppercase tracking-widest"
-            >
-              Login
-            </Button>
-            <Button 
-              size="sm"
-              className="bg-accent hover:bg-accent/90 text-white font-semibold text-sm uppercase tracking-widest"
-            >
-              Preview
-            </Button>
+          <div className="flex items-center gap-3 relative">
+            <div className="relative">
+              <a 
+                href="#" 
+                className="text-white hover:text-accent no-underline uppercase font-semibold text-sm tracking-widest block px-3 py-2 transition-all duration-300"
+                style={{ position: 'relative' }}
+                onMouseEnter={(e) => {
+                  const underline = e.currentTarget.querySelector('.login-underline') as HTMLElement
+                  if (underline) {
+                    underline.style.width = '100%'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  const underline = e.currentTarget.querySelector('.login-underline') as HTMLElement
+                  if (underline) {
+                    underline.style.width = '0%'
+                  }
+                }}
+              >
+                Login
+                <div 
+                  className="login-underline absolute bottom-0 left-0 h-0.5 transition-all duration-300 ease-out"
+                  style={{
+                    width: '0%',
+                    backgroundColor: '#7C5CFF',
+                    transform: 'translateY(8px)'
+                  }}
+                />
+              </a>
+            </div>
+            <div className="relative">
+              <a 
+                href="#" 
+                className="bg-accent hover:bg-accent/90 text-white font-semibold text-sm uppercase tracking-widest px-3 py-2 rounded transition-all duration-300 no-underline block"
+                style={{ position: 'relative' }}
+                onMouseEnter={(e) => {
+                  const underline = e.currentTarget.querySelector('.preview-underline') as HTMLElement
+                  if (underline) {
+                    underline.style.width = '100%'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  const underline = e.currentTarget.querySelector('.preview-underline') as HTMLElement
+                  if (underline) {
+                    underline.style.width = '0%'
+                  }
+                }}
+              >
+                Preview
+                <div 
+                  className="preview-underline absolute bottom-0 left-0 h-0.5 transition-all duration-300 ease-out"
+                  style={{
+                    width: '0%',
+                    backgroundColor: '#7C5CFF',
+                    transform: 'translateY(8px)'
+                  }}
+                />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -199,7 +257,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 backdrop-blur-md bg-black/90 border-t border-white/10">
+        <div className="md:hidden absolute top-16 left-0 right-0 backdrop-blur-md bg-black/90 border-t border-white/10 z-[110]">
           <div className="container py-4">
             <nav className="space-y-4">
               {nav.map((item, index) => (

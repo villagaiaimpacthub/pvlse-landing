@@ -7,6 +7,266 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
+// 3D Particle Morphing Component
+const ParticleMorphing = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !containerRef.current || !canvasRef.current) return
+
+    const initParticleSystem = async () => {
+      try {
+        // Create script elements for importmap and main script
+        const importMapScript = document.createElement('script')
+        importMapScript.type = 'importmap'
+        importMapScript.textContent = JSON.stringify({
+          imports: {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/",
+            "animejs": "https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.es.js",
+            "simplex-noise": "https://cdn.skypack.dev/simplex-noise@4.0.1"
+          }
+        })
+        
+        // Only add importmap if it doesn't exist
+        if (!document.querySelector('script[type="importmap"]')) {
+          document.head.appendChild(importMapScript)
+        }
+
+        // Wait a bit for importmap to register
+        await new Promise(resolve => setTimeout(resolve, 100))
+
+        // Dynamically import and initialize the particle system
+        const initScript = `
+          import * as THREE from 'three';
+          import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+          import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+          import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+          import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+          import anime from 'animejs';
+          import { createNoise3D, createNoise4D } from 'simplex-noise';
+
+          // Simplified version for card display
+          const CONFIG = {
+            particleCount: 3000,
+            shapeSize: 3,
+            morphDuration: 2000,
+            particleSizeRange: [0.05, 0.15],
+            autoMorph: true,
+            autoMorphInterval: 3000
+          };
+
+          let scene, camera, renderer, particleSystem, currentShapeIndex = 0;
+          let targetPositions = [];
+          const canvas = document.getElementById('particle-canvas-${Date.now()}');
+          if (!canvas) return;
+
+          // Initialize scene
+          scene = new THREE.Scene();
+          camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+          camera.position.set(0, 0, 8);
+          
+          renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+          renderer.setSize(120, 120);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+          
+          // Disable interactions on mobile
+          const isMobileDevice = window.innerWidth < 768;
+          if (isMobileDevice) {
+            canvas.style.pointerEvents = 'none';
+            canvas.style.touchAction = 'pan-y';
+          }
+
+          // Simple shapes for morphing
+          const shapes = [
+            () => generateSphere(CONFIG.particleCount, CONFIG.shapeSize),
+            () => generateCube(CONFIG.particleCount, CONFIG.shapeSize),
+            () => generateTorus(CONFIG.particleCount, CONFIG.shapeSize)
+          ];
+
+          function generateSphere(count, size) {
+            const points = new Float32Array(count * 3);
+            for (let i = 0; i < count; i++) {
+              const phi = Math.acos(-1 + (2 * i) / count);
+              const theta = Math.sqrt(count * Math.PI) * phi;
+              const x = Math.cos(theta) * Math.sin(phi) * size;
+              const y = Math.sin(theta) * Math.sin(phi) * size;
+              const z = Math.cos(phi) * size;
+              points[i * 3] = x;
+              points[i * 3 + 1] = y;
+              points[i * 3 + 2] = z;
+            }
+            return points;
+          }
+
+          function generateCube(count, size) {
+            const points = new Float32Array(count * 3);
+            for (let i = 0; i < count; i++) {
+              const face = Math.floor(Math.random() * 6);
+              const u = Math.random() * size - size/2;
+              const v = Math.random() * size - size/2;
+              const positions = [
+                [size/2, u, v], [-size/2, u, v],
+                [u, size/2, v], [u, -size/2, v],
+                [u, v, size/2], [u, v, -size/2]
+              ];
+              points.set(positions[face], i * 3);
+            }
+            return points;
+          }
+
+          function generateTorus(count, size) {
+            const points = new Float32Array(count * 3);
+            const R = size * 0.6, r = size * 0.3;
+            for (let i = 0; i < count; i++) {
+              const theta = Math.random() * Math.PI * 2;
+              const phi = Math.random() * Math.PI * 2;
+              const x = (R + r * Math.cos(phi)) * Math.cos(theta);
+              const y = r * Math.sin(phi);
+              const z = (R + r * Math.cos(phi)) * Math.sin(theta);
+              points[i * 3] = x;
+              points[i * 3 + 1] = y;
+              points[i * 3 + 2] = z;
+            }
+            return points;
+          }
+
+          // Generate target positions
+          targetPositions = shapes.map(shape => shape());
+
+          // Create particle system
+          const geometry = new THREE.BufferGeometry();
+          const positions = new Float32Array(targetPositions[0]);
+          const colors = new Float32Array(CONFIG.particleCount * 3);
+          const sizes = new Float32Array(CONFIG.particleCount);
+
+          for (let i = 0; i < CONFIG.particleCount; i++) {
+            colors[i * 3] = 0.3 + Math.random() * 0.7;
+            colors[i * 3 + 1] = 0.5 + Math.random() * 0.5;
+            colors[i * 3 + 2] = 0.8 + Math.random() * 0.2;
+            sizes[i] = Math.random() * (CONFIG.particleSizeRange[1] - CONFIG.particleSizeRange[0]) + CONFIG.particleSizeRange[0];
+          }
+
+          geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+          geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+          geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+          const material = new THREE.ShaderMaterial({
+            uniforms: {},
+            vertexShader: \`
+              attribute float size;
+              varying vec3 vColor;
+              void main() {
+                vColor = color;
+                vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                gl_PointSize = size * (300.0 / -mvPosition.z);
+                gl_Position = projectionMatrix * mvPosition;
+              }
+            \`,
+            fragmentShader: \`
+              varying vec3 vColor;
+              void main() {
+                float alpha = 1.0 - distance(gl_PointCoord, vec2(0.5)) * 2.0;
+                if (alpha < 0.1) discard;
+                gl_FragColor = vec4(vColor, alpha * 0.8);
+              }
+            \`,
+            blending: THREE.AdditiveBlending,
+            depthTest: false,
+            transparent: true,
+            vertexColors: true
+          });
+
+          particleSystem = new THREE.Points(geometry, material);
+          scene.add(particleSystem);
+
+          // Auto-morph function
+          function morph() {
+            currentShapeIndex = (currentShapeIndex + 1) % shapes.length;
+            const targetPos = targetPositions[currentShapeIndex];
+            const currentPos = geometry.attributes.position.array;
+            
+            anime({
+              targets: { progress: 0 },
+              progress: 1,
+              duration: CONFIG.morphDuration,
+              easing: 'easeInOutQuad',
+              update: function(anim) {
+                const progress = anim.animations[0].currentValue;
+                for (let i = 0; i < CONFIG.particleCount * 3; i++) {
+                  currentPos[i] += (targetPos[i] - currentPos[i]) * 0.02;
+                }
+                geometry.attributes.position.needsUpdate = true;
+              }
+            });
+          }
+
+          // Animation loop
+          function animate() {
+            requestAnimationFrame(animate);
+            // Reduce rotation on mobile for better performance
+            const rotationSpeed = window.innerWidth < 768 ? 0.002 : 0.005;
+            particleSystem.rotation.y += rotationSpeed;
+            renderer.render(scene, camera);
+          }
+
+          // Start auto-morphing
+          setInterval(morph, CONFIG.autoMorphInterval);
+          animate();
+        `
+
+        const script = document.createElement('script')
+        script.type = 'module'
+        script.textContent = initScript
+        document.body.appendChild(script)
+        
+        setIsLoaded(true)
+        
+        // Cleanup
+        return () => {
+          document.body.removeChild(script)
+        }
+      } catch (error) {
+        console.warn('Failed to load particle system:', error)
+      }
+    }
+
+    initParticleSystem()
+  }, [])
+
+  return (
+    <div 
+      ref={containerRef}
+      className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-black to-transparent flex items-center justify-center overflow-hidden"
+      style={{ backgroundColor: '#000' }}
+    >
+      <canvas
+        ref={canvasRef}
+        id={`particle-canvas-${Date.now()}`}
+        width={120}
+        height={120}
+        style={{
+          width: '120px',
+          height: '120px',
+          borderRadius: '8px'
+        }}
+      />
+    </div>
+  )
+}
+
 const pvlseEffects = [
   {
     id: 1,
@@ -194,13 +454,7 @@ export default function PVLSECards() {
                                 </div>
                               )}
                               {effect.id === 2 && (
-                                <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                                  <div className="space-y-2">
-                                    <div className="h-2 w-24 bg-white/20 rounded"></div>
-                                    <div className="h-2 w-20 bg-white/20 rounded"></div>
-                                    <div className="h-2 w-28 bg-white/20 rounded"></div>
-                                  </div>
-                                </div>
+                                <ParticleMorphing />
                               )}
                               {effect.id === 3 && (
                                 <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
@@ -229,22 +483,6 @@ export default function PVLSECards() {
                               )}
                             </div>
 
-                            {/* Action button */}
-                            <div className="flex items-center justify-center">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => {
-                                  if (effect.action === "LEARN MORE") {
-                                    setShowLearnMore(true)
-                                  }
-                                }}
-                                className="bg-transparent border-white/25 text-white hover:bg-white/10 hover:border-white/40 font-mono text-xs uppercase tracking-widest transition-all duration-300 group-hover:bg-white/15"
-                              >
-                                {effect.action}
-                                <ArrowRight className="ml-2 h-3 w-3" />
-                              </Button>
-                            </div>
                           </CardContent>
                         </Card>
                       </div>
