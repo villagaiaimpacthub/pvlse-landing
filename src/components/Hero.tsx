@@ -62,10 +62,12 @@ export default function Hero({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [isClient, setIsClient] = useState(false)
   const reducedMotion = prefersReducedMotion()
 
-  // Detect mobile devices
+  // Initialize client-side states
   useEffect(() => {
+    setIsClient(true)
     setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
   }, [])
 
@@ -134,9 +136,26 @@ export default function Hero({
       role="banner"
       aria-label="Hero section"
     >
-      {/* Three.js Particle Animation Background */}
+      {/* Background with mobile optimization */}
       <div className="absolute inset-0 overflow-hidden">
-        <ThreeAnimation className="w-full h-full opacity-60" />
+        {/* Mobile-optimized background - loads instantly */}
+        {isMobile ? (
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-accent/4 opacity-40" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.1)_0%,transparent_70%)]" />
+            {/* Static particles effect using CSS */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }} />
+              <div className="absolute top-3/4 left-1/3 w-0.5 h-0.5 bg-accent/30 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '4s' }} />
+              <div className="absolute top-1/2 left-3/4 w-1 h-1 bg-accent/50 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '3.5s' }} />
+              <div className="absolute top-1/6 left-2/3 w-0.5 h-0.5 bg-accent/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }} />
+              <div className="absolute top-5/6 left-1/6 w-0.5 h-0.5 bg-accent/35 rounded-full animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '3s' }} />
+            </div>
+          </div>
+        ) : (
+          /* Desktop Three.js Animation */
+          <ThreeAnimation className="w-full h-full opacity-60" />
+        )}
       </div>
 
       {/* Content */}
@@ -146,17 +165,29 @@ export default function Hero({
             <motion.div className="max-w-3xl relative z-10" variants={itemVariants}>
               {/* Rotating Headline */}
               <div className="relative overflow-hidden pb-2">
-                <motion.h1 
-                  key={currentHeadlineIndex}
-                  className="font-bold leading-tight"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
-                >
-                  <div className="text-4xl sm:text-5xl md:text-7xl text-textPrimary">{headlineVariations[currentHeadlineIndex].title}</div>
-                  <div className="text-2xl sm:text-3xl md:text-6xl text-textSecondary">{headlineVariations[currentHeadlineIndex].subtitle}</div>
-                </motion.h1>
+                {!isClient ? (
+                  /* Loading skeleton while JS initializes */
+                  <div className="font-bold leading-tight animate-pulse">
+                    <div className="text-4xl sm:text-5xl md:text-7xl mb-2">
+                      <div className="bg-textPrimary/20 rounded h-12 sm:h-16 md:h-20 w-4/5 mb-2"></div>
+                    </div>
+                    <div className="text-2xl sm:text-3xl md:text-6xl">
+                      <div className="bg-textSecondary/15 rounded h-8 sm:h-10 md:h-16 w-3/4"></div>
+                    </div>
+                  </div>
+                ) : (
+                  <motion.h1 
+                    key={currentHeadlineIndex}
+                    className="font-bold leading-tight"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  >
+                    <div className="text-4xl sm:text-5xl md:text-7xl text-textPrimary">{headlineVariations[currentHeadlineIndex].title}</div>
+                    <div className="text-2xl sm:text-3xl md:text-6xl text-textSecondary">{headlineVariations[currentHeadlineIndex].subtitle}</div>
+                  </motion.h1>
+                )}
               </div>
 
             </motion.div>

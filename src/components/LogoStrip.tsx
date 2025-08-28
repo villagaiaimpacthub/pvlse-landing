@@ -40,8 +40,8 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
                 logoSize = { width: '100px', height: '55px', maxHeight: '55px', maxWidth: '100px' };
               }
               
-              // Scale up for larger screens
-              if (window.innerWidth >= 768) {
+              // Scale up for larger screens (only on client-side)
+              if (typeof window !== 'undefined' && window.innerWidth >= 768) {
                 if (logo.name === 'SGAIA') {
                   logoSize = { width: '100px', height: '56px', maxHeight: '56px', maxWidth: '100px' };
                 } else if (logo.name === 'Metaluck') {
