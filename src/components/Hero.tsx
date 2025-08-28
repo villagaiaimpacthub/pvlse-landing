@@ -8,6 +8,17 @@ import ThreeAnimation from './ThreeAnimation'
 
 interface HeroProps {
   className?: string
+  heroData?: {
+    headlineVariations?: Array<{
+      title: string
+      subtitle: string
+    }>
+    kicker?: string
+    headlineLines?: string[]
+    subhead?: string
+    primaryCta?: { label: string; href: string }
+    secondaryCta?: { label: string; href: string }
+  }
   // We'll treat these as content slots but give PVLSE defaults
   title?: string
   subtitle?: string
@@ -38,6 +49,7 @@ const defaultOrbAnimation = {
 
 export default function Hero({
   className,
+  heroData,
   // === PVLSE COPY (defaults) ===
   title = 'AI Insurance.',
   subtitle = 'Not for fire damage — for futures worth living.',
@@ -48,7 +60,13 @@ export default function Hero({
 }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0)
   const reducedMotion = prefersReducedMotion()
+
+  // Get headline variations or fallback to defaults
+  const headlineVariations = heroData?.headlineVariations || [
+    { title, subtitle }
+  ]
 
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] })
   const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, -60]), { stiffness: 220, damping: 28 })
@@ -67,6 +85,23 @@ export default function Hero({
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [reducedMotion])
+
+  // Rotate headlines randomly every 2 seconds
+  useEffect(() => {
+    if (headlineVariations.length <= 1) return
+    
+    const interval = setInterval(() => {
+      setCurrentHeadlineIndex(prevIndex => {
+        let nextIndex
+        do {
+          nextIndex = Math.floor(Math.random() * headlineVariations.length)
+        } while (nextIndex === prevIndex && headlineVariations.length > 1)
+        return nextIndex
+      })
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [headlineVariations.length])
 
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.6 } } }
   const itemVariants = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.32, ease: 'easeOut' } } }
@@ -103,11 +138,20 @@ export default function Hero({
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative">
             <motion.div className="max-w-3xl relative z-10" variants={itemVariants}>
-              {/* Headline */}
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight text-textPrimary">
-                {title}<br />
-                <span className="text-textSecondary">{subtitle}</span>
-              </h1>
+              {/* Rotating Headline */}
+              <div className="relative overflow-hidden pb-2">
+                <motion.h1 
+                  key={currentHeadlineIndex}
+                  className="font-bold leading-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                >
+                  <div className="text-5xl md:text-7xl text-textPrimary">{headlineVariations[currentHeadlineIndex].title}</div>
+                  <div className="text-4xl md:text-6xl text-textSecondary">{headlineVariations[currentHeadlineIndex].subtitle}</div>
+                </motion.h1>
+              </div>
 
             </motion.div>
           </div>

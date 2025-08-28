@@ -203,6 +203,24 @@
     ],
     "hero": {
       "kicker": "PVLSE",
+      "headlineVariations": [
+        {
+          "title": "AI Insurance",
+          "subtitle": "Not for fire damage — for futures worth living"
+        },
+        {
+          "title": "Ask & Act",
+          "subtitle": "Jarvis-like chat — just make better decisions"
+        },
+        {
+          "title": "Business Intelligence",
+          "subtitle": "Transforming siloed knowledge into collective intelligence"
+        },
+        {
+          "title": "Wellbeing at Work",
+          "subtitle": "For intelligence that makes people flourish"
+        }
+      ],
       "headlineLines": ["Enterprise AI Insurance.", "Protecting your most valuable assets — your people."],
       "subhead": "Mission-critical workforce protection for Fortune 500 companies. PVLSE's advanced AI prevents burnout, predicts turnover, and optimizes human capital — delivering millions in measurable value through predictive wellness analytics and enterprise-grade workforce intelligence.",
       "primaryCta": { "label": "Schedule Enterprise Consultation", "href": "#demo" },
