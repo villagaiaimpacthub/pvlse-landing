@@ -14,9 +14,14 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
   return (
     <div className="py-8 md:py-12 my-12 md:my-16">
       <div className="container">
-        <p className="text-center text-sm text-muted mb-8">Trusted by innovative organizations</p>
+        <h2 className="text-center text-2xl font-semibold text-textPrimary mb-8">Trusted by innovative organizations</h2>
         <div className="overflow-hidden opacity-60">
-          <div className="flex gap-16 animate-[scroll_30s_linear_infinite] will-change-transform items-center">
+          <div 
+            className="flex gap-16 will-change-transform items-center"
+            style={{
+              animation: 'logoScroll 30s linear infinite',
+            }}
+          >
             {duplicatedLogos.map((logo, index) => (
               <div key={`${logo.name}-${index}`} className="flex-shrink-0">
                 <img 
@@ -30,8 +35,8 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        @keyframes scroll {
+      <style jsx global>{`
+        @keyframes logoScroll {
           from { transform: translateX(0); }
           to { transform: translateX(-50%); }
         }

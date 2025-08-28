@@ -432,53 +432,78 @@ export default function PVLSECards() {
                             <div className="flex-1 flex items-center justify-center mb-4 md:mb-6 opacity-75 group-hover:opacity-100 transition-opacity duration-300 min-h-[80px] md:min-h-[120px]">
                               {/* Simple visual elements based on card type */}
                               {effect.id === 1 && (
-                                <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                                  <svg width="60" height="110" viewBox="0 0 231 429" className="opacity-70">
+                                <div className={`w-full h-32 flex items-center justify-center transition-transform duration-300 ${isCenterCard ? 'scale-110' : ''}`}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 25 24" className="text-accent">
+                                    <g clipPath="url(#MnrtxAZMcaa)">
+                                      <path stroke="currentColor" strokeLinecap="round" strokeMiterlimit="10" strokeWidth="1.5" d="M4.5 8.75h16"/>
+                                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8.5 2.75v2m8-2v2"/>
+                                      <rect width="16.5" height="15.5" x="4.25" y="4.75" stroke="currentColor" strokeWidth="1.5" rx="1"/>
+                                      <circle cx="8.5" cy="16.5" r="1" fill="currentColor" className={isCenterCard ? 'animate-pulse' : ''}/>
+                                      <circle cx="12.5" cy="16.5" r="1" fill="currentColor" className={isCenterCard ? 'animate-pulse' : ''}/>
+                                      <circle cx="16.5" cy="16.5" r="1" fill="currentColor" className={isCenterCard ? 'animate-pulse' : ''}/>
+                                      <circle cx="16.5" cy="13" r="1" fill="currentColor" className={isCenterCard ? 'animate-pulse' : ''}/>
+                                      <circle cx="12.5" cy="13" r="1" fill="currentColor" className={isCenterCard ? 'animate-pulse' : ''}/>
+                                      <circle cx="8.5" cy="13" r="1" fill="currentColor" className={isCenterCard ? 'animate-pulse' : ''}/>
+                                    </g>
                                     <defs>
-                                      <linearGradient id="pvlse-card-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="#7C5CFF" stopOpacity="0.3" />
-                                        <stop offset="100%" stopColor="#7C5CFF" stopOpacity="0.1" />
-                                      </linearGradient>
+                                      <clipPath id="MnrtxAZMcaa">
+                                        <path fill="#fff" d="M.5 0h24v24H.5z"/>
+                                      </clipPath>
                                     </defs>
-                                    <rect 
-                                      width="231" 
-                                      height="429" 
-                                      rx="8" 
-                                      ry="8" 
-                                      fill="url(#pvlse-card-gradient)" 
-                                      stroke="#7C5CFF" 
-                                      strokeWidth="1" 
-                                      strokeOpacity="0.4"
-                                    />
                                   </svg>
                                 </div>
                               )}
                               {effect.id === 2 && (
-                                <ParticleMorphing />
+                                <div className={`w-full h-32 flex items-center justify-center transition-transform duration-300 ${isCenterCard ? 'scale-110' : ''}`}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 25 24" className={`text-accent ${isCenterCard ? 'animate-pulse' : ''}`}>
+                                    <g clipPath="url(#CM0qSnBry-a)">
+                                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11.5 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14"/>
+                                      <path fill="currentColor" fillRule="evenodd" d="M15.891 16.452c.39-.315.746-.67 1.06-1.06l4.33 4.328a.75.75 0 1 1-1.061 1.06z" clipRule="evenodd"/>
+                                    </g>
+                                    <defs>
+                                      <clipPath id="CM0qSnBry-a">
+                                        <path fill="#fff" d="M.5 0h24v24H.5z"/>
+                                      </clipPath>
+                                    </defs>
+                                  </svg>
+                                </div>
                               )}
                               {effect.id === 3 && (
-                                <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                                  <div className="grid grid-cols-3 gap-2">
-                                    {[...Array(9)].map((_, i) => (
-                                      <div key={i} className="w-4 h-4 bg-white/20 rounded-sm"></div>
-                                    ))}
-                                  </div>
+                                <div className={`w-full h-32 flex items-center justify-center transition-transform duration-300 ${isCenterCard ? 'scale-110' : ''}`}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 24 24" className={`text-accent ${isCenterCard ? 'animate-pulse' : ''}`}>
+                                    <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5">
+                                      <path d="M15.75 6.75h5.5v5.5"/>
+                                      <path d="m2.75 18.25 6.63-6.67 3.54 3.55 8.33-8.38"/>
+                                    </g>
+                                  </svg>
                                 </div>
                               )}
                               {effect.id === 4 && (
-                                <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                                  <div className="w-16 h-16 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-                                    <div className="w-6 h-1 bg-blue-500 rounded"></div>
-                                  </div>
+                                <div className={`w-full h-32 flex items-center justify-center transition-transform duration-300 ${isCenterCard ? 'scale-110' : ''}`}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 25 24" className={`text-accent ${isCenterCard ? 'animate-pulse' : ''}`}>
+                                    <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" clipPath="url(#IW3KuzL8I1a)">
+                                      <path d="M4.25 19.25v-6.5h4a1 1 0 0 1 1 1v1.5a1 1 0 0 0 1 1h4.5a1 1 0 0 0 1-1v-1.5a1 1 0 0 1 1-1h4v6.5a1 1 0 0 1-1 1H5.25a1 1 0 0 1-1-1m0-6.5 2.518-7.325a1 1 0 0 1 .946-.675h9.572a1 1 0 0 1 .946.675l2.518 7.325"/>
+                                    </g>
+                                    <defs>
+                                      <clipPath id="IW3KuzL8I1a">
+                                        <path fill="#fff" d="M.5 0h24v24H.5z"/>
+                                      </clipPath>
+                                    </defs>
+                                  </svg>
                                 </div>
                               )}
                               {effect.id === 5 && (
-                                <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                                  <div className="flex space-x-2">
-                                    <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                                    <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
-                                    <div className="w-3 h-3 bg-purple-300 rounded-full"></div>
-                                  </div>
+                                <div className={`w-full h-32 flex items-center justify-center transition-transform duration-300 ${isCenterCard ? 'scale-110' : ''}`}>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 24 24" className={`text-accent ${isCenterCard ? 'animate-pulse' : ''}`}>
+                                    <g clipPath="url(#0UhzmwcaUla)">
+                                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M20.25 14.93v3.3c0 1.23-1.09 2.17-2.31 2C10.6 19.21 4.79 13.4 3.77 6.06c-.17-1.22.77-2.31 2-2.31h3.3a1 1 0 0 1 .99.83l.39 2.19c.14.77-.18 1.55-.82 2l-.89.63c1.43 2.41 3.46 4.42 5.88 5.84l.61-.87c.45-.64 1.23-.96 2-.82l2.19.39c.48.09.83.5.83.99"/>
+                                    </g>
+                                    <defs>
+                                      <clipPath id="0UhzmwcaUla">
+                                        <path fill="#fff" d="M0 0h24v24H0z"/>
+                                      </clipPath>
+                                    </defs>
+                                  </svg>
                                 </div>
                               )}
                             </div>

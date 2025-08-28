@@ -32,7 +32,7 @@ export default function Home() {
               <h2 
                 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8"
                 dangerouslySetInnerHTML={{ 
-                  __html: "AI is here, and we have <span class='text-accent'>two choices</span>:"
+                  __html: "AI is here, and we have <span class='text-accent'>two choices</span>"
                 }}
               />
               <p 
@@ -52,8 +52,8 @@ export default function Home() {
             {/* Main heading */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-4">
-                Wellbeing isn't a perk.<br />
-                <span className="text-accent">It's a performance multiplier.</span>
+                Wellbeing isn't a perk<br />
+                <span className="text-accent">It's a performance multiplier</span>
               </h2>
             </div>
 
@@ -184,7 +184,7 @@ export default function Home() {
           <div className="container">
             <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
-                <span className="text-accent">Protect your enterprise.</span> Secure your competitive advantage.
+                <span className="text-accent">Protect your enterprise,</span> secure your competitive advantage
               </h1>
               <h2 className="text-xl md:text-2xl text-textSecondary leading-relaxed mb-12">
                 PVLSE is enterprise-grade AI Insurance — delivering measurable ROI through predictive workforce intelligence and mission-critical human capital protection.

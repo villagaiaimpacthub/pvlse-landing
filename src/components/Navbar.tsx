@@ -180,66 +180,8 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          {/* Desktop Login/Preview Buttons */}
-          <div className="flex items-center gap-3 relative">
-            <div className="relative">
-              <a 
-                href="#" 
-                className="text-white hover:text-accent no-underline uppercase font-semibold text-sm tracking-widest block px-3 py-2 transition-all duration-300"
-                style={{ position: 'relative' }}
-                onMouseEnter={(e) => {
-                  const underline = e.currentTarget.querySelector('.login-underline') as HTMLElement
-                  if (underline) {
-                    underline.style.width = '100%'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const underline = e.currentTarget.querySelector('.login-underline') as HTMLElement
-                  if (underline) {
-                    underline.style.width = '0%'
-                  }
-                }}
-              >
-                Login
-                <div 
-                  className="login-underline absolute bottom-0 left-0 h-0.5 transition-all duration-300 ease-out"
-                  style={{
-                    width: '0%',
-                    backgroundColor: '#7C5CFF',
-                    transform: 'translateY(8px)'
-                  }}
-                />
-              </a>
-            </div>
-            <div className="relative">
-              <a 
-                href="#" 
-                className="bg-accent hover:bg-accent/90 text-white font-semibold text-sm uppercase tracking-widest px-3 py-2 rounded transition-all duration-300 no-underline block"
-                style={{ position: 'relative' }}
-                onMouseEnter={(e) => {
-                  const underline = e.currentTarget.querySelector('.preview-underline') as HTMLElement
-                  if (underline) {
-                    underline.style.width = '100%'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const underline = e.currentTarget.querySelector('.preview-underline') as HTMLElement
-                  if (underline) {
-                    underline.style.width = '0%'
-                  }
-                }}
-              >
-                Preview
-                <div 
-                  className="preview-underline absolute bottom-0 left-0 h-0.5 transition-all duration-300 ease-out"
-                  style={{
-                    width: '0%',
-                    backgroundColor: '#7C5CFF',
-                    transform: 'translateY(8px)'
-                  }}
-                />
-              </a>
-            </div>
+          {/* Desktop Login/Preview Buttons - Hidden */}
+          <div className="hidden">
           </div>
         </div>
 
@@ -259,7 +201,7 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 backdrop-blur-md bg-black/90 border-t border-white/10 z-[110]">
           <div className="container py-4">
-            <nav className="space-y-4">
+            <nav className="space-y-4 mb-8">
               {nav.map((item, index) => (
                 <a 
                   key={item.label}
@@ -274,23 +216,6 @@ export default function Navbar() {
                 </a>
               ))}
             </nav>
-            
-            {/* Mobile Login/Preview Buttons */}
-            <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-white/10">
-              <Button 
-                variant="ghost" 
-                size="sm"
-                className="text-white hover:text-accent hover:bg-white/10 font-semibold text-sm uppercase tracking-widest w-full"
-              >
-                Login
-              </Button>
-              <Button 
-                size="sm"
-                className="bg-accent hover:bg-accent/90 text-white font-semibold text-sm uppercase tracking-widest w-full"
-              >
-                Preview
-              </Button>
-            </div>
           </div>
         </div>
       )}
