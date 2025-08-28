@@ -61,7 +61,13 @@ export default function Hero({
   const containerRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const reducedMotion = prefersReducedMotion()
+
+  // Detect mobile devices
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+  }, [])
 
   // Get headline variations or fallback to defaults
   const headlineVariations = heroData?.headlineVariations || [
@@ -121,7 +127,7 @@ export default function Hero({
         "bg-[radial-gradient(80%_100%_at_50%_0%,rgba(124,92,255,0.22)_0%,rgba(124,92,255,0)_60%),#0B0B0C]",
         className
       )}
-      style={reducedMotion ? {} : { y, opacity }}
+      style={reducedMotion || isMobile ? {} : { y, opacity }}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
