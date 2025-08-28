@@ -5,14 +5,16 @@ import { cx, prefersReducedMotion } from './Utils'
 
 interface HeroCTAProps {
   className?: string
-  description?: string
+  title?: string
+  subtitle?: string
   primaryCTA?: { label: string; href: string }
   secondaryCTA?: { label: string; href: string }
 }
 
 export default function HeroCTA({
   className,
-  description = 'In the AI age, protecting your people is protecting your business. PVLSE takes the busywork off their plates, keeps workloads healthy, and creates space for growth — so your team can do their best work and actually enjoy doing it.',
+  title = 'In the AI age, <span class="text-accent">protecting your people</span> is protecting your business.',
+  subtitle = 'PVLSE takes the busywork off their plates, keeps workloads healthy, and creates space for growth — so your team can do their best work and <span class="text-accent">actually enjoy doing it</span>.',
   primaryCTA = { label: 'Get a Demo', href: '#demo' },
   secondaryCTA = { label: 'See How It Works', href: '#how' }
 }: HeroCTAProps) {
@@ -45,13 +47,19 @@ export default function HeroCTA({
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Description */}
-          <motion.p 
-            className="text-2xl md:text-3xl lg:text-4xl text-textSecondary leading-relaxed"
+          {/* Main Heading */}
+          <motion.h1 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8"
             variants={itemVariants}
-          >
-            {description}
-          </motion.p>
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
+          
+          {/* Sub-heading */}
+          <motion.p 
+            className="text-xl md:text-2xl text-textSecondary leading-relaxed"
+            variants={itemVariants}
+            dangerouslySetInnerHTML={{ __html: subtitle }}
+          />
         </div>
       </div>
     </motion.section>
