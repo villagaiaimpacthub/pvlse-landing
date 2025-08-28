@@ -1,0 +1,87 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="rgba(227,155,0,0.3)" />
+      <stop offset="50%" stop-color="rgba(163,102,127,0.15)" />
+      <stop offset="100%" stop-color="rgba(100,50,255,0.1)" />
+    </radialGradient>
+    
+    <radialGradient id="particle1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(227,155,0,0.8)" />
+      <stop offset="70%" stop-color="rgba(227,155,0,0.2)" />
+      <stop offset="100%" stop-color="rgba(227,155,0,0)" />
+    </radialGradient>
+    
+    <radialGradient id="particle2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(100,50,255,0.8)" />
+      <stop offset="70%" stop-color="rgba(100,50,255,0.2)" />
+      <stop offset="100%" stop-color="rgba(100,50,255,0)" />
+    </radialGradient>
+    
+    <radialGradient id="particle3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(124,92,255,0.6)" />
+      <stop offset="70%" stop-color="rgba(124,92,255,0.15)" />
+      <stop offset="100%" stop-color="rgba(124,92,255,0)" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="transparent"/>
+  
+  <!-- Central glow -->
+  <ellipse cx="600" cy="400" rx="400" ry="200" fill="url(#centerGlow)" opacity="0.4" />
+  
+  <!-- Scattered particles - mimicking the original particle positions -->
+  <!-- Central cluster -->
+  <circle cx="580" cy="380" r="1.5" fill="url(#particle1)" opacity="0.9" />
+  <circle cx="620" cy="420" r="1" fill="url(#particle2)" opacity="0.8" />
+  <circle cx="600" cy="400" r="2" fill="url(#particle1)" opacity="0.7" />
+  <circle cx="590" cy="410" r="1.2" fill="url(#particle3)" opacity="0.8" />
+  <circle cx="610" cy="390" r="0.8" fill="url(#particle2)" opacity="0.9" />
+  
+  <!-- Ring distribution -->
+  <circle cx="480" cy="300" r="1" fill="url(#particle1)" opacity="0.6" />
+  <circle cx="720" cy="500" r="1.2" fill="url(#particle2)" opacity="0.7" />
+  <circle cx="400" cy="450" r="0.8" fill="url(#particle3)" opacity="0.5" />
+  <circle cx="800" cy="350" r="1.5" fill="url(#particle1)" opacity="0.6" />
+  <circle cx="300" cy="350" r="1" fill="url(#particle2)" opacity="0.5" />
+  <circle cx="900" cy="450" r="1.2" fill="url(#particle3)" opacity="0.4" />
+  <circle cx="200" cy="400" r="0.8" fill="url(#particle1)" opacity="0.4" />
+  <circle cx="1000" cy="400" r="1" fill="url(#particle2)" opacity="0.4" />
+  
+  <!-- Upper area -->
+  <circle cx="450" cy="200" r="0.8" fill="url(#particle1)" opacity="0.5" />
+  <circle cx="750" cy="250" r="1" fill="url(#particle2)" opacity="0.6" />
+  <circle cx="350" cy="150" r="1.2" fill="url(#particle3)" opacity="0.4" />
+  <circle cx="850" cy="180" r="0.8" fill="url(#particle1)" opacity="0.4" />
+  <circle cx="550" cy="120" r="1" fill="url(#particle2)" opacity="0.5" />
+  <circle cx="650" cy="150" r="1.2" fill="url(#particle3)" opacity="0.5" />
+  
+  <!-- Lower area -->
+  <circle cx="480" cy="600" r="1" fill="url(#particle1)" opacity="0.5" />
+  <circle cx="720" cy="650" r="1.2" fill="url(#particle2)" opacity="0.6" />
+  <circle cx="380" cy="700" r="0.8" fill="url(#particle3)" opacity="0.4" />
+  <circle cx="820" cy="680" r="1" fill="url(#particle1)" opacity="0.4" />
+  <circle cx="580" cy="720" r="1.2" fill="url(#particle2)" opacity="0.5" />
+  <circle cx="680" cy="690" r="0.8" fill="url(#particle3)" opacity="0.5" />
+  
+  <!-- Additional scattered particles for density -->
+  <circle cx="320" cy="280" r="0.6" fill="url(#particle1)" opacity="0.3" />
+  <circle cx="880" cy="320" r="0.8" fill="url(#particle2)" opacity="0.4" />
+  <circle cx="160" cy="500" r="0.6" fill="url(#particle3)" opacity="0.3" />
+  <circle cx="1040" cy="480" r="0.8" fill="url(#particle1)" opacity="0.3" />
+  <circle cx="420" cy="100" r="0.6" fill="url(#particle2)" opacity="0.3" />
+  <circle cx="780" cy="80" r="0.8" fill="url(#particle3)" opacity="0.4" />
+  <circle cx="340" cy="750" r="0.6" fill="url(#particle1)" opacity="0.3" />
+  <circle cx="860" cy="740" r="0.8" fill="url(#particle2)" opacity="0.3" />
+  
+  <!-- More scattered micro particles -->
+  <circle cx="270" cy="380" r="0.4" fill="url(#particle1)" opacity="0.2" />
+  <circle cx="930" cy="420" r="0.4" fill="url(#particle2)" opacity="0.2" />
+  <circle cx="120" cy="300" r="0.4" fill="url(#particle3)" opacity="0.2" />
+  <circle cx="1080" cy="500" r="0.4" fill="url(#particle1)" opacity="0.2" />
+  <circle cx="510" cy="50" r="0.4" fill="url(#particle2)" opacity="0.2" />
+  <circle cx="690" cy="30" r="0.4" fill="url(#particle3)" opacity="0.2" />
+  <circle cx="430" cy="770" r="0.4" fill="url(#particle1)" opacity="0.2" />
+  <circle cx="770" cy="780" r="0.4" fill="url(#particle2)" opacity="0.2" />
+</svg>

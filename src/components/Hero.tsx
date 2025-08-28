@@ -138,13 +138,24 @@ export default function Hero({
     >
       {/* Background with mobile optimization */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* CSS fallback background that loads instantly */}
+        {/* Static fallback background that loads instantly */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-accent/4 opacity-40" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.1)_0%,transparent_70%)]" />
+          
+          {/* Static particle fallback */}
+          <div 
+            className="absolute inset-0 opacity-50"
+            style={{
+              backgroundImage: 'url(/hero-fallback.svg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
         </div>
         
-        {/* Three.js Animation for all devices - scroll interaction disabled on mobile */}
+        {/* Three.js Animation for all devices - layered on top of fallback */}
         {isClient && (
           <ThreeAnimation className="absolute inset-0 w-full h-full opacity-60" />
         )}
