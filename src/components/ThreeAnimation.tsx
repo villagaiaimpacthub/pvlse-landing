@@ -19,7 +19,7 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
   }, [])
 
   useEffect(() => {
-    if (!isClient || !mountRef.current || isMobile) return
+    if (!isClient || !mountRef.current) return
 
     // Dynamic import of Three.js to avoid SSR issues
     const initThreeJs = async () => {
@@ -51,6 +51,11 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
         controls.enableDamping = true
         controls.enablePan = false
         controls.enableZoom = false // Keep zoom disabled for scroll
+        
+        // Disable all controls on mobile to prevent scroll interference
+        if (isMobile) {
+          controls.enabled = false
+        }
         
         const gu = {
           time: { value: 0 }
@@ -144,7 +149,10 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
         const animate = () => {
           animationIdRef.current = requestAnimationFrame(animate)
           
-          controls.update()
+          // Only update controls if not on mobile
+          if (!isMobile) {
+            controls.update()
+          }
           const t = clock.getElapsedTime() * 0.5
           gu.time.value = t * Math.PI
           p.rotation.y = t * 0.05
@@ -193,11 +201,6 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
     return <div className={className} style={{ width: '100%', height: '100%' }} />
   }
 
-  // Return empty div on mobile to prevent scroll interference
-  if (isMobile) {
-    return <div className={className} style={{ width: '100%', height: '100%' }} />
-  }
-
   return (
     <div 
       ref={mountRef} 
@@ -205,7 +208,8 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
       style={{ 
         width: '100%', 
         height: '100%',
-        touchAction: 'pan-y'
+        touchAction: isMobile ? 'pan-y' : 'none',
+        pointerEvents: isMobile ? 'none' : 'auto'
       }}
     />
   )
