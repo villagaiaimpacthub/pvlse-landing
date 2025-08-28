@@ -187,26 +187,26 @@ export default function Navbar() {
 
         {/* Mobile Hamburger Button */}
         <button
-          className="md:hidden flex flex-col gap-1 p-2"
+          className="md:hidden flex flex-col gap-1 p-3 min-w-[44px] min-h-[44px] justify-center items-center"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle mobile menu"
         >
-          <div className={`w-5 h-0.5 bg-white transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
-          <div className={`w-5 h-0.5 bg-white transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
-          <div className={`w-5 h-0.5 bg-white transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+          <div className={`w-6 h-0.5 bg-white transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+          <div className={`w-6 h-0.5 bg-white transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+          <div className={`w-6 h-0.5 bg-white transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 backdrop-blur-md bg-black/90 border-t border-white/10 z-[110]">
-          <div className="container py-4">
-            <nav className="space-y-4 mb-8">
+          <div className="container py-6">
+            <nav className="space-y-2 mb-8">
               {nav.map((item, index) => (
                 <a 
                   key={item.label}
                   href={item.href} 
-                  className="block text-white hover:text-accent no-underline uppercase font-semibold text-sm tracking-widest py-2"
+                  className="block text-white hover:text-accent no-underline uppercase font-semibold text-sm tracking-widest py-4 px-2 min-h-[44px] flex items-center border-b border-white/5 last:border-b-0"
                   onClick={(e) => {
                     handleLinkClick(e, item.href);
                     setIsMobileMenuOpen(false);

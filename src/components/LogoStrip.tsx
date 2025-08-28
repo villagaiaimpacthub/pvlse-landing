@@ -18,7 +18,7 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
         <h2 className="text-center text-2xl font-semibold text-textPrimary mb-8">Trusted by innovative organizations</h2>
         <div className="overflow-hidden opacity-60 relative">
           <div 
-            className="flex gap-8 will-change-transform items-center animate-scroll"
+            className="flex gap-4 sm:gap-8 will-change-transform items-center animate-scroll"
             style={{
               width: 'max-content'
             }}
@@ -27,15 +27,32 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
               let logoSize = { width: '160px', height: '88px', maxHeight: '88px', maxWidth: '160px' };
               let marginRight = '';
               
-              // Adjust sizes for specific logos
+              // Adjust sizes for specific logos with mobile optimizations
               if (logo.name === 'SGAIA') {
-                logoSize = { width: '100px', height: '56px', maxHeight: '56px', maxWidth: '100px' };
+                logoSize = { width: '80px', height: '45px', maxHeight: '45px', maxWidth: '80px' };
               } else if (logo.name === 'Metaluck') {
-                logoSize = { width: '180px', height: '100px', maxHeight: '100px', maxWidth: '180px' };
+                logoSize = { width: '120px', height: '70px', maxHeight: '70px', maxWidth: '120px' };
               } else if (logo.name === 'Fvtura') {
-                logoSize = { width: '200px', height: '110px', maxHeight: '110px', maxWidth: '200px' };
+                logoSize = { width: '140px', height: '80px', maxHeight: '80px', maxWidth: '140px' };
               } else if (logo.name === 'GaiaNet') {
-                logoSize = { width: '140px', height: '78px', maxHeight: '78px', maxWidth: '140px' };
+                logoSize = { width: '100px', height: '55px', maxHeight: '55px', maxWidth: '100px' };
+              } else {
+                logoSize = { width: '100px', height: '55px', maxHeight: '55px', maxWidth: '100px' };
+              }
+              
+              // Scale up for larger screens
+              if (window.innerWidth >= 768) {
+                if (logo.name === 'SGAIA') {
+                  logoSize = { width: '100px', height: '56px', maxHeight: '56px', maxWidth: '100px' };
+                } else if (logo.name === 'Metaluck') {
+                  logoSize = { width: '180px', height: '100px', maxHeight: '100px', maxWidth: '180px' };
+                } else if (logo.name === 'Fvtura') {
+                  logoSize = { width: '200px', height: '110px', maxHeight: '110px', maxWidth: '200px' };
+                } else if (logo.name === 'GaiaNet') {
+                  logoSize = { width: '140px', height: '78px', maxHeight: '78px', maxWidth: '140px' };
+                } else {
+                  logoSize = { width: '160px', height: '88px', maxHeight: '88px', maxWidth: '160px' };
+                }
               }
               
               // Add spacing after SGAIA before it loops back to Fvtura

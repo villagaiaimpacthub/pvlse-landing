@@ -122,7 +122,7 @@ export default function Hero({
     <motion.section
       ref={containerRef}
       className={cx(
-        'relative min-h-[86vh] flex items-center overflow-hidden',
+        'relative min-h-[75vh] sm:min-h-[86vh] flex items-center overflow-hidden',
         // Premium dark + soft radial accent
         "bg-[radial-gradient(80%_100%_at_50%_0%,rgba(124,92,255,0.22)_0%,rgba(124,92,255,0)_60%),#0B0B0C]",
         className
@@ -154,8 +154,8 @@ export default function Hero({
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
                 >
-                  <div className="text-5xl md:text-7xl text-textPrimary">{headlineVariations[currentHeadlineIndex].title}</div>
-                  <div className="text-4xl md:text-6xl text-textSecondary">{headlineVariations[currentHeadlineIndex].subtitle}</div>
+                  <div className="text-4xl sm:text-5xl md:text-7xl text-textPrimary">{headlineVariations[currentHeadlineIndex].title}</div>
+                  <div className="text-2xl sm:text-3xl md:text-6xl text-textSecondary">{headlineVariations[currentHeadlineIndex].subtitle}</div>
                 </motion.h1>
               </div>
 
