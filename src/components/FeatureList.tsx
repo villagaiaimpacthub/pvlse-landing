@@ -31,10 +31,10 @@ export default function FeatureList() {
             <article
               key={f.title}
               className={cx(
-                'card p-6 transition-all duration-300 bg-panel/80 backdrop-blur-sm border-hairline hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10'
+                'group card p-6 transition-all duration-300 bg-panel/80 backdrop-blur-sm border-hairline hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10'
               )}
             >
-              <h3 className="text-xl font-semibold text-textPrimary mb-2">
+              <h3 className="text-xl font-semibold text-textPrimary group-hover:text-accent mb-2 transition-colors duration-300">
                 {f.title}
               </h3>
               <p className="text-textSecondary leading-relaxed">

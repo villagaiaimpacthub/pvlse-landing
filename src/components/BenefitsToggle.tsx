@@ -46,10 +46,10 @@ export default function BenefitsToggle({ className }: BenefitsToggleProps) {
           {/* Section Title */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-textPrimary">
-              Benefits for both sides
+              Benefits across the organization
             </h2>
             <p className="text-xl md:text-2xl text-textSecondary max-w-2xl mx-auto leading-relaxed">
-              PVLSE creates value for everyone in your organization, from leadership to individual contributors.
+              PVLSE creates value for everyone, from leadership to individual contributors.
             </p>
           </div>
 

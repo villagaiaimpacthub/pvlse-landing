@@ -257,8 +257,8 @@
     },
     "why": {
       "id": "why",
-      "title": "AI is here, you have two choices.",
-      "body": "You can use it to squeeze more out of people — faster, longer, until they burn out. Or you can use it to give back their focus, energy, and creativity. We built Pvlse for the second path. Because when people thrive, so does the company."
+      "title": "AI is here, and we have two choices:",
+      "body": "We can squeeze more out of people — faster, longer, until they burn out. Or we can use AI to give people back their focus, energy, and creativity. We built PVLSE for the second path. Because when people thrive, so do organizations."
     },
     "wellbeingProductivity": {
       "title": "Wellbeing isn't a perk. It's a performance multiplier.",
@@ -294,7 +294,7 @@
     "stories": {
       "title": "Real stories",
       "quote": {
-        "text": "Pvlse told one of our top engineers to take Friday off. He came back Monday with the solution we'd been chasing for weeks.",
+        "text": "PVLSE told one of our top engineers to take Friday off. He came back Monday with the solution we'd been chasing for weeks.",
         "author": "Head of Product, SaaS"
       }
     },
@@ -322,12 +322,12 @@
     "features": {
       "title": "Features that matter",
       "items": [
-        { "title": "Workload health tracking", "desc": "Know when your team's running hot." },
-        { "title": "Mindless task removal", "desc": "Automate the soul-crushing admin." },
-        { "title": "Rest & recharge nudges", "desc": "Paid time off before burnout sets in." },
-        { "title": "Skill growth suggestions", "desc": "Tailored to personal interests." },
-        { "title": "Priority clarity", "desc": "What matters today, and why." },
-        { "title": "Company wellbeing dashboard", "desc": "See the big picture at a glance." }
+        { "title": "Live business intelligence", "desc": "Real-time financial data and shipment tracking at your fingertips." },
+        { "title": "Company wellbeing dashboard", "desc": "Monitor team health and productivity trends in real-time." },
+        { "title": "Smart calendar coordination", "desc": "Automate booking meetings across all team calendars seamlessly." },
+        { "title": "Predictive wellness & recharge", "desc": "Early intervention with rest nudges before stress becomes burnout." },
+        { "title": "Automatic task assignment", "desc": "Intelligent workload distribution based on capacity and skills." },
+        { "title": "Zero-hallucination AI retrieval", "desc": "Trained on your business data — no guessing, just facts you can trust." }
       ]
     },
     "roi": {

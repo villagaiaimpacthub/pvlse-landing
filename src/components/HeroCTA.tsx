@@ -12,7 +12,7 @@ interface HeroCTAProps {
 
 export default function HeroCTA({
   className,
-  description = 'In the AI age, protecting your people is protecting your business. Pvlse takes the busywork off their plates, keeps workloads healthy, and creates space for growth — so your team can do their best work and actually enjoy doing it.',
+  description = 'In the AI age, protecting your people is protecting your business. PVLSE takes the busywork off their plates, keeps workloads healthy, and creates space for growth — so your team can do their best work and actually enjoy doing it.',
   primaryCTA = { label: 'Get a Demo', href: '#demo' },
   secondaryCTA = { label: 'See How It Works', href: '#how' }
 }: HeroCTAProps) {

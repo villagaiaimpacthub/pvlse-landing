@@ -62,7 +62,7 @@ export default function Navbar() {
       if (targetElement) {
         const rect = targetElement.getBoundingClientRect();
         const absoluteTop = window.pageYOffset + rect.top;
-        const scrollUpOffset = 108; // Adjust to match screenshot positioning
+        const scrollUpOffset = 57; // Adjust to match screenshot positioning
         
         window.scrollTo({
           top: absoluteTop - scrollUpOffset,

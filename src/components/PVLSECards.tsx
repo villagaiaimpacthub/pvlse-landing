@@ -11,36 +11,36 @@ const pvlseEffects = [
   {
     id: 1,
     title: "Follow-ups already done",
-    description: "End the call. Tasks assigned, responsibilities crystal clear.",
-    detailText: "End the call. The notes are written, the tasks assigned, responsibilities crystal clear.",
+    description: "Meeting notes, action items, and next steps handled automatically.",
+    detailText: "End the call. The notes are written, <span class='text-accent'>the tasks assigned</span>, responsibilities crystal clear.",
     action: "USE NOW"
   },
   {
     id: 2,
     title: "Answers without hunting", 
-    description: "Just ask — PVLSE knows. No files. No tabs. No digging.",
-    detailText: "Just ask — PVLSE knows everything. No files to hunt through. No tabs to open. No digging required.",
+    description: "Instant knowledge retrieval from your entire organization.",
+    detailText: "Just ask — <span class='text-accent'>PVLSE knows everything</span>. No files to hunt through. No tabs to open. No digging required.",
     action: "BUILD NOW"
   },
   {
     id: 3,
     title: "Money clarity on tap",
-    description: "See the truth in the numbers before anyone else does.",
-    detailText: "See the truth in the numbers before anyone else does. Financial clarity, instantly.",
+    description: "Real-time financial insights that reveal what others miss.",
+    detailText: "See the truth in the numbers <span class='text-accent'>before anyone else does</span>. Financial clarity, instantly.",
     action: "LEARN MORE"
   },
   {
     id: 4,
     title: "Inbox peace",
-    description: "Clear actions — without touching a spreadsheet.",
-    detailText: "Clear actions — without touching a spreadsheet. Your inbox becomes a peaceful, organized space.",
+    description: "Smart prioritization turns chaos into organized workflow.",
+    detailText: "Clear actions — <span class='text-accent'>without touching a spreadsheet</span>. Your inbox becomes a peaceful, organized space.",
     action: "USE NOW"
   },
   {
     id: 5,
     title: "C-suite on speed dial",
-    description: "Your C-suite — without scheduling bottlenecks.",
-    detailText: "Your C-suite — without scheduling bottlenecks. Executive access, whenever you need it.",
+    description: "Direct leadership access when decisions need to be made.",
+    detailText: "Your C-suite — without scheduling bottlenecks. <span class='text-accent'>Executive access, whenever you need it</span>.",
     action: "BUILD NOW"
   }
 ]
@@ -51,6 +51,12 @@ export default function PVLSECards() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const titleRef = useRef(null)
   const isInView = useInView(titleRef, { once: false, margin: "-100px" })
+
+  const handleCardClick = (targetIndex: number) => {
+    if (api && targetIndex !== currentSlide && window.innerWidth >= 768) {
+      api.scrollTo(targetIndex)
+    }
+  }
   
   // Scroll-based gradient animation
   const { scrollY } = useScroll()
@@ -106,7 +112,9 @@ export default function PVLSECards() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {pvlseEffects[currentSlide]?.detailText || "End the call. The notes are written, the tasks assigned, responsibilities crystal clear."}
+            <span dangerouslySetInnerHTML={{ 
+              __html: pvlseEffects[currentSlide]?.detailText || "End the call. The notes are written, the tasks assigned, <span class='text-accent'>responsibilities crystal clear</span>."
+            }} />
           </motion.p>
         </div>
 
@@ -137,15 +145,18 @@ export default function PVLSECards() {
                     const isCenterCard = distance === 0
                     
                     return (
-                      <CarouselItem key={effect.id} className="flex-none w-[280px] md:w-[380px] overflow-visible">
-                      <div className={`p-4 md:p-8 transition-all duration-500 overflow-visible origin-center ${
-                        isSharp ? 'blur-0 opacity-100' : 'blur-sm opacity-40'
-                      } ${isCenterCard ? 'scale-105' : ''}`}>
-                        <Card className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-4 md:p-8 overflow-visible min-h-[360px] md:min-h-[420px] ${
-                          isCenterCard 
-                            ? 'border-accent/30 shadow-xl shadow-accent/10' 
-                            : 'border border-white/10 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10'
-                        }`}>
+                      <CarouselItem key={effect.id} className="flex-none w-full md:w-[380px] overflow-visible">
+                      <div className={`p-4 md:p-8 transition-all duration-500 overflow-visible origin-center blur-0 opacity-100 ${
+                        isSharp ? 'md:blur-0 md:opacity-100' : 'md:blur-sm md:opacity-40'
+                      } ${isCenterCard ? 'md:scale-105' : ''}`}>
+                        <Card 
+                          className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-4 md:p-8 overflow-visible min-h-[360px] md:min-h-[420px] border border-white/10 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 ${
+                            isCenterCard 
+                              ? 'md:border-accent/30 md:shadow-xl md:shadow-accent/10' 
+                              : 'cursor-pointer'
+                          }`}
+                          onClick={() => !isCenterCard && handleCardClick(index)}
+                        >
                           {/* Card content */}
                           <CardHeader className="p-0 pb-4 md:pb-6">
                             <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4">
