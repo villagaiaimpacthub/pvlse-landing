@@ -26,15 +26,21 @@ export default function Home() {
         
         <Moments />
 
-        <section className="py-12 md:py-16 mb-20 md:mb-32">
+        <section className="py-12 md:py-16 mb-24 md:mb-40">
           <div className="container">
             <div className="text-center max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
-                AI is here, and we have two choices:
-              </h2>
-              <p className="text-xl md:text-2xl text-textSecondary leading-relaxed">
-                We can squeeze more out of people — faster, longer, until they burn out. Or we can use AI to give people back their focus, energy, and creativity. We built PVLSE for the second path. Because when people thrive, so do organizations.
-              </p>
+              <h2 
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8"
+                dangerouslySetInnerHTML={{ 
+                  __html: "AI is here, and we have <span class='text-accent'>two choices</span>:"
+                }}
+              />
+              <p 
+                className="text-xl md:text-2xl text-textSecondary leading-relaxed"
+                dangerouslySetInnerHTML={{ 
+                  __html: "We can squeeze more out of people — faster, longer, until they burn out. Or we can use AI to give people back their focus, energy, and creativity. We built PVLSE for the second path. Because <span class='text-accent'>when people thrive, so do organizations</span>."
+                }}
+              />
             </div>
           </div>
         </section>

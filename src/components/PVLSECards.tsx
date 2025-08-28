@@ -173,9 +173,24 @@ export default function PVLSECards() {
                               {/* Simple visual elements based on card type */}
                               {effect.id === 1 && (
                                 <div className="w-full h-32 rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                                  <div className="w-16 h-16 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center">
-                                    <div className="w-6 h-6 bg-green-500 rounded-full"></div>
-                                  </div>
+                                  <svg width="60" height="110" viewBox="0 0 231 429" className="opacity-70">
+                                    <defs>
+                                      <linearGradient id="pvlse-card-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#7C5CFF" stopOpacity="0.3" />
+                                        <stop offset="100%" stopColor="#7C5CFF" stopOpacity="0.1" />
+                                      </linearGradient>
+                                    </defs>
+                                    <rect 
+                                      width="231" 
+                                      height="429" 
+                                      rx="8" 
+                                      ry="8" 
+                                      fill="url(#pvlse-card-gradient)" 
+                                      stroke="#7C5CFF" 
+                                      strokeWidth="1" 
+                                      strokeOpacity="0.4"
+                                    />
+                                  </svg>
                                 </div>
                               )}
                               {effect.id === 2 && (

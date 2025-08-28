@@ -2,12 +2,14 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import data from "@/data/pvlse.json";
 import PulseIcon from "@/components/PulseIcon";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const nav = data.content.nav;
   const [activeIndex, setActiveIndex] = useState(0);
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
 
@@ -130,38 +132,110 @@ export default function Navbar() {
           <PulseIcon className="h-6" />
           <span className="text-white no-underline uppercase font-semibold text-sm tracking-widest">PVLSE</span>
         </Link>
-        <nav className="hidden md:flex items-center relative pb-3">
-          <div 
-            className="absolute bottom-0 h-0.5 transition-all duration-300 ease-out"
-            style={{
-              left: `${lineStyle.left}px`,
-              width: `${lineStyle.width}px`,
-              backgroundColor: '#7C5CFF',
-              marginTop: '10px'
-            }}
-          />
-          <ul ref={navRef} className="flex items-center gap-10 text-textSecondary list-none p-0 m-0">
-            {nav.map((item, index) => (
-              <li 
-                key={item.label}
-                ref={el => { itemRefs.current[index] = el; }}
-                className={`transition-opacity duration-400 ease-out cursor-pointer ${
-                  index === activeIndex ? 'opacity-100' : 'opacity-40 hover:opacity-70'
-                }`}
-                onClick={() => handleNavClick(index, item.href)}
-              >
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-8">
+          <nav className="flex items-center relative pb-3">
+            <div 
+              className="absolute bottom-0 h-0.5 transition-all duration-300 ease-out"
+              style={{
+                left: `${lineStyle.left}px`,
+                width: `${lineStyle.width}px`,
+                backgroundColor: '#7C5CFF',
+                marginTop: '10px'
+              }}
+            />
+            <ul ref={navRef} className="flex items-center gap-10 text-textSecondary list-none p-0 m-0">
+              {nav.map((item, index) => (
+                <li 
+                  key={item.label}
+                  ref={el => { itemRefs.current[index] = el; }}
+                  className={`transition-opacity duration-400 ease-out cursor-pointer ${
+                    index === activeIndex ? 'opacity-100' : 'opacity-40 hover:opacity-70'
+                  }`}
+                  onClick={() => handleNavClick(index, item.href)}
+                >
+                  <a 
+                    href={item.href} 
+                    className="text-white no-underline uppercase font-semibold text-sm tracking-widest block"
+                    onClick={(e) => handleLinkClick(e, item.href)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Desktop Login/Preview Buttons */}
+          <div className="flex items-center gap-3">
+            <Button 
+              variant="ghost" 
+              size="sm"
+              className="text-white hover:text-accent hover:bg-white/10 font-semibold text-sm uppercase tracking-widest"
+            >
+              Login
+            </Button>
+            <Button 
+              size="sm"
+              className="bg-accent hover:bg-accent/90 text-white font-semibold text-sm uppercase tracking-widest"
+            >
+              Preview
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          className="md:hidden flex flex-col gap-1 p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+        >
+          <div className={`w-5 h-0.5 bg-white transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+          <div className={`w-5 h-0.5 bg-white transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+          <div className={`w-5 h-0.5 bg-white transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 right-0 backdrop-blur-md bg-black/90 border-t border-white/10">
+          <div className="container py-4">
+            <nav className="space-y-4">
+              {nav.map((item, index) => (
                 <a 
+                  key={item.label}
                   href={item.href} 
-                  className="text-white no-underline uppercase font-semibold text-sm tracking-widest block"
-                  onClick={(e) => handleLinkClick(e, item.href)}
+                  className="block text-white hover:text-accent no-underline uppercase font-semibold text-sm tracking-widest py-2"
+                  onClick={(e) => {
+                    handleLinkClick(e, item.href);
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   {item.label}
                 </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
+              ))}
+            </nav>
+            
+            {/* Mobile Login/Preview Buttons */}
+            <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-white/10">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                className="text-white hover:text-accent hover:bg-white/10 font-semibold text-sm uppercase tracking-widest w-full"
+              >
+                Login
+              </Button>
+              <Button 
+                size="sm"
+                className="bg-accent hover:bg-accent/90 text-white font-semibold text-sm uppercase tracking-widest w-full"
+              >
+                Preview
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
