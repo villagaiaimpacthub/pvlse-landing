@@ -138,23 +138,23 @@ export default function Hero({
     >
       {/* Background with mobile optimization */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Mobile-optimized background - loads instantly */}
-        {isMobile ? (
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-accent/4 opacity-40" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.1)_0%,transparent_70%)]" />
-            {/* Static particles effect using CSS */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }} />
-              <div className="absolute top-3/4 left-1/3 w-0.5 h-0.5 bg-accent/30 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '4s' }} />
-              <div className="absolute top-1/2 left-3/4 w-1 h-1 bg-accent/50 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '3.5s' }} />
-              <div className="absolute top-1/6 left-2/3 w-0.5 h-0.5 bg-accent/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }} />
-              <div className="absolute top-5/6 left-1/6 w-0.5 h-0.5 bg-accent/35 rounded-full animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '3s' }} />
-            </div>
+        {/* Always show mobile background initially, then conditionally show Three.js for desktop */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-accent/4 opacity-40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.1)_0%,transparent_70%)]" />
+          {/* Static particles effect using CSS */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }} />
+            <div className="absolute top-3/4 left-1/3 w-0.5 h-0.5 bg-accent/30 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '4s' }} />
+            <div className="absolute top-1/2 left-3/4 w-1 h-1 bg-accent/50 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '3.5s' }} />
+            <div className="absolute top-1/6 left-2/3 w-0.5 h-0.5 bg-accent/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }} />
+            <div className="absolute top-5/6 left-1/6 w-0.5 h-0.5 bg-accent/35 rounded-full animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '3s' }} />
           </div>
-        ) : (
-          /* Desktop Three.js Animation */
-          <ThreeAnimation className="w-full h-full opacity-60" />
+        </div>
+        
+        {/* Desktop Three.js Animation - only render when confirmed not mobile */}
+        {isClient && !isMobile && (
+          <ThreeAnimation className="absolute inset-0 w-full h-full opacity-60" />
         )}
       </div>
 
