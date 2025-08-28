@@ -210,11 +210,11 @@
     },
     "logos": { 
       "items": [
-        { "name": "Metaluck", "src": "/logos/Logo - Metaluck 2024.e69a41a201bb5d89d0a8.png", "alt": "Metaluck" },
-        { "name": "Fvtura", "src": "/logos/fvtura-logo-2021-white-3.png", "alt": "Fvtura" },
-        { "name": "GaiaNet", "src": "/logos/gaianet-logo.png.webp", "alt": "GaiaNet" },
-        { "name": "TechBricks", "src": "/logos/logo-techbricks-bianco.svg", "alt": "TechBricks" },
-        { "name": "Innovation Partner", "src": "/logos/fd0ddca2-dc64-4279-8019-f2ee07874496.png", "alt": "Innovation Partner" }
+        { "name": "Fvtura", "src": "/logos/fvtura-logo-2021-white-3.png", "alt": "Fvtura", "href": "https://fvtura.com" },
+        { "name": "GaiaNet", "src": "/logos/gaianet-symbol.png", "alt": "GaiaNet", "href": "https://gaianet.earth" },
+        { "name": "TechBricks", "src": "/logos/logo-techbricks-bianco.svg", "alt": "TechBricks", "href": "https://techbricks.io" },
+        { "name": "Metaluck", "src": "/logos/Logo - Metaluck 2024.e69a41a201bb5d89d0a8.png", "alt": "Metaluck", "href": "https://metalucks.com" },
+        { "name": "SGAIA", "src": "/logos/SGAIA-logo-20241129-bianco.png", "alt": "SGAIA", "href": "https://sgaia.it" }
       ] 
     },
     "moments": {
