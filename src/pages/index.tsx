@@ -160,7 +160,7 @@ export default function Home() {
           <div className="container">
             <div className="text-center max-w-4xl mx-auto mb-6">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-4">
-                <span className="text-accent">Growth and Empire</span> pricing
+                <span className="text-accent">Foundation and Empire</span> pricing
               </h1>
             </div>
             <PricingSlider pricingTiers={c.pricing.pricingTiers} sliderConfig={c.pricing.sliderConfig} />

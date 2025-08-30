@@ -361,7 +361,7 @@
       "title": "Enterprise AI insurance pricing",
       "pricingTiers": [
         {
-          "name": "Growth",
+          "name": "Foundation",
           "basePrice": 3000,
           "perEmployeePrice": 100,
           "features": [
@@ -389,7 +389,7 @@
         }
       ],
       "sliderConfig": {
-        "minEmployees": 1,
+        "minEmployees": 10,
         "maxEmployees": 1000,
         "defaultEmployees": 50,
         "step": 1

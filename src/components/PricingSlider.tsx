@@ -170,7 +170,7 @@ export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSli
                 className="w-full mb-3"
               />
               <div className="flex justify-between text-xs text-textSecondary">
-                <span>1</span>
+                <span>10</span>
                 <span>1000+</span>
               </div>
             </div>
