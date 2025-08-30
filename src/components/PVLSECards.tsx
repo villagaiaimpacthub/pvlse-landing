@@ -337,7 +337,7 @@ export default function PVLSECards() {
   }, [api])
 
   return (
-    <section id="moments" className="relative w-full min-h-screen py-16">
+    <section id="moments" className="relative w-full min-h-screen py-20 md:py-24">
       {/* Background with image22.png */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -379,7 +379,7 @@ export default function PVLSECards() {
         </div>
 
         {/* Carousel Section - moved up higher */}
-        <div className="flex-1 flex items-center justify-center py-4 -mt-20 md:-mt-[180px]">
+        <div className="flex-1 flex items-center justify-center py-4 -mt-12 md:-mt-24">
           <div className="w-full">
             <Carousel
               setApi={setApi}
@@ -392,7 +392,7 @@ export default function PVLSECards() {
               className="w-full relative overflow-visible"
             >
               {/* Container showing all 5 cards with blur effect */}
-              <div className="h-[600px] md:h-[800px] flex items-center py-4 md:py-8 overflow-visible">
+              <div className="h-[480px] md:h-[600px] flex items-center py-4 md:py-8 overflow-visible">
                 <CarouselContent className="-ml-4 overflow-visible [&>div]:overflow-visible [&_*]:overflow-visible">
                   {pvlseEffects.map((effect, index) => {
                     // Calculate distance from current center slide
@@ -410,7 +410,7 @@ export default function PVLSECards() {
                         isSharp ? 'md:blur-0 md:opacity-100' : 'md:blur-sm md:opacity-40'
                       } ${isCenterCard ? 'md:scale-105' : ''}`}>
                         <Card 
-                          className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-4 md:p-8 overflow-visible min-h-[360px] md:min-h-[420px] border border-white/10 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 ${
+                          className={`group relative h-full flex flex-col bg-[#111214]/90 backdrop-blur-sm transition-all duration-300 hover:scale-105 p-4 md:p-8 overflow-visible min-h-[300px] md:min-h-[350px] border border-white/10 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 ${
                             isCenterCard 
                               ? 'md:border-accent/30 md:shadow-xl md:shadow-accent/10' 
                               : 'cursor-pointer'
@@ -429,7 +429,7 @@ export default function PVLSECards() {
 
                           <CardContent className="p-0 flex-1 flex flex-col">
                             {/* Visual element area - simplified mockups */}
-                            <div className="flex-1 flex items-center justify-center mb-4 md:mb-6 opacity-75 group-hover:opacity-100 transition-opacity duration-300 min-h-[80px] md:min-h-[120px]">
+                            <div className="flex-1 flex items-center justify-center mb-4 md:mb-6 opacity-75 group-hover:opacity-100 transition-opacity duration-300 min-h-[60px] md:min-h-[80px]">
                               {/* Simple visual elements based on card type */}
                               {effect.id === 1 && (
                                 <div className={`w-full h-32 flex items-center justify-center transition-transform duration-300 ${isCenterCard ? 'scale-110' : ''}`}>

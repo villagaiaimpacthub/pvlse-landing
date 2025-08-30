@@ -8,7 +8,7 @@ import LogoStrip from "@/components/LogoStrip";
 import FeatureList from "@/components/FeatureList";
 import Steps from "@/components/Steps";
 import Quote from "@/components/Quote";
-import Pricing from "@/components/Pricing";
+import PricingSlider from "@/components/PricingSlider";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import HeroCTA from "@/components/HeroCTA";
@@ -26,7 +26,7 @@ export default function Home() {
         
         <Moments />
 
-        <section className="py-12 md:py-16 mb-24 md:mb-40">
+        <section className="py-20 md:py-24">
           <div className="container">
             <div className="text-center max-w-4xl mx-auto">
               <h2 
@@ -135,7 +135,7 @@ export default function Home() {
 
         <FeatureList />
 
-        <section className="py-12 md:py-16 mb-24 md:mb-40">
+        <section className="py-20 md:py-24">
           <div className="container">
             <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
@@ -156,20 +156,20 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="pricing" className="py-12 md:py-16 mb-24 md:mb-40">
+        <section id="pricing" className="py-20 md:py-24">
           <div className="container">
-            <div className="text-center max-w-4xl mx-auto mb-12">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
-                <span className="text-accent">Enterprise AI insurance</span> pricing
+            <div className="text-center max-w-4xl mx-auto mb-6">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-4">
+                <span className="text-accent">Growth and Empire</span> pricing
               </h1>
             </div>
-            <Pricing plans={c.pricing.plans} />
+            <PricingSlider pricingTiers={c.pricing.pricingTiers} sliderConfig={c.pricing.sliderConfig} />
           </div>
         </section>
 
         <LogoStrip items={data.content.logos?.items} />
 
-        <section id="faq" className="py-12 md:py-16 mb-24 md:mb-40">
+        <section id="faq" className="py-20 md:py-24">
           <div className="container">
             <div className="text-center max-w-4xl mx-auto mb-12">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
@@ -180,7 +180,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-12 md:py-16 mb-24 md:mb-40">
+        <section className="py-20 md:py-24">
           <div className="container">
             <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">

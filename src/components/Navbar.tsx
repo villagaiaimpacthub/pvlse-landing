@@ -6,15 +6,19 @@ import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const nav = data.content.nav;
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(-1); // -1 represents logo/hero active
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const logoRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    if (navRef.current && itemRefs.current[activeIndex]) {
+    if (activeIndex === -1) {
+      // Hide underline when logo/hero is active
+      setLineStyle({ left: 0, width: 0 });
+    } else if (navRef.current && itemRefs.current[activeIndex]) {
       const activeItem = itemRefs.current[activeIndex];
       if (activeItem) {
         const { offsetLeft, offsetWidth } = activeItem;
@@ -22,6 +26,40 @@ export default function Navbar() {
       }
     }
   }, [activeIndex]);
+
+  // Auto-detect active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // If near top of page, activate logo
+      if (scrollY < windowHeight * 0.5) {
+        if (activeIndex !== -1) setActiveIndex(-1);
+        return;
+      }
+
+      // Check which section is in view
+      nav.forEach((item, index) => {
+        const element = document.querySelector(item.href);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top + scrollY;
+          const elementBottom = elementTop + rect.height;
+          const currentPosition = scrollY + windowHeight * 0.5;
+          
+          if (currentPosition >= elementTop && currentPosition < elementBottom) {
+            if (activeIndex !== index) setActiveIndex(index);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [nav, activeIndex]);
 
   const handleNavClick = (index: number, href: string) => {
     // Update the active nav animation
@@ -55,93 +93,79 @@ export default function Navbar() {
     }
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setActiveIndex(-1);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const handleLinkClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     
-    if (href === '#product') {
-      // Scroll to exact position to match screenshot  
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        const rect = targetElement.getBoundingClientRect();
-        const absoluteTop = window.pageYOffset + rect.top;
-        const scrollUpOffset = 57; // Adjust to match screenshot positioning
-        
-        window.scrollTo({
-          top: absoluteTop - scrollUpOffset,
-          behavior: 'smooth'
-        });
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      const rect = targetElement.getBoundingClientRect();
+      const absoluteTop = window.pageYOffset + rect.top;
+      const navbarHeight = 64; // navbar height (h-16 = 64px)
+      const viewportHeight = window.innerHeight;
+      const sectionHeight = (targetElement as HTMLElement).offsetHeight;
+      
+      // Sections that need positioning adjustments
+      const productAndFAQ = ['#product', '#faq'];
+      const shouldMoveUp = productAndFAQ.includes(href);
+      const isPricing = href === '#pricing';
+      const isWhy = href === '#why';
+      const isMoments = href === '#moments';
+      
+      let scrollPosition;
+      if (shouldMoveUp) {
+        // Position section slightly higher than center (more space below)
+        const upperPosition = (viewportHeight * 0.42) + navbarHeight; // 42% from top
+        const sectionMiddle = absoluteTop + (sectionHeight / 2);
+        scrollPosition = sectionMiddle - upperPosition;
+      } else if (isPricing) {
+        // Position pricing section slightly lower than the others but higher than center
+        const pricingPosition = (viewportHeight * 0.47) + navbarHeight; // 47% from top
+        const sectionMiddle = absoluteTop + (sectionHeight / 2);
+        scrollPosition = sectionMiddle - pricingPosition;
+      } else if (isWhy) {
+        // Position Why PVLSE 2% lower than product/faq but still above center
+        const whyPosition = (viewportHeight * 0.44) + navbarHeight; // 44% from top (42% + 2%)
+        const sectionMiddle = absoluteTop + (sectionHeight / 2);
+        scrollPosition = sectionMiddle - whyPosition;
+      } else if (isMoments) {
+        // Position PVLSE Effect 2% lower than center
+        const momentsPosition = (viewportHeight * 0.52) + navbarHeight; // 52% from top (50% + 2%)
+        const sectionMiddle = absoluteTop + (sectionHeight / 2);
+        scrollPosition = sectionMiddle - momentsPosition;
+      } else {
+        // Standard center positioning for other sections
+        const sectionMiddle = absoluteTop + (sectionHeight / 2);
+        const viewportMiddle = (viewportHeight * 0.5) + navbarHeight;
+        scrollPosition = sectionMiddle - viewportMiddle;
       }
-    } else if (href === '#why') {
-      // Special positioning for Why PVLSE section - position "Wellbeing isn't a perk" heading in top third
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        const heading = targetElement.querySelector('h2');
-        if (heading) {
-          const rect = heading.getBoundingClientRect();
-          const absoluteTop = window.pageYOffset + rect.top;
-          const viewportPosition = window.innerHeight / 4.5; // Position heading in top area
-          
-          window.scrollTo({
-            top: absoluteTop - viewportPosition,
-            behavior: 'smooth'
-          });
-        }
-      }
-    } else if (href === '#pricing') {
-      // Adjusted positioning for Pricing section after heading structure change
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        const rect = targetElement.getBoundingClientRect();
-        const absoluteTop = window.pageYOffset + rect.top;
-        const scrollUpOffset = 5; // Less offset due to larger headings
-        
-        window.scrollTo({
-          top: absoluteTop - scrollUpOffset,
-          behavior: 'smooth'
-        });
-      }
-    } else if (href === '#faq') {
-      // Adjusted positioning for FAQ section after heading structure change
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        const rect = targetElement.getBoundingClientRect();
-        const absoluteTop = window.pageYOffset + rect.top;
-        const scrollUpOffset = 5; // Less offset due to larger headings
-        
-        window.scrollTo({
-          top: absoluteTop - scrollUpOffset,
-          behavior: 'smooth'
-        });
-      }
-    } else if (href === '#moments') {
-      // Special positioning for PVLSE Effect section - scroll down 30px from standard position
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        const rect = targetElement.getBoundingClientRect();
-        const absoluteTop = window.pageYOffset + rect.top;
-        const scrollUpOffset = 30; // Scroll up 30px from current position
-        
-        window.scrollTo({
-          top: absoluteTop - scrollUpOffset,
-          behavior: 'smooth'
-        });
-      }
-    } else {
-      // Standard smooth scroll for other sections
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        targetElement.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
+      
+      window.scrollTo({
+        top: Math.max(0, scrollPosition),
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
     <header className="sticky top-0 z-[100] backdrop-blur-md bg-black/50">
       <div className="container flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-3 focus-ring">
+        <Link 
+          href="/" 
+          ref={logoRef}
+          className={`flex items-center gap-3 focus-ring transition-opacity duration-400 ease-out ${
+            activeIndex === -1 ? 'opacity-100' : 'opacity-70 hover:opacity-90'
+          }`}
+          onClick={handleLogoClick}
+        >
           <PulseIcon className="h-6" />
           <span className="text-white no-underline uppercase font-semibold text-sm tracking-widest">PVLSE</span>
         </Link>

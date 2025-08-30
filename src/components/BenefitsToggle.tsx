@@ -40,7 +40,7 @@ const benefitsData: BenefitsData = {
 
 export default function BenefitsToggle({ className }: BenefitsToggleProps) {
   return (
-    <section className={`py-16 md:py-20 ${className || ''}`}>
+    <section className={`py-20 md:py-24 ${className || ''}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Title */}

@@ -195,9 +195,9 @@
   },
   "content": {
     "nav": [
-      { "label": "Product", "href": "#product" },
-      { "label": "Why PVLSE", "href": "#why" },
       { "label": "The PVLSE Effect", "href": "#moments" },
+      { "label": "Why PVLSE", "href": "#why" },
+      { "label": "Product", "href": "#product" },
       { "label": "Pricing", "href": "#pricing" },
       { "label": "FAQ", "href": "#faq" }
     ],
@@ -359,56 +359,41 @@
     "pricing": {
       "id": "pricing",
       "title": "Enterprise AI insurance pricing",
-      "plans": [
+      "pricingTiers": [
         {
-          "name": "Professional",
-          "price": "$5,000",
-          "period": "per month",
+          "name": "Growth",
+          "basePrice": 3000,
+          "perEmployeePrice": 100,
           "features": [
-            "Up to 100 users",
-            "Advanced workload analysis",
-            "AI-powered burnout prevention",
-            "Executive dashboards",
-            "Priority support & onboarding",
-            "Basic compliance reporting",
-            "Standard integrations"
+            "Predictive wellness analytics",
+            "Advanced business intelligence insights",
+            "Dedicated success manager",
+            "ROI reporting & compliance tools",
+            "Enterprise cloud deployment"
           ],
           "cta": "Schedule Consultation"
         },
         {
-          "name": "Enterprise",
-          "price": "$10,000",
-          "period": "per month",
+          "name": "Empire",
+          "basePrice": 10000,
+          "perEmployeePrice": 70,
+          "badge": "Most Popular",
           "features": [
-            "Unlimited users",
-            "Predictive wellness analytics",
-            "Custom AI model training",
-            "Advanced compliance suite",
-            "Dedicated success manager",
-            "24/7 premium support",
-            "Custom integrations",
-            "Multi-region deployment"
-          ],
-          "cta": "Schedule Consultation",
-          "badge": "Most comprehensive"
-        },
-        {
-          "name": "Global Enterprise",
-          "price": "Custom",
-          "period": "pricing",
-          "features": [
-            "Enterprise-wide deployment",
-            "Proprietary AI model development",
-            "Global compliance management",
+            "Full wellbeing and business intelligence suite",
             "C-suite executive briefings",
-            "Dedicated implementation team",
-            "White-glove migration service",
-            "Custom SLAs & guarantees",
-            "Strategic partnership benefits"
+            "Dedicated implementation team with 24/7 call support",
+            "Custom SLAs & strategic partnerships",
+            "Enterprise cloud deployment"
           ],
           "cta": "Contact Sales"
         }
-      ]
+      ],
+      "sliderConfig": {
+        "minEmployees": 1,
+        "maxEmployees": 1000,
+        "defaultEmployees": 50,
+        "step": 1
+      }
     },
     "faq": {
       "id": "faq",

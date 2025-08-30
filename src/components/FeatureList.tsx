@@ -12,7 +12,7 @@ export default function FeatureList() {
     <section
       id="product"
       aria-labelledby="features-heading"
-      className="py-24 md:py-28"
+      className="py-20 md:py-24"
     >
       <div className="container text-center">
         <h2
