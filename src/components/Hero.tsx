@@ -63,12 +63,20 @@ export default function Hero({
   const [currentHeadlineIndex, setCurrentHeadlineIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [isClient, setIsClient] = useState(false)
+  const [hide3DFallback, setHide3DFallback] = useState(false)
   const reducedMotion = prefersReducedMotion()
 
   // Initialize client-side states
   useEffect(() => {
     setIsClient(true)
     setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+    
+    // Hide fallback PNG 10ms after 3D animation starts loading
+    const timer = setTimeout(() => {
+      setHide3DFallback(true)
+    }, 10)
+    
+    return () => clearTimeout(timer)
   }, [])
 
   // Get headline variations or fallback to defaults
@@ -139,19 +147,24 @@ export default function Hero({
       {/* Background with mobile optimization */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Static particle fallback that loads instantly */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: 'url(/hero-fallback.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        />
+        {!hide3DFallback && (
+          <div 
+            className="absolute inset-0 transition-opacity duration-300"
+            style={{
+              backgroundImage: 'url(/hero-fallback.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+        )}
         
-        {/* Three.js Animation replaces fallback when loaded */}
+        {/* Three.js Animation overlays fallback when loaded */}
         {isClient && (
-          <ThreeAnimation className="absolute inset-0 w-full h-full" />
+          <div className="absolute inset-0 w-full h-full">
+            <ThreeAnimation className="absolute inset-0 w-full h-full opacity-60" />
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-accent/4 opacity-40" />
+          </div>
         )}
       </div>
 
