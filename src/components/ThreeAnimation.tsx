@@ -41,10 +41,10 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
         )
         camera.position.set(0, 4, 21)
         
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+        const renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true })
         renderer.setSize(mount.clientWidth, mount.clientHeight)
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-        renderer.setClearColor(0x000000, 0) // Transparent background
+        renderer.setClearColor(0x0B0B0C, 1) // Opaque dark background to fully replace fallback
         mount.appendChild(renderer.domElement)
         
         const controls = new OrbitControls(camera, renderer.domElement)

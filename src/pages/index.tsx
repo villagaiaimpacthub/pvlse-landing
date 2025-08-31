@@ -21,7 +21,7 @@ export default function Home() {
     <Theme>
       <Navbar />
       <main>
-        <Hero heroData={data.content.hero} />
+<Hero heroData={data.content.hero} />
         <HeroCTA />
         
         <Moments />

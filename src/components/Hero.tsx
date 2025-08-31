@@ -138,26 +138,20 @@ export default function Hero({
     >
       {/* Background with mobile optimization */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Static fallback background that loads instantly */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-accent/4 opacity-40" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,92,255,0.1)_0%,transparent_70%)]" />
-          
-          {/* Static particle fallback */}
-          <div 
-            className="absolute inset-0 opacity-50"
-            style={{
-              backgroundImage: 'url(/hero-fallback.svg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-        </div>
+        {/* Static particle fallback that loads instantly */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'url(/hero-fallback.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
         
-        {/* Three.js Animation for all devices - layered on top of fallback */}
+        {/* Three.js Animation replaces fallback when loaded */}
         {isClient && (
-          <ThreeAnimation className="absolute inset-0 w-full h-full opacity-60" />
+          <ThreeAnimation className="absolute inset-0 w-full h-full" />
         )}
       </div>
 
@@ -165,7 +159,7 @@ export default function Hero({
       <div className="relative z-50 w-full">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative">
-            <motion.div className="max-w-3xl relative z-10" variants={itemVariants}>
+<motion.div className="max-w-3xl relative z-10" variants={itemVariants}>
               {/* Rotating Headline */}
               <div className="relative overflow-hidden pb-2">
                 {!isClient ? (
