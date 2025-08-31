@@ -127,8 +127,8 @@ export default function Navbar() {
         const sectionMiddle = absoluteTop + (sectionHeight / 2);
         scrollPosition = sectionMiddle - upperPosition;
       } else if (isPricing) {
-        // Position pricing section slightly lower than the others but higher than center
-        const pricingPosition = (viewportHeight * 0.47) + navbarHeight; // 47% from top
+        // Position pricing section in the center of viewport
+        const pricingPosition = (viewportHeight * 0.5) + navbarHeight; // 50% from top (center)
         const sectionMiddle = absoluteTop + (sectionHeight / 2);
         scrollPosition = sectionMiddle - pricingPosition;
       } else if (isWhy) {
