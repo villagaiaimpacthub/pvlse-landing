@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Slider } from "@/components/ui/slider";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface PricingTier {
   name: string;
@@ -30,6 +31,7 @@ interface PricingSlidersProps {
 
 export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSlidersProps) {
   const [employeeCount, setEmployeeCount] = useState([sliderConfig.defaultEmployees]);
+  const [billingCycle, setBillingCycle] = useState("monthly");
   
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -41,13 +43,22 @@ export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSli
   };
 
   const calculatePrice = (tier: PricingTier, employees: number) => {
-    return tier.basePrice + (employees * tier.perEmployeePrice);
+    const basePrice = tier.basePrice + (employees * tier.perEmployeePrice);
+    return billingCycle === "yearly" ? basePrice * 0.9 : basePrice; // 10% discount for yearly
   };
   
   // Calculate prices for both tiers with current employee count
   const currentEmployees = employeeCount[0];
   const growthPrice = calculatePrice(pricingTiers[0], currentEmployees);
   const empirePrice = calculatePrice(pricingTiers[1], currentEmployees);
+
+  // Update the h1 dynamically when employee count changes
+  useEffect(() => {
+    const h1Element = document.getElementById('dynamic-employee-count');
+    if (h1Element) {
+      h1Element.textContent = `${currentEmployees.toLocaleString()} employees`;
+    }
+  }, [currentEmployees]);
   
   // Determine which tier is more cost-effective
   const empireBetter = empirePrice < growthPrice;
@@ -113,10 +124,11 @@ export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSli
             
             <div className="mb-6">
               <div className={`text-4xl font-bold mb-2 ${isRecommended ? 'text-accent' : 'text-textPrimary'}`}>
-                {formatPrice(monthlyPrice)} <span className="text-lg text-muted">per month</span>
+                {formatPrice(monthlyPrice)} <span className="text-lg text-muted">per {billingCycle === 'yearly' ? 'month' : 'month'}</span>
               </div>
               <div className="text-sm text-textSecondary">
                 Base: {formatPrice(tier.basePrice)} + {formatPrice(tier.perEmployeePrice)}/employee
+                {billingCycle === 'yearly' && <span className="block text-accent font-medium mt-1">10% yearly discount applied</span>}
               </div>
             </div>
 
@@ -148,15 +160,32 @@ export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSli
   return (
     <TooltipProvider>
       <div className="max-w-5xl mx-auto transform scale-[0.85] origin-top">
-        {/* Shared Employee Count Slider */}
+        {/* Combined Controls */}
         <div className="mb-10 px-4">
-          <div className="text-center mb-4">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-textPrimary leading-tight mb-3">
-              How many employees in your organization?
-            </h2>
-            <div className="text-3xl md:text-4xl font-bold text-accent">
-              {currentEmployees.toLocaleString()} employees
-            </div>
+          <div className="flex justify-center mb-6">
+            {/* Billing Cycle Toggle */}
+            <ToggleGroup 
+              type="single" 
+              value={billingCycle} 
+              onValueChange={(value) => value && setBillingCycle(value)}
+              className="bg-panel/80 backdrop-blur-sm border border-hairline rounded-pill p-1"
+            >
+              <ToggleGroupItem 
+                value="monthly"
+                className="px-6 py-2 rounded-pill data-[state=on]:bg-accent data-[state=on]:text-textPrimary text-textSecondary hover:text-textPrimary transition-all duration-200"
+              >
+                Monthly
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="yearly"
+                className="px-6 py-2 rounded-pill data-[state=on]:bg-accent data-[state=on]:text-textPrimary text-textSecondary hover:text-textPrimary transition-all duration-200 relative"
+              >
+                Yearly
+                <span className="absolute -top-2 -right-2 bg-accent text-textPrimary text-xs px-2 py-1 rounded-pill font-medium">
+                  -10%
+                </span>
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
           
           <div className="relative max-w-2xl mx-auto">

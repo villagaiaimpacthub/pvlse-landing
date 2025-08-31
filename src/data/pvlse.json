@@ -362,7 +362,7 @@
       "pricingTiers": [
         {
           "name": "Foundation",
-          "basePrice": 3000,
+          "basePrice": 7000,
           "perEmployeePrice": 100,
           "features": [
             "Predictive wellness analytics",
