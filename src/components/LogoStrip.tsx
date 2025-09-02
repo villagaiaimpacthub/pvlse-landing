@@ -40,20 +40,7 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
                 logoSize = { width: '100px', height: '55px', maxHeight: '55px', maxWidth: '100px' };
               }
               
-              // Scale up for larger screens (only on client-side)
-              if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-                if (logo.name === 'SGAIA') {
-                  logoSize = { width: '100px', height: '56px', maxHeight: '56px', maxWidth: '100px' };
-                } else if (logo.name === 'Metaluck') {
-                  logoSize = { width: '180px', height: '100px', maxHeight: '100px', maxWidth: '180px' };
-                } else if (logo.name === 'Fvtura') {
-                  logoSize = { width: '200px', height: '110px', maxHeight: '110px', maxWidth: '200px' };
-                } else if (logo.name === 'GaiaNet') {
-                  logoSize = { width: '140px', height: '78px', maxHeight: '78px', maxWidth: '140px' };
-                } else {
-                  logoSize = { width: '160px', height: '88px', maxHeight: '88px', maxWidth: '160px' };
-                }
-              }
+              // Use responsive classes instead of JavaScript to avoid hydration mismatch
               
               // Add spacing after SGAIA before it loops back to Fvtura
               if (logo.name === 'SGAIA') {
@@ -71,12 +58,25 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
                 hoverClasses = "hover:grayscale-0 hover:brightness-200 hover:contrast-200";
               }
               
+              // Create responsive class names for different logo sizes
+              let responsiveClasses = '';
+              if (logo.name === 'SGAIA') {
+                responsiveClasses = 'max-h-[45px] max-w-[80px] md:max-h-[56px] md:max-w-[100px]';
+              } else if (logo.name === 'Metaluck') {
+                responsiveClasses = 'max-h-[70px] max-w-[120px] md:max-h-[100px] md:max-w-[180px]';
+              } else if (logo.name === 'Fvtura') {
+                responsiveClasses = 'max-h-[80px] max-w-[140px] md:max-h-[110px] md:max-w-[200px]';
+              } else if (logo.name === 'GaiaNet') {
+                responsiveClasses = 'max-h-[55px] max-w-[100px] md:max-h-[78px] md:max-w-[140px]';
+              } else {
+                responsiveClasses = 'max-h-[55px] max-w-[100px] md:max-h-[88px] md:max-w-[160px]';
+              }
+
               const logoContent = (
                 <img 
                   src={logo.src} 
                   alt={logo.alt}
-                  className={`w-auto filter brightness-90 grayscale ${hoverClasses} transition-all duration-300 object-contain`}
-                  style={{ maxHeight: logoSize.maxHeight, maxWidth: logoSize.maxWidth }}
+                  className={`w-auto filter brightness-90 grayscale ${hoverClasses} transition-all duration-300 object-contain ${responsiveClasses}`}
                 />
               );
               

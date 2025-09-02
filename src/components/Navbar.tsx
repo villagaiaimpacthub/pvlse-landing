@@ -8,13 +8,16 @@ export default function Navbar() {
   const nav = data.content.nav;
   const [activeIndex, setActiveIndex] = useState(-1); // -1 represents logo/hero active
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isManualAnimation, setIsManualAnimation] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<(HTMLLIElement | null)[]>([]);
   const logoRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
+    // Only auto-position when NOT doing manual animation
+    if (isManualAnimation) return;
+    
     if (activeIndex === -1) {
       // Hide underline when logo/hero is active
       setLineStyle({ left: 0, width: 0 });
@@ -25,11 +28,14 @@ export default function Navbar() {
         setLineStyle({ left: offsetLeft, width: offsetWidth });
       }
     }
-  }, [activeIndex]);
+  }, [activeIndex, isManualAnimation]);
 
   // Auto-detect active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
+      // Don't interfere with manual animations
+      if (isManualAnimation) return;
+      
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       
@@ -59,37 +65,50 @@ export default function Navbar() {
     handleScroll(); // Check initial position
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [nav, activeIndex]);
+  }, [nav, activeIndex, isManualAnimation]);
 
   const handleNavClick = (index: number, href: string) => {
-    // Update the active nav animation
-    if (index !== activeIndex && !isAnimating) {
-      setIsAnimating(true);
-      const currentItem = itemRefs.current[activeIndex];
+    if (index !== activeIndex) {
+      // Lock out all automatic positioning
+      setIsManualAnimation(true);
+      
+      const currentItem = activeIndex >= 0 ? itemRefs.current[activeIndex] : null;
       const newItem = itemRefs.current[index];
       
-      if (currentItem && newItem) {
+      if (newItem && currentItem) {
         const currentPos = currentItem.offsetLeft;
         const currentWidth = currentItem.offsetWidth;
         const newPos = newItem.offsetLeft;
         const newWidth = newItem.offsetWidth;
 
+        // Step 1: Show stretch
         if (newPos >= currentPos) {
           setLineStyle({ left: currentPos, width: (newPos - currentPos) + newWidth });
-          setTimeout(() => {
-            setLineStyle({ left: newPos, width: newWidth });
-            setActiveIndex(index);
-            setTimeout(() => setIsAnimating(false), 150);
-          }, 300);
         } else {
           setLineStyle({ left: newPos, width: (currentPos - newPos) + currentWidth });
-          setTimeout(() => {
-            setLineStyle({ left: newPos, width: newWidth });
-            setActiveIndex(index);
-            setTimeout(() => setIsAnimating(false), 150);
-          }, 300);
         }
+        
+        // Step 2: Contract to final position
+        setTimeout(() => {
+          setLineStyle({ left: newPos, width: newWidth });
+        }, 300);
+        
+      } else if (newItem) {
+        // Coming from logo
+        const newPos = newItem.offsetLeft;
+        const newWidth = newItem.offsetWidth;
+        setLineStyle({ left: 0, width: newPos + newWidth });
+        
+        setTimeout(() => {
+          setLineStyle({ left: newPos, width: newWidth });
+        }, 300);
       }
+      
+      // Step 3: Update activeIndex and re-enable automatic positioning
+      setTimeout(() => {
+        setActiveIndex(index);
+        setIsManualAnimation(false);
+      }, 600);
     }
   };
 

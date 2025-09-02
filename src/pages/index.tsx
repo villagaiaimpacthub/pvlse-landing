@@ -24,10 +24,10 @@ export default function Home() {
         <title>{data.seo.title}</title>
       </Head>
       <Theme>
-      <Navbar />
-      <main>
-<Hero heroData={data.content.hero} />
-        <HeroCTA />
+        <Navbar />
+        <main>
+          <Hero heroData={data.content.hero} />
+          <HeroCTA />
         
         <Moments />
 
@@ -201,8 +201,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
       </Theme>
     </>
   );

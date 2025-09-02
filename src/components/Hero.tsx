@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Lottie from 'lottie-react'
 import { cx, prefersReducedMotion } from './Utils'
 import ThreeAnimation from './ThreeAnimation'
@@ -71,10 +71,10 @@ export default function Hero({
     setIsClient(true)
     setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
     
-    // Hide fallback PNG 10ms after 3D animation starts loading
+    // Hide fallback PNG after 3D animation has had time to load (longer delay)
     const timer = setTimeout(() => {
       setHide3DFallback(true)
-    }, 10)
+    }, 2000) // Increased from 10ms to 2000ms
     
     return () => clearTimeout(timer)
   }, [])
@@ -84,9 +84,6 @@ export default function Hero({
     { title, subtitle }
   ]
 
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] })
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, -60]), { stiffness: 220, damping: 28 })
-  const opacity = useSpring(useTransform(scrollYProgress, [0, 0.8], [1, 0.92]), { stiffness: 220, damping: 28 })
 
   useEffect(() => {
     if (reducedMotion) return
@@ -137,7 +134,6 @@ export default function Hero({
         "bg-[radial-gradient(80%_100%_at_50%_0%,rgba(124,92,255,0.22)_0%,rgba(124,92,255,0)_60%),#0B0B0C]",
         className
       )}
-      style={reducedMotion || isMobile ? {} : { y, opacity }}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -145,19 +141,17 @@ export default function Hero({
       aria-label="Hero section"
     >
       {/* Background with mobile optimization */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden bg-[#0B0B0C]">
         {/* Static particle fallback that loads instantly */}
-        {!hide3DFallback && (
-          <div 
-            className="absolute inset-0 transition-opacity duration-300"
-            style={{
-              backgroundImage: 'url(/hero-fallback.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-        )}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-500 ${hide3DFallback ? 'opacity-0' : 'opacity-100'}`}
+          style={{
+            backgroundImage: 'url(/hero-fallback.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
         
         {/* Three.js Animation overlays fallback when loaded */}
         {isClient && (
