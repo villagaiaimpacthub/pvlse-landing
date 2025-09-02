@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Theme from "@/components/Theme";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -18,7 +19,11 @@ import data from "@/data/pvlse.json";
 export default function Home() {
   const c = data.content;
   return (
-    <Theme>
+    <>
+      <Head>
+        <title>{data.seo.title}</title>
+      </Head>
+      <Theme>
       <Navbar />
       <main>
 <Hero heroData={data.content.hero} />
@@ -198,6 +203,7 @@ export default function Home() {
         </section>
       </main>
       <Footer />
-    </Theme>
+      </Theme>
+    </>
   );
 }
