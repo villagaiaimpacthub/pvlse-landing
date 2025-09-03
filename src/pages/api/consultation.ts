@@ -58,7 +58,12 @@ export default async function handler(
 
     if (error) {
       console.error('Supabase error:', error)
-      return res.status(500).json({ error: 'Database error' })
+      return res.status(500).json({ 
+        error: 'Database error',
+        details: error.message,
+        code: error.code,
+        hint: error.hint
+      })
     }
 
     return res.status(200).json({ 
