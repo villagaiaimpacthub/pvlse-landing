@@ -15,7 +15,7 @@ export default function LogoStrip({ items }: { items?: LogoItem[] }) {
   return (
     <div className="py-8 md:py-12 my-12 md:my-16">
       <div className="container">
-        <h2 className="text-center text-2xl font-semibold text-textPrimary mb-8">Trusted by innovative organizations</h2>
+        <h1 className="text-center text-2xl font-semibold text-textPrimary mb-8">Trusted by innovative organizations</h1>
         <div className="overflow-hidden opacity-60 relative">
           <div 
             className="flex gap-4 sm:gap-8 will-change-transform items-center animate-scroll"
