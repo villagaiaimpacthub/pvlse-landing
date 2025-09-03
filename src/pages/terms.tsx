@@ -2,15 +2,15 @@ import Head from "next/head";
 import Theme from "@/components/Theme";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Terms() {
   return (
     <>
       <Head>
         <title>Terms of Service - PVLSE Enterprise AI</title>
-        <meta name="description" content="PVLSE terms of service and usage agreement." />
+        <meta name="description" content="PVLSE enterprise terms of service and usage agreement for AI platform services." />
       </Head>
       <Theme>
         <Navbar />
@@ -18,131 +18,115 @@ export default function Terms() {
           <div className="container">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
-                Terms of Service
+                Enterprise Terms of Service
               </h1>
               
-              <div className="space-y-8">
-                <p className="text-xl md:text-2xl text-textSecondary leading-relaxed">
-                  Last updated: January 2025
-                </p>
-
-                <Card className="bg-accent/10 border-accent/20">
-                  <CardHeader>
-                    <h2 className="text-xl md:text-2xl font-semibold text-textPrimary">
-                      Enterprise Agreement
-                    </h2>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-textSecondary leading-relaxed">
-                      These terms govern your use of PVLSE's enterprise AI platform and related services. 
-                      By using our platform, you agree to these terms.
-                    </p>
-                  </CardContent>
-                </Card>
-
+              <div className="space-y-16">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-6">Service Description</h2>
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="text-textSecondary leading-relaxed">
-                        PVLSE provides predictive workforce analytics, burnout prevention, and productivity optimization 
-                        through AI-powered insights and automation.
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <h2 className="text-xl md:text-2xl font-semibold text-textPrimary mb-6 flex items-center gap-2">
+                    📋 Enterprise Agreement Overview
+                  </h2>
+                  <p className="text-textSecondary mb-8 leading-relaxed text-lg">
+                    These terms govern your use of PVLSE's enterprise AI platform and related services. 
+                    Our agreement ensures mutual protection while delivering powerful workforce analytics.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-accent mb-2">99.9%</div>
+                      <div className="text-textSecondary">Uptime SLA</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-accent mb-2">24/7</div>
+                      <div className="text-textSecondary">Enterprise Support</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-accent mb-2">Your</div>
+                      <div className="text-textSecondary">Data Ownership</div>
+                    </div>
+                  </div>
                 </div>
 
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-6">Enterprise Responsibilities</h2>
-                  <Card>
-                    <CardContent className="pt-6">
-                      <ul className="space-y-4 text-textSecondary">
-                        <li><strong className="text-textPrimary">Data Accuracy:</strong> Provide accurate workforce and operational data</li>
-                        <li><strong className="text-textPrimary">Access Management:</strong> Maintain appropriate user access controls</li>
-                        <li><strong className="text-textPrimary">Compliance:</strong> Ensure data sharing complies with local regulations</li>
-                        <li><strong className="text-textPrimary">Security:</strong> Follow prescribed security protocols and best practices</li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-6">Service Level Agreement</h2>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <Card>
-                      <CardHeader>
-                        <h3 className="text-lg font-semibold text-textPrimary">Availability</h3>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-textSecondary">99.9% uptime guarantee with 24/7 monitoring</p>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader>
-                        <h3 className="text-lg font-semibold text-textPrimary">Support</h3>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-textSecondary">Enterprise support with dedicated success manager</p>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader>
-                        <h3 className="text-lg font-semibold text-textPrimary">Data Processing</h3>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-textSecondary">Real-time insights with under 4 hour data refresh</p>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader>
-                        <h3 className="text-lg font-semibold text-textPrimary">Response Time</h3>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-textSecondary">Priority support with 2-hour response guarantee</p>
-                      </CardContent>
-                    </Card>
+                <div className="grid md:grid-cols-2 gap-12">
+                  <div>
+                    <h3 className="text-lg md:text-xl font-semibold text-textPrimary mb-6 flex items-center gap-2">
+                      🚀 Service Description
+                    </h3>
+                    <ul className="space-y-3 text-textSecondary">
+                      <li>• Predictive workforce analytics</li>
+                      <li>• Burnout prevention & early detection</li>
+                      <li>• Productivity optimization insights</li>
+                      <li>• AI-powered automation tools</li>
+                      <li>• Real-time performance dashboards</li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-lg md:text-xl font-semibold text-textPrimary mb-6 flex items-center gap-2">
+                      🏢 Enterprise Responsibilities
+                    </h3>
+                    <ul className="space-y-3 text-textSecondary">
+                      <li>• Provide accurate workforce data</li>
+                      <li>• Maintain appropriate user access controls</li>
+                      <li>• Ensure regulatory compliance</li>
+                      <li>• Follow security protocols</li>
+                      <li>• Designate authorized administrators</li>
+                    </ul>
                   </div>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-6">Intellectual Property</h2>
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="text-textSecondary leading-relaxed">
-                        Your business data remains your property. PVLSE retains rights to aggregated, 
-                        anonymized insights for platform improvement. AI models trained on your data 
-                        remain exclusive to your organization.
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-8">Service Level Agreement</h2>
+                  <div className="grid md:grid-cols-3 gap-8">
+                    <div className="text-center">
+                      <div className="text-4xl mb-4">⚡</div>
+                      <h4 className="text-lg font-semibold text-textPrimary mb-2">99.9% Uptime</h4>
+                      <p className="text-textSecondary">24/7 monitoring & alerting</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-4xl mb-4">🎧</div>
+                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Enterprise Support</h4>
+                      <p className="text-textSecondary">Dedicated success manager</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-4xl mb-4">📊</div>
+                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Real-time Data</h4>
+                      <p className="text-textSecondary">4-hour refresh guarantee</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-6">Limitation of Liability</h2>
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="text-textSecondary leading-relaxed">
-                        PVLSE provides predictive insights to support decision-making but does not guarantee 
-                        specific business outcomes. Ultimate workforce decisions remain with your organization.
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-8">Data & Intellectual Property</h2>
+                  <div className="grid md:grid-cols-3 gap-8">
+                    <div className="text-center">
+                      <div className="text-4xl mb-4">🏗️</div>
+                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Your Data Ownership</h4>
+                      <p className="text-textSecondary">Business data remains yours</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-4xl mb-4">🧠</div>
+                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Exclusive AI Models</h4>
+                      <p className="text-textSecondary">Custom models for your org</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-4xl mb-4">🔒</div>
+                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Data Isolation</h4>
+                      <p className="text-textSecondary">Complete company separation</p>
+                    </div>
+                  </div>
                 </div>
 
-                <Card>
-                  <CardHeader>
-                    <h3 className="text-xl md:text-2xl font-semibold text-textPrimary">Questions About Terms?</h3>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-textSecondary mb-4 leading-relaxed">
-                      Our legal team can provide clarification on terms, custom enterprise agreements, 
-                      or specific compliance requirements.
-                    </p>
-                    <Button asChild variant="link" className="text-accent hover:underline p-0">
-                      <a href="mailto:legal@pvlse.com">legal@pvlse.com</a>
-                    </Button>
-                  </CardContent>
-                </Card>
+                <div className="text-center py-8">
+                  <h3 className="text-xl md:text-2xl font-semibold text-textPrimary mb-4">
+                    Need Custom Terms?
+                  </h3>
+                  <p className="text-textSecondary mb-8 leading-relaxed max-w-2xl mx-auto">
+                    Our legal team can provide clarification on terms, custom enterprise agreements, or specific compliance requirements.
+                  </p>
+                  <Button asChild className="bg-accent hover:bg-accent/90">
+                    <Link href="/#demo">Request Legal Consultation</Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

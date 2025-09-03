@@ -3,6 +3,7 @@ import Theme from "@/components/Theme";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Security() {
   return (
@@ -103,7 +104,7 @@ export default function Security() {
                     Get detailed security documentation for your compliance team.
                   </p>
                   <Button asChild className="bg-accent hover:bg-accent/90">
-                    <a href="#demo">Request Security Documentation</a>
+                    <Link href="/#demo">Request Security Documentation</Link>
                   </Button>
                 </div>
               </div>
