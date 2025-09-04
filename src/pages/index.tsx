@@ -31,7 +31,9 @@ export default function Home() {
         
         <Moments />
 
-        <BenefitsToggle />
+        <Section id="why">
+          <BenefitsToggle />
+        </Section>
 
         <Section id="product">
           <div className="max-w-6xl mx-auto">
