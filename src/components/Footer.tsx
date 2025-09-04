@@ -16,7 +16,7 @@ export default function Footer() {
               <span className="text-white font-bold text-xl uppercase tracking-widest">PVLSE</span>
             </div>
             <p className="text-textSecondary text-sm leading-relaxed max-w-md">
-              Enterprise collective intelligence delivering measurable ROI through unprecedented business visibility and intelligent automation, with excellent, accurate AI knowledge retrieval about your specific business.
+              Enterprise collective intelligence that transforms how businesses operate by delivering unprecedented visibility, intelligent automation, and expert-level knowledge about your organization.
             </p>
           </div>
 
