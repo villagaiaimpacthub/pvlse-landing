@@ -30,7 +30,7 @@ export default function Privacy() {
               </div>
               
               <div className="space-y-12">
-                <Card>
+                <Card className="border-0 bg-background/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Shield className="w-5 h-5 text-accent" />
@@ -45,7 +45,7 @@ export default function Privacy() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border-0 bg-background/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Database className="w-5 h-5 text-accent" />
@@ -68,7 +68,7 @@ export default function Privacy() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border-0 bg-background/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Lock className="w-5 h-5 text-accent" />
@@ -91,7 +91,7 @@ export default function Privacy() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border-0 bg-background/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Shield className="w-5 h-5 text-accent" />
@@ -114,7 +114,7 @@ export default function Privacy() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border-0 bg-background/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <UserCheck className="w-5 h-5 text-accent" />
@@ -137,7 +137,7 @@ export default function Privacy() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border-0 bg-background/50">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Mail className="w-5 h-5 text-accent" />

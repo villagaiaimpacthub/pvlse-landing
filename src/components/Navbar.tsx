@@ -126,6 +126,7 @@ export default function Navbar() {
     
     const targetElement = document.querySelector(href);
     if (targetElement) {
+      // We're on the same page and the section exists
       const rect = targetElement.getBoundingClientRect();
       const absoluteTop = window.pageYOffset + rect.top;
       const navbarHeight = 64; // navbar height (h-16 = 64px)
@@ -171,6 +172,9 @@ export default function Navbar() {
         top: Math.max(0, scrollPosition),
         behavior: 'smooth'
       });
+    } else {
+      // Section doesn't exist on current page, navigate to home page with hash
+      window.location.href = `/${href}`;
     }
   };
 
