@@ -1,5 +1,6 @@
 import data from "@/data/pvlse.json";
 import PulseIcon from "@/components/PulseIcon";
+import Link from "next/link";
 
 export default function Footer() {
   const f = data.content.footer;
@@ -25,13 +26,13 @@ export default function Footer() {
             <h3 className="text-white text-sm font-semibold mb-4 uppercase tracking-widest">Links</h3>
             <div className="flex flex-col space-y-3">
               {f.links.map(l => (
-                <a 
+                <Link 
                   key={l.label} 
-                  href={l.href} 
+                  href={l.href}
                   className="text-textSecondary hover:text-accent text-sm transition-colors duration-200 uppercase tracking-wide"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

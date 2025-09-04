@@ -38,7 +38,7 @@ export default function HeroCTA({
   return (
     <motion.section
       className={cx(
-        'py-24 md:py-32',
+        'py-32 md:py-40',
         className
       )}
       initial="hidden"

@@ -70,14 +70,12 @@ export default function Hero({
   useEffect(() => {
     setIsClient(true)
     setIsMobile(window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
-    
-    // Hide fallback PNG after 3D animation has had time to load (longer delay)
-    const timer = setTimeout(() => {
-      setHide3DFallback(true)
-    }, 2000) // Increased from 10ms to 2000ms
-    
-    return () => clearTimeout(timer)
   }, [])
+
+  // Callback to hide fallback when 3D animation is loaded
+  const handleAnimationLoaded = () => {
+    setHide3DFallback(true)
+  }
 
   // Get headline variations or fallback to defaults
   const headlineVariations = heroData?.headlineVariations || [
@@ -156,7 +154,10 @@ export default function Hero({
         {/* Three.js Animation overlays fallback when loaded */}
         {isClient && (
           <div className="absolute inset-0 w-full h-full">
-            <ThreeAnimation className="absolute inset-0 w-full h-full opacity-60" />
+            <ThreeAnimation 
+              className="absolute inset-0 w-full h-full opacity-60" 
+              onLoaded={handleAnimationLoaded}
+            />
             <div className="absolute inset-0 bg-gradient-to-br from-accent/8 via-transparent to-accent/4 opacity-40" />
           </div>
         )}

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useState } from "react";
 import Theme from "@/components/Theme";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -14,10 +15,12 @@ import Footer from "@/components/Footer";
 import HeroCTA from "@/components/HeroCTA";
 import BenefitsToggle from "@/components/BenefitsToggle";
 import DemoForm from "@/components/DemoForm";
+import HeroFlow from "@/components/HeroFlow";
 import data from "@/data/pvlse.json";
 
 export default function Home() {
   const c = data.content;
+  const [hoveredOutput, setHoveredOutput] = useState(null);
   return (
     <>
       <Head>
@@ -27,7 +30,26 @@ export default function Home() {
         <Navbar />
         <main>
           <Hero heroData={data.content.hero} />
-          <HeroCTA />
+        
+        <Section className="py-20 md:py-28">
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-12">
+              We provide <span className="text-accent">AI-driven automation</span> and collective intelligence solutions
+            </h1>
+            
+            <div className="flex justify-center mb-12">
+              <HeroFlow compact className="w-full max-w-6xl" onHoverOutput={setHoveredOutput} />
+            </div>
+            
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-textSecondary leading-relaxed">
+              Engineered to <span className={hoveredOutput === 0 ? "text-accent" : ""}>streamline</span>, <span className={hoveredOutput === 1 ? "text-accent" : ""}>optimize</span>, and <span className={hoveredOutput === 2 ? "text-accent" : ""}>accelerate growth</span>.
+            </h2>
+          </div>
+        </Section>
+
+        <HeroCTA className="py-48 md:py-56" />
+        
+        <div className="py-16"></div>
         
         <Moments />
 

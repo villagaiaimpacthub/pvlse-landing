@@ -87,7 +87,17 @@ export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSli
   const renderPricingCard = (tier: PricingTier, tierIndex: number) => {
     const monthlyPrice = tierIndex === 0 ? growthPrice : empirePrice;
     const annualPrice = monthlyPrice * 12;
-    const isRecommended = tierIndex === 1 ? empireBetter : !empireBetter;
+    
+    // Only recommend one tier at a time based on value
+    let isRecommended = false;
+    if (tierIndex === 1 && empireBetter) {
+      // Empire tier when it provides better value
+      isRecommended = true;
+    } else if (tierIndex === 0 && !empireBetter) {
+      // Growth tier when it provides better value (typically for smaller teams)
+      isRecommended = true;
+    }
+    
     const isBetter = tierIndex === 1 && empireBetter;
 
     return (
@@ -112,14 +122,6 @@ export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSli
               }`}>
                 {tier.name}
               </h3>
-              {tier.badge && (
-                <Badge 
-                  variant="secondary" 
-                  className="text-accent bg-[rgba(124,92,255,0.18)] border-transparent hover:bg-[rgba(124,92,255,0.25)] text-sm px-3 py-1 rounded-pill transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg hover:shadow-accent/30 group-hover:bg-[rgba(124,92,255,0.3)] group-hover:ring-2 group-hover:ring-accent/40"
-                >
-                  {tier.badge}
-                </Badge>
-              )}
             </div>
             
             <div className="mb-6">

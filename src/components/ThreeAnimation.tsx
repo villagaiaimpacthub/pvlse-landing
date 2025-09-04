@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 
 interface ThreeAnimationProps {
   className?: string
+  onLoaded?: () => void
 }
 
-export default function ThreeAnimation({ className }: ThreeAnimationProps) {
+export default function ThreeAnimation({ className, onLoaded }: ThreeAnimationProps) {
   const mountRef = useRef<HTMLDivElement>(null)
   const animationIdRef = useRef<number>()
   const [isClient, setIsClient] = useState(false)
@@ -161,6 +162,11 @@ export default function ThreeAnimation({ className }: ThreeAnimationProps) {
         }
         
         animate()
+        
+        // Call onLoaded callback once animation is running
+        if (onLoaded) {
+          onLoaded()
+        }
         
         // Handle resize
         const handleResize = () => {
