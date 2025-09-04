@@ -16,7 +16,7 @@ export default function Footer() {
               <span className="text-white font-bold text-xl uppercase tracking-widest">PVLSE</span>
             </div>
             <p className="text-textSecondary text-sm leading-relaxed max-w-md">
-              Enterprise-grade AI Insurance delivering measurable ROI through predictive workforce intelligence and human capital protection.
+              Enterprise collective intelligence delivering measurable ROI through predictive workforce insights and excellent, accurate AI knowledge retrieval about your specific business.
             </p>
           </div>
 
