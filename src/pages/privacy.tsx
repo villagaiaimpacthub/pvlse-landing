@@ -3,6 +3,8 @@ import Theme from "@/components/Theme";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Shield, Database, Lock, UserCheck, Calendar, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function Privacy() {
@@ -17,116 +19,140 @@ export default function Privacy() {
         <main className="py-20 md:py-24 min-h-screen">
           <div className="container">
             <div className="max-w-4xl mx-auto">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">
-                Privacy Policy & Data Protection
-              </h1>
+              <div className="mb-8">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-4">
+                  Privacy Policy
+                </h1>
+                <div className="flex items-center gap-2 text-textSecondary">
+                  <Calendar className="w-4 h-4" />
+                  <span>Last updated: January 2025</span>
+                </div>
+              </div>
               
-              <div className="space-y-16">
-                <div>
-                  <h2 className="text-xl md:text-2xl font-semibold text-textPrimary mb-6 flex items-center gap-2">
-                    🔒 Your Data, Your Control
-                  </h2>
-                  <p className="text-textSecondary mb-8 leading-relaxed text-lg">
-                    PVLSE is built on principles of data minimization, user control, and transparent practices. 
-                    We collect only what's necessary to provide our enterprise AI services with complete data isolation.
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-8">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-accent mb-2">Zero</div>
-                      <div className="text-textSecondary">Data Sharing</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-accent mb-2">GDPR</div>
-                      <div className="text-textSecondary">Compliant</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-accent mb-2">You</div>
-                      <div className="text-textSecondary">Own Your Data</div>
-                    </div>
-                  </div>
-                </div>
+              <div className="space-y-12">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-accent" />
+                      Overview
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-textSecondary leading-relaxed">
+                      This Privacy Policy describes how PVLSE Enterprise AI ("we," "our," or "us") collects, 
+                      uses, and protects your information when you use our enterprise AI platform and related services.
+                    </p>
+                  </CardContent>
+                </Card>
 
-                <div className="grid md:grid-cols-2 gap-12">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-textPrimary mb-6 flex items-center gap-2">
-                      📊 Information We Collect
-                    </h3>
-                    <ul className="space-y-3 text-textSecondary">
-                      <li>• Business Data: Anonymized workforce analytics</li>
-                      <li>• Account Information: Enterprise contact details</li>
-                      <li>• Usage Data: Platform interactions (anonymized)</li>
-                      <li>• Performance Metrics: Productivity insights only</li>
-                      <li>• No personal employee data collection</li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-textPrimary mb-6 flex items-center gap-2">
-                      🛡️ How We Protect Your Data
-                    </h3>
-                    <ul className="space-y-3 text-textSecondary">
-                      <li>• End-to-end encryption (AES-256)</li>
-                      <li>• Complete company data sandboxing</li>
-                      <li>• Role-based access controls</li>
-                      <li>• Configurable data retention policies</li>
-                      <li>• Choose your data residency location</li>
-                    </ul>
-                  </div>
-                </div>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Database className="w-5 h-5 text-accent" />
+                      1. Information We Collect
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">1.1 Business Information</h4>
+                      <p className="text-textSecondary">We collect anonymized workforce analytics, productivity metrics, and operational insights necessary for our AI services.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">1.2 Account Information</h4>
+                      <p className="text-textSecondary">Name, email address, company details, and contact information for enterprise account management.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">1.3 Usage Data</h4>
+                      <p className="text-textSecondary">Platform interactions, feature usage, and system logs (anonymized) to improve our services.</p>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-8">Your Privacy Rights</h2>
-                  <div className="grid md:grid-cols-3 gap-8">
-                    <div className="text-center">
-                      <div className="text-4xl mb-4">📋</div>
-                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Data Access</h4>
-                      <p className="text-textSecondary">View all data we have about you</p>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Lock className="w-5 h-5 text-accent" />
+                      2. How We Use Your Information
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">2.1 Service Delivery</h4>
+                      <p className="text-textSecondary">To provide enterprise AI insights, analytics, and platform functionality.</p>
                     </div>
-                    <div className="text-center">
-                      <div className="text-4xl mb-4">✏️</div>
-                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Data Correction</h4>
-                      <p className="text-textSecondary">Update inaccurate information</p>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">2.2 Platform Improvement</h4>
+                      <p className="text-textSecondary">To enhance our AI models and platform capabilities using aggregated, anonymized data.</p>
                     </div>
-                    <div className="text-center">
-                      <div className="text-4xl mb-4">🗑️</div>
-                      <h4 className="text-lg font-semibold text-textPrimary mb-2">Data Deletion</h4>
-                      <p className="text-textSecondary">Complete data removal</p>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">2.3 Communication</h4>
+                      <p className="text-textSecondary">To provide customer support, account updates, and service notifications.</p>
                     </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
 
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-textPrimary mb-8">Privacy Compliance</h2>
-                  <div className="grid md:grid-cols-3 gap-8">
-                    <div className="text-center">
-                      <div className="text-4xl mb-4">🇪🇺</div>
-                      <h4 className="text-lg font-semibold text-textPrimary mb-2">GDPR Ready</h4>
-                      <p className="text-textSecondary">European privacy standards</p>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Shield className="w-5 h-5 text-accent" />
+                      3. Data Protection & Security
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">3.1 Encryption</h4>
+                      <p className="text-textSecondary">All data is encrypted at rest and in transit using AES-256 encryption standards.</p>
                     </div>
-                    <div className="text-center">
-                      <div className="text-4xl mb-4">🇺🇸</div>
-                      <h4 className="text-lg font-semibold text-textPrimary mb-2">CCPA Compliant</h4>
-                      <p className="text-textSecondary">California privacy rights</p>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">3.2 Data Isolation</h4>
+                      <p className="text-textSecondary">Complete company data sandboxing ensures no cross-contamination between enterprise clients.</p>
                     </div>
-                    <div className="text-center">
-                      <div className="text-4xl mb-4">🔐</div>
-                      <h4 className="text-lg font-semibold text-textPrimary mb-2">SOC 2 Type II</h4>
-                      <p className="text-textSecondary">Security & availability audit</p>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">3.3 Access Controls</h4>
+                      <p className="text-textSecondary">Role-based permissions with multi-factor authentication and audit logging.</p>
                     </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
 
-                <div className="text-center py-8">
-                  <h3 className="text-xl md:text-2xl font-semibold text-textPrimary mb-4">
-                    Questions About Privacy?
-                  </h3>
-                  <p className="text-textSecondary mb-8 leading-relaxed max-w-2xl mx-auto">
-                    Our privacy team is available to address any questions about data handling, compliance, or your privacy rights.
-                  </p>
-                  <Button asChild className="bg-accent hover:bg-accent/90">
-                    <Link href="/#demo">Request Privacy Consultation</Link>
-                  </Button>
-                </div>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <UserCheck className="w-5 h-5 text-accent" />
+                      4. Your Rights
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">4.1 Access & Portability</h4>
+                      <p className="text-textSecondary">Request access to your personal data and receive it in a portable format.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">4.2 Correction & Deletion</h4>
+                      <p className="text-textSecondary">Request correction of inaccurate data or deletion of your personal information.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-textPrimary mb-2">4.3 Processing Objection</h4>
+                      <p className="text-textSecondary">Object to certain processing activities or withdraw consent where applicable.</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Mail className="w-5 h-5 text-accent" />
+                      5. Contact Us
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-textSecondary mb-4">
+                      For questions about this Privacy Policy or to exercise your rights, contact our privacy team.
+                    </p>
+                    <Button asChild className="bg-accent hover:bg-accent/90">
+                      <Link href="/#demo">Contact Privacy Team</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
