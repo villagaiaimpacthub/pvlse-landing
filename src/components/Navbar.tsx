@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import data from "@/data/pvlse.json";
 import PulseIcon from "@/components/PulseIcon";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
+  const router = useRouter();
   const nav = data.content.nav;
   const [activeIndex, setActiveIndex] = useState(-1); // -1 represents logo/hero active
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 });
@@ -113,12 +115,19 @@ export default function Navbar() {
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
-    e.preventDefault();
     setActiveIndex(-1);
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    
+    // If we're not on the home page, navigate to home
+    if (router.pathname !== '/') {
+      router.push('/');
+    } else {
+      // If we're on the home page, just scroll to top
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const handleLinkClick = (e: React.MouseEvent, href: string) => {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -151,7 +152,7 @@ export default function PricingSlider({ pricingTiers, sliderConfig }: PricingSli
               asChild 
               className="w-full bg-accent hover:bg-accentHover text-textPrimary font-semibold px-6 py-3 rounded-pill shadow-hard transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/40 hover:bg-gradient-to-r hover:from-accent hover:to-accentHover hover:ring-2 hover:ring-accent/50"
             >
-              <a href="#demo">{tier.cta}</a>
+              <Link href="#demo">{tier.cta}</Link>
             </Button>
           </CardFooter>
         </Card>

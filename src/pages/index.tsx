@@ -31,7 +31,7 @@ export default function Home() {
         <main>
           <Hero heroData={data.content.hero} />
         
-        <Section className="py-20 md:py-28">
+        <Section className="py-24 md:py-32">
           <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-12">
               We provide <span className="text-accent">AI-driven automation</span> and collective intelligence solutions
@@ -47,9 +47,7 @@ export default function Home() {
           </div>
         </Section>
 
-        <HeroCTA className="py-48 md:py-56" />
-        
-        <div className="py-16"></div>
+        <HeroCTA className="py-24 md:py-32" />
         
         <Moments />
 
@@ -172,7 +170,7 @@ export default function Home() {
         </section>
 
 
-        <section id="pricing" className="py-20 md:py-24">
+        <section id="pricing" className="py-24 md:py-32">
           <div className="container">
             <div className="text-center max-w-4xl mx-auto mb-6">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-4">
@@ -185,7 +183,7 @@ export default function Home() {
 
         <LogoStrip items={data.content.logos?.items} />
 
-        <section id="demo" className="py-20 md:py-24">
+        <section id="demo" className="py-24 md:py-32">
           <div className="container">
             <div className="max-w-3xl mx-auto">
               <DemoForm />
@@ -193,7 +191,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="faq" className="py-20 md:py-24">
+        <section id="faq" className="py-24 md:py-32">
           <div className="container">
             <div className="text-center max-w-4xl mx-auto mb-12">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-textPrimary leading-tight mb-8">

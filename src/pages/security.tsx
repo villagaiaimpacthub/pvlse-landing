@@ -16,7 +16,7 @@ export default function Security() {
       </Head>
       <Theme>
         <Navbar />
-        <main className="py-20 md:py-24 min-h-screen">
+        <main className="py-24 md:py-32 min-h-screen">
           <div className="container">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">

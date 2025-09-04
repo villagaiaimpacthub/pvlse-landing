@@ -337,12 +337,12 @@ export default function PVLSECards() {
   }, [api])
 
   return (
-    <section id="moments" className="relative w-full min-h-screen py-20 md:py-24">
-      {/* Background with image22.png */}
+    <section id="moments" className="relative w-full min-h-screen py-24 md:py-32">
+      {/* Background with image23.png */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/image22.png')"
+          backgroundImage: "url('/image23.png')"
         }}
       />
       
